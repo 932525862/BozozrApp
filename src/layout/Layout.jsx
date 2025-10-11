@@ -1,11 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
+import SideBar from "../components/SideBar";
 
 const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <Hedaer/>
+      <Header/>
 
       {/* Body (Sidebar + Content) */}
       <div className="flex flex-1">
