@@ -6,7 +6,7 @@ import CustomModal from "../../../components/CustomModal";
 import AddMarketForm from "./AddMarketForm";
 
 export default function EmptyShoppingList() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

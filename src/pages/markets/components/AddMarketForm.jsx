@@ -32,13 +32,13 @@ const AddMarketForm = ({ onSubmit }) => {
             <Input
               {...field}
               placeholder="Bozorlik nomini kiriting"
-              status={errors.bazaarName ? "error" : ""}
+              status={errors.name ? "error" : ""}
             />
           )}
         />
         {errors.bazaarName && (
           <p className="text-red-500 text-sm mt-1">
-            {errors.bazaarName.message}
+            {errors.name.message}
           </p>
         )}
       </div>
