@@ -5,7 +5,8 @@ const CustomModal = ({
   open,
   title = 'Modal Title',
   children,
-  onCancel
+  onCancel,
+  width = 520,
 }) => {
   return (
     <Modal
@@ -14,6 +15,7 @@ const CustomModal = ({
       onCancel={onCancel}
       footer={false}
       centered={true}
+      width={width}
     >
       {children}
     </Modal>
