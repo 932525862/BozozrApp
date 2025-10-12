@@ -3,6 +3,7 @@ import { IoChevronDown } from "react-icons/io5";
 import uzFlag from "../assets/flags/uzbekistan.png";
 import enFlag from "../assets/flags/united-kingdom.png";
 import ruFlag from "../assets/flags/russia.png";
+import i18n from "../i18n";
 
 const languages = [
   { code: "uz", label: "UZ", flag: uzFlag },
@@ -18,9 +19,10 @@ const LanguageSelect = () => {
 
   const handleSelect = (lang) => {
     setSelected(lang);
+    i18n.changeLanguage(lang?.code)
+    localStorage.setItem("marketAppLng", lang?.code);
     setOpen(false);
   };
-
   // 🔹 Tashqariga bosilganda dropdown yopiladi
   useEffect(() => {
     const handleClickOutside = (e) => {

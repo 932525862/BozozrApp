@@ -95,7 +95,7 @@ const links = [
     ),
   },
   {
-    to: "/history",
+    to: "/histories",
     label: "Tarix",
     svg: (
       <svg

@@ -3,10 +3,10 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 import languageDetector from "i18next-browser-languagedetector";
 
-import uzTranslation from "./locale/uz.json";
-import ruTranslation from "./locale/ru.json";
-import enTranslation from "./locale/en.json";
-import uzruTranslation from "./locale/uz-ru.json";
+import uzTranslation from "./locales/uz.json";
+import ruTranslation from "./locales/ru.json";
+import enTranslation from "./locales/en.json";
+import uzruTranslation from "./locales/uz-ru.json";
 
 const language = localStorage.getItem('marketAppLng') || 'uz'
 
