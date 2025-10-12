@@ -1,14 +1,17 @@
 import React from 'react'
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
+import LanguageSelect from './LanguageSelect';
 
 const Header = () => {
   return (
-    <header className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Admin Panel</h1>
-        <nav className="flex gap-4">
-          <Link to="/" className="hover:text-gray-300">Bosh sahifa</Link>
-          <Link to="/about" className="hover:text-gray-300">Haqida</Link>
-        </nav>
+    <header className="w-full border-b py-[25px] border-[#E0E0E0]">
+        <div className='container flex justify-between'>
+          <Link to="/" className='w-[147px] flex justify-center'><img src={logo} alt="market app logo" /></Link>
+          <div>
+            <LanguageSelect/>
+          </div>
+        </div>
       </header>
   )
 }

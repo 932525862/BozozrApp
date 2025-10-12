@@ -10,13 +10,15 @@ const Layout = () => {
       <Header/>
 
       {/* Body (Sidebar + Content) */}
-      <div className="flex flex-1">
+      <div className=" bg-[#F9F9F9] py-[16px]">
         {/* Sidebar */}
+        <div className="flex flex-1 container">
         <SideBar/>
         {/* Main Content */}
-        <main className="flex-1 bg-gray-100 p-6 overflow-y-auto">
+        <main className="flex-1  p-6 overflow-y-auto">
           <Outlet />
         </main>
+        </div>
       </div>
     </div>
   );

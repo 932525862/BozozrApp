@@ -1,15 +1,42 @@
-import React from 'react'
-import { Link, Outlet } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
-    <aside className="w-64 bg-gray-800 text-white p-5 flex flex-col gap-3">
-          <h2 className="text-lg font-semibold mb-3">Menyu</h2>
-          <Link to="/" className="hover:bg-gray-700 p-2 rounded">🏠 Bosh sahifa</Link>
-          <Link to="/about" className="hover:bg-gray-700 p-2 rounded">ℹ️ Haqida</Link>
-          <Link to="/settings" className="hover:bg-gray-700 p-2 rounded">⚙️ Sozlamalar</Link>
-        </aside>
-  )
-}
+    <aside className="p-[16px] flex flex-col gap-[16px] bg-white rounded-[16px]">
+      <Link to="/" className="hover:bg-[#06B2B6]  hover:text-white transition-all duration-200 px-[14px] py-[20px] text-[#4B4B4B] font-[500] bg-[#F9F9F9] rounded-[12px] ">
+        <div className="px-[2px] flex flex-col items-center">
+        <span>🏠 </span> <span>Asosiy</span>
+        </div>
+      </Link>
+      <Link to="/brends" className="hover:bg-[#06B2B6]  hover:text-white transition-all duration-200 px-[14px] py-[20px] text-[#4B4B4B] font-[500] bg-[#F9F9F9] rounded-[12px] ">
+        <div className="px-[2px] flex flex-col items-center">
+        <span>🏠 </span> <span>Brendlar</span>
+        </div>
+      </Link>
+      <Link to="/markets" className="hover:bg-[#06B2B6]  hover:text-white transition-all duration-200 px-[14px] py-[20px] text-[#4B4B4B] font-[500] bg-[#F9F9F9] rounded-[12px] ">
+        <div className="px-[2px] flex flex-col items-center">
+        <span>🏠 </span> <span>Bozorlik</span>
+        </div>
+      </Link>
+      <Link to="/history" className="hover:bg-[#06B2B6]  hover:text-white transition-all duration-200 px-[14px] py-[20px] text-[#4B4B4B] font-[500] bg-[#F9F9F9] rounded-[12px] ">
+        <div className="px-[2px] flex flex-col items-center">
+        <span>🏠 </span> <span>Tarix</span>
+        </div>
+      </Link>
+      <Link to="/menu" className="hover:bg-[#06B2B6]  hover:text-white transition-all duration-200 px-[14px] py-[20px] text-[#4B4B4B] font-[500] bg-[#F9F9F9] rounded-[12px] ">
+        <div className="px-[2px] flex flex-col items-center">
+        <span>🏠 </span> <span>Menu</span>
+        </div>
+      </Link>
+      <Link to="/notifications" className="hover:bg-[#06B2B6]  hover:text-white transition-all duration-200 px-[14px] py-[20px] text-[#4B4B4B] font-[500] bg-[#F9F9F9] rounded-[12px] ">
+        <div className="px-[2px] flex flex-col items-center">
+        <span>🏠 </span> <span>Xabarnoma</span>
+        </div>
+      </Link>
+      
+    </aside>
+  );
+};
 
-export default SideBar
+export default SideBar;
