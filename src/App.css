@@ -35,3 +35,51 @@
     height: 33px;
     border-radius: 13px;
 }
+
+.ant-input:focus {
+    border-color: #06B2B6 !important;          /* yangi border rangi */
+    outline: none;
+    /* border-width: 2px; */
+  }
+  
+  /* agar Input prefix/suffix bilan bo'lsa  */
+  .ant-input-affix-wrapper-focused {
+    border-color: #06B2B6 !important;
+    /* border-width: 2px; */
+  }
+
+  .ant-select-focused .ant-select-selector {
+    border-color: #06B2B6 !important;          /* yangi rang */
+    /* box-shadow: 0 0 0 2px rgba(255,77,79,0.15) !important; */
+    outline: none;
+  }
+  
+  /* optional: hover paytidagi rang ham */
+  .ant-select:hover .ant-select-selector {
+    border-color: #06B2B6 !important;
+  }
+
+  .ant-input {
+    padding: 10px 16px !important;  /* vertikal 10px, gorizontal 14px */
+    border-radius: 12px;
+  }
+  
+  /* Prefix/suffix bo‘lsa */
+  .ant-input-affix-wrapper .ant-input {
+    padding: 10px 16px !important;
+  }
+
+  .ant-select-selector {
+    padding: 10px 16px !important; /* vertikal 10px, gorizontal 14px */
+    height: auto !important;       /* kerak bo‘lsa: height auto qilinadi */
+    display: flex;
+    align-items: center;
+  }
+
+  .ant-select-single{
+    height: 44px;
+  }
+
+  .ant-select-single .ant-select-selector{
+    border-radius: 12px;
+  }
