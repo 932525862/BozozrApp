@@ -13,7 +13,7 @@ const AddMarketForm = ({ onSubmit }) => {
   } = useForm({
     defaultValues: {
       name: "",
-      category: "",
+      category: null,
     },
   });
 
