@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "antd";
+import { Input,Select  } from "antd";
 import { Link } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
 import { Eye, EyeOff } from "lucide-react";
@@ -12,6 +12,9 @@ import uzFlag from "../../assets/flags/uzbekistan.png";
 import uzcFlag from "../../assets/flags/uzbekistan.png";
 import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
+
+
+const { Option } = Select;
 
 const Registir = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -150,7 +153,7 @@ const Registir = () => {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Parol"
-                    className="rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[44px] transition-all duration-300"
+                    className=""
                   />
                   <button
                     type="button"
@@ -189,11 +192,12 @@ const Registir = () => {
                     *Jins
                   </label>
                   
-                  <select className="w-full rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[44px] bg-white text-[#1E1E1E] transition-all duration-300">
-                    <option value="">Jinsni tanlang</option>
-                    <option value="erkak">Erkak</option>
-                    <option value="ayol">Ayol</option>
-                  </select>
+                  <Select className="w-full  "
+                  placeholder="jinsni tanlang"
+                  >
+                    <Option value="erkak">Erkak</Option>
+                    <Option value="ayol">Ayol</Option>
+                  </Select>
                 </div>
 
                 {/* Joylashuv */}
@@ -201,22 +205,23 @@ const Registir = () => {
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
                     *Joylashuv
                   </label>
-                  <select className="w-full rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[44px] bg-white text-[#1E1E1E] transition-all duration-300">
-                    <option value="">Viloyatingizni tanlang</option>
-                    <option value="toshkent">Toshkent</option>
-                    <option value="andijon">Andijon</option>
-                    <option value="fargona">Farg‘ona</option>
-                    <option value="namangan">Namangan</option>
-                    <option value="samarqand">Samarqand</option>
-                    <option value="buxoro">Buxoro</option>
-                    <option value="xorazm">Xorazm</option>
-                    <option value="navoiy">Navoiy</option>
-                    <option value="qashqadaryo">Qashqadaryo</option>
-                    <option value="surxondaryo">Surxondaryo</option>
-                    <option value="jizzax">Jizzax</option>
-                    <option value="sirdaryo">Sirdaryo</option>
-                    <option value="qarakalpogiston">Qoraqalpog‘iston</option>
-                  </select>
+                  <Select className="w-full "
+                   placeholder="hududni tanlang"
+                  >
+                    <Option value="toshkent">Toshkent</Option>
+                    <Option value="andijon">Andijon</Option>
+                    <Option value="fargona">Farg‘ona</Option>
+                    <Option value="namangan">Namangan</Option>
+                    <Option value="samarqand">Samarqand</Option>
+                    <Option value="buxoro">Buxoro</Option>
+                    <Option value="xorazm">Xorazm</Option>
+                    <Option value="navoiy">Navoiy</Option>
+                    <Option value="qashqadaryo">Qashqadaryo</Option>
+                    <Option value="surxondaryo">Surxondaryo</Option>
+                    <Option value="jizzax">Jizzax</Option>
+                    <Option value="sirdaryo">Sirdaryo</Option>
+                    <Option value="qarakalpogiston">Qoraqalpog‘iston</Option>
+                  </Select>
                 </div>
               </div>
             </div>
