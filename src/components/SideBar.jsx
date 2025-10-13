@@ -233,14 +233,14 @@ const SideBar = () => {
           key={to}
           to={to}
           className={({ isActive }) =>
-            `px-[14px] py-[20px] rounded-[12px] font-[500] flex flex-col items-center transition-all duration-200 ${
+            `px-[16px] py-[18px] rounded-[12px] font-[500] flex flex-col items-center transition-all duration-200 ${
               isActive
                 ? "bg-[#06B2B6] text-white"
                 : "bg-[#F9F9F9] text-[#4B4B4B] hover:bg-[#06B2B6] hover:text-white"
             }`
           }
         >
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center">
             <span className="text-inherit">{svg || icon}</span>
             <span>{label}</span>
           </div>
