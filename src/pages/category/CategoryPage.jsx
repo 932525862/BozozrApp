@@ -39,10 +39,11 @@ const CategoryPage = () => {
   const navigate = useNavigate();
 
   const handleCardClick = (brend) => {
+    const formattedTitle = brend.title.replace(/\s+/g, "-");
     if (brend.subcategories && brend.subcategories.length > 0) {
-      navigate(`/brends/${brend.title}/subbrends`, { state: brend });
+      navigate(`/brends/${formattedTitle}/subbrends`, { state: brend });
     } else {
-      navigate(`/brends/${brend.title}/products`, { state: brend });
+      navigate(`/brends/${formattedTitle}/products`, { state: brend });
     }
   };
 
