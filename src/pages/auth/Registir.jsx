@@ -46,8 +46,8 @@ const Registir = () => {
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-white overflow-hidden px-4 sm:px-6">
       {/* 🔵 Dekor doiralar */}
-      <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[-111px] left-[1058px] hidden md:block" />
-      <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[720px] left-[-89px] hidden md:block" />
+      <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[-111px] left-[1098px] hidden md:block" />
+      <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[520px] left-[-39px] hidden md:block" />
 
       {/* 📦 LoginCard */}
       <div className="relative z-10 flex flex-col items-center bg-white rounded-[12px] shadow-[0px_2px_6px_0px_#2553B91A] w-full max-w-[960px] md:h-[706px] p-5 md:p-[30px] gap-[20px] md:gap-[30px]">

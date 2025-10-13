@@ -14,12 +14,14 @@ import SubBrendsPage from "./pages/subBrends/SubBrendsPage";
 import ProductsPage from "./pages/products/ProductsPage";
 import Login from "./pages/auth/Login"
 import Registir from "./pages/auth/Registir"
+import Password from "./pages/auth/Password"
 function App() {
   return (
     <>
       <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/Registir" element={<Registir />} />
+      <Route path="/password" element={<Password />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="sections" element={<SectionsPage />} />
