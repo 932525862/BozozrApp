@@ -7,6 +7,9 @@ const SubBrendsPage = () => {
   const { state: brend } = useLocation();
   const navigate = useNavigate();
 
+  console.log(brend);
+  
+
   if (!brend) return <div>Ma'lumot topilmadi</div>;
 
   const handleSubClick = (sub) => {

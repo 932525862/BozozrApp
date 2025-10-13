@@ -55,10 +55,10 @@ const ProductsPage = () => {
             { label: "Brendlar", to: "/brends" },
             {
               label: brend?.title,
-              to: `/brends/${brend?.title?.replace(/\s+/g, "-")}`,
+              to: `/brends/${brend?.title?.replace(/\s+/g, "-")}/subbrends`,
             },
             // faqat selectSub mavjud bo‘lsa uchinchi elementni qo‘shamiz
-            ...(brend?.selectSub ? [{ label: brend?.selectSub?.title }] : []),
+            ...(brend?.selectedSub ? [{ label: brend?.selectedSub?.title }] : []),
           ]}
         />
       </div>
