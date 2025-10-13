@@ -232,12 +232,19 @@ const SideBar = () => {
         <NavLink
           key={to}
           to={to}
-          className={({ isActive }) =>
-            `px-[16px] py-[18px] rounded-[12px] font-[500] flex flex-col items-center transition-all duration-200 ${
-              isActive
+          className={({ isActive }) =>{
+            const customActive =
+              (to === "/" &&
+                (location.pathname === "/" ||
+                  location.pathname.startsWith("/sections"))) ||
+              isActive;
+            return `px-[16px] py-[18px] rounded-[12px] font-[500] flex flex-col items-center transition-all duration-200 ${
+              customActive
                 ? "bg-[#06B2B6] text-white"
                 : "bg-[#F9F9F9] text-[#4B4B4B] hover:bg-[#06B2B6] hover:text-white"
             }`
+          }
+            
           }
         >
           <div className="flex flex-col items-center">

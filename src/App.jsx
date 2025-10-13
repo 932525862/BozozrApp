@@ -9,6 +9,7 @@ import MarketPage from "./pages/markets/MarketPage";
 import HistoryPage from "./pages/history/HistoryPage";
 import MenuPage from "./pages/menu/MenuPage";
 import NotificationsPage from "./pages/notifications/NotificationsPage";
+import SectionsPage from "./pages/home/sections/SectionsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="sections" element={<SectionsPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="brends" element={<CategoryPage />} />
           <Route path="markets" element={<MarketPage />} />
