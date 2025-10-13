@@ -32,9 +32,6 @@ const SectionsMarket = () => {
         <Swiper
           slidesPerView={2.5}
           spaceBetween={12}
-          // pagination={{
-          //   clickable: true,
-          // }}
           modules={[Pagination]}
           className="mySwiper"
         >

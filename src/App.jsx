@@ -9,7 +9,7 @@ import MarketPage from "./pages/markets/MarketPage";
 import HistoryPage from "./pages/history/HistoryPage";
 import MenuPage from "./pages/menu/MenuPage";
 import NotificationsPage from "./pages/notifications/NotificationsPage";
-import SectionsPage from "./pages/home/sections/SectionsPage";
+import SectionsPage from "./pages/sections/SectionsPage";
 
 function App() {
   return (
