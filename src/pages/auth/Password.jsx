@@ -7,13 +7,13 @@ import Uzb from "../../assets/left-part.svg";
 import Eng from "../../assets/eng.svg";
 import Rus from "../../assets/rus.svg";
 import Kiril from "../../assets/krill.svg";
-import option from "../../assets/option.svg";
+import Option from "../../assets/option.svg";
 import uzFlag from "../../assets/flags/uzbekistan.png";
 import uzcFlag from "../../assets/flags/uzbekistan.png";
 import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
 
-const Login = () => {
+const Password = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("+998 ");
   const [selectedLang, setSelectedLang] = useState("UZ");
@@ -27,10 +27,10 @@ const Login = () => {
     }
   };
 
-  const handleCheckboxChange = (e) => {
-    const checkbox = e.target;
-    checkbox.style.backgroundColor = checkbox.checked ? "#06B2B6" : "#FFFFFF";
-  };
+//   const handleCheckboxChange = (e) => {
+//     const checkbox = e.target;
+//     checkbox.style.backgroundColor = checkbox.checked ? "#06B2B6" : "#FFFFFF";
+//   };
 
   const getLangImage = () => {
     switch (selectedLang) {
@@ -53,7 +53,6 @@ const Login = () => {
 
       {/* 📦 LoginCard */}
       <div className="relative z-10 flex flex-col items-center bg-white rounded-[12px] shadow-[0px_2px_6px_0px_#2553B91A] w-full max-w-[960px] md:h-[706px] p-5 md:p-[30px] gap-[20px] md:gap-[30px]">
-        
         {/* 🌐 Language selector */}
         <div className="flex gap-2 md:gap-4 justify-center mb-2 mt-1 flex-wrap">
           {[
@@ -87,7 +86,6 @@ const Login = () => {
 
         {/* 🔹 Kontent (chap + o‘ng) */}
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full bg-white rounded-[12px] gap-[30px] md:h-[560px]">
-          
           {/* 🟢 Chap (Rasm qismi) */}
           <div className="hidden md:flex items-center justify-center w-[435px] h-[560px] rounded-[12px] overflow-hidden bg-transparent">
             <img
@@ -101,17 +99,18 @@ const Login = () => {
           <div className="flex flex-col w-full md:w-[435px] md:h-[512px] p-2 rounded-[12px] relative">
             <div className="mb-2 text-center md:text-left">
               <h2 className="text-2xl font-semibold text-[#1E1E1E]">
-                Xush kelibsiz!
+                Parolni tiklash
               </h2>
               <p className="text-sm text-[#1E1E1E]/60 mt-2">
-                Iltimos tizimga kirish uchun login va parol kiriting
+                Iltimos, parolingizni tiklash uchun kerakli ma’lumotlarni
+                kiriting.
               </p>
             </div>
 
             {/* ⭐ Dekor chiziq */}
-            <div className="flex w-full md:w-[435px] h-[40px] md:h-[50px] rounded-[12px] overflow-hidden bg-transparent justify-center md:justify-start">
+            <div className="flex w-full md:w-[435px] h-[40px] md:h-[50px] rounded-[12px] overflow-hidden bg-transparent justify-center md:justify-start mt-3">
               <img
-                src={option}
+                src={Option}
                 alt="option"
                 className="w-[300px] md:w-[400px] h-auto bg-transparent"
               />
@@ -150,9 +149,26 @@ const Login = () => {
                   {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
               </div>
+              <div className="relative">
+                <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
+                  *Parol (qayta kiriting)
+                </label>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Parol"
+                  className="rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[48px] transition-all duration-300"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-[38px] text-gray-500 hover:text-[#06B2B6]"
+                >
+                  {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+                </button>
+              </div>
             </div>
 
-            {/* ✅ Remember & Forgot */}
+            {/* ✅ Remember & Forgot
             <div className="flex items-center justify-between text-sm mt-5">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -162,14 +178,20 @@ const Login = () => {
                 />
                 <span className="text-[#1E1E1E] text-sm">Meni eslab qol</span>
               </label>
-              <Link to="/password" className="text-sm text-[#06B2B6] underline">Parolimni unutdim</Link>
-            </div>
+              <Link to="/login" className="text-sm text-[#06B2B6] underline">
+                Kirish
+              </Link>
+            </div> */}
 
             {/* 🆕 Akkount yaratish */}
             <div className="text-sm text-gray-600 mt-8 text-center md:text-left">
               Yangi foydalanuvchimisiz?{" "}
-              
-              <Link to="/Registir" className="underline font-semibold text-[#06B2B6]">Akkount yaratish</Link>
+              <Link
+                to="/Registir"
+                className="underline font-semibold text-[#06B2B6]"
+              >
+                Akkount yaratish
+              </Link>
             </div>
 
             {/* 🔘 Davom etish tugmasi */}
@@ -185,4 +207,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Password;
