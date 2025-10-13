@@ -10,6 +10,8 @@ import HistoryPage from "./pages/history/HistoryPage";
 import MenuPage from "./pages/menu/MenuPage";
 import NotificationsPage from "./pages/notifications/NotificationsPage";
 import SectionsPage from "./pages/sections/SectionsPage";
+import SubBrendsPage from "./pages/subBrends/SubBrendsPage";
+import ProductsPage from "./pages/products/ProductsPage";
 
 function App() {
   return (
@@ -20,6 +22,14 @@ function App() {
           <Route path="sections" element={<SectionsPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="brends" element={<CategoryPage />} />
+          <Route
+          path="/brends/:brendTitle/subbrends"
+          element={<SubBrendsPage />}
+        />
+        <Route
+          path="/brends/:brendTitle/products"
+          element={<ProductsPage />}
+        />
           <Route path="markets" element={<MarketPage />} />
           <Route path="histories" element={<HistoryPage />} />
           <Route path="menu" element={<MenuPage />} />

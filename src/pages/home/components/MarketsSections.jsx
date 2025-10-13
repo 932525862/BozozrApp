@@ -34,7 +34,7 @@ const MarketsSections = () => {
           </span>
         </CustomButton>
       </div>
-      <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px] max-w-[685px]">
+      <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px] max-w-[705px]">
         <div className="flex justify-between">
           <div className="font-[600]">Bozorliklar</div>
           <Link
@@ -46,7 +46,7 @@ const MarketsSections = () => {
         </div>
         <div className="mt-[12px]">
           <Swiper
-            slidesPerView={1.8}
+            slidesPerView={1.9}
             spaceBetween={12}
             modules={[Pagination]}
             className="mySwiper"

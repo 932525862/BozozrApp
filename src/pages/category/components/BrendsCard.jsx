@@ -1,0 +1,17 @@
+import React from 'react'
+
+const BrendsCard = ({brend}) => {
+  return (
+    <div className='px-[8px] pt-[8px] pb-[12px] bg-[#FFFFFF] rounded-[16px]'>
+        <div className='rounded-[14px] bg-[#F9F9F9] h-[105px] flex justify-center items-center'>
+            <img src={brend?.img} alt="logo photo" />
+        </div>
+        <div className='flex flex-col mt-[8px]'>
+            <span className='font-[600]'>{brend?.title}</span>
+            <span className='text-[#06B2B6] text-[14px] font-[500]'>{brend?.text}</span>
+        </div>
+    </div>
+  )
+}
+
+export default BrendsCard

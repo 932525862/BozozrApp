@@ -1,6 +1,7 @@
 import { Button, Result } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PrimaryButton from "../../components/PrimaryButton";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -16,26 +17,12 @@ const NotFoundPage = () => {
           </p>
         }
         extra={
-          <Button
-            onClick={() => navigate("/")}
-            type="primary"
-            className="
-        flex items-center justify-center gap-2
-        !bg-[#06B2B6]
-        !border-none
-        hover:!bg-[#0CAFB3]
-        transition-all duration-300
-        text-white
-        !text-base sm:!text-lg md:!text-xl
-        font-medium
-        !px-8 sm:!px-10 md:!px-12
-        !py-3 sm:!py-4 md:!py-5
-        rounded-2xl
-        shadow-[0_4px_20px_rgba(6,178,182,0.4)]
-      "
+          <PrimaryButton
+            onClick={() => navigate(-1)}
+            className="text-[20px] px-[35px] py-[5px] rounded-[12px]"
           >
             Back Home
-          </Button>
+          </PrimaryButton>
         }
       />
     </div>
