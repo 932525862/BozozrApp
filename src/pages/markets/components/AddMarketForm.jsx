@@ -36,7 +36,7 @@ const AddMarketForm = ({ onSubmit }) => {
             />
           )}
         />
-        {errors.bazaarName && (
+        {errors.name && (
           <p className="text-red-500 text-sm mt-1">
             {errors.name.message}
           </p>
