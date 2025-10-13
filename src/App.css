@@ -41,6 +41,11 @@
     outline: none;
     /* border-width: 2px; */
   }
+  .ant-input:hover {
+    border-color: #06B2B6 !important;          /* yangi border rangi */
+    outline: none;
+    /* border-width: 2px; */
+  }
   
   /* agar Input prefix/suffix bilan bo'lsa  */
   .ant-input-affix-wrapper-focused {

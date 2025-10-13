@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
-import CustomButton from "../../components/CustomButton";
+import { useForm, Controller } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import Uzb from "../../assets/left-part.svg";
 import Eng from "../../assets/eng.svg";
@@ -12,25 +12,39 @@ import uzFlag from "../../assets/flags/uzbekistan.png";
 import uzcFlag from "../../assets/flags/uzbekistan.png";
 import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
+import PrimaryButton from "../../components/PrimaryButton";
 
 const Password = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [phone, setPhone] = useState("+998 ");
   const [selectedLang, setSelectedLang] = useState("UZ");
 
-  const handlePhoneChange = (e) => {
-    const input = e.target.value;
-    if (!input.startsWith("+998")) {
-      setPhone("+998 ");
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      phone: "+998 ",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+
+  const password = watch("password");
+
+  const handlePhoneChange = (value, onChange) => {
+    if (!value.startsWith("+998")) {
+      onChange("+998 ");
     } else {
-      setPhone(input);
+      onChange(value);
     }
   };
 
-//   const handleCheckboxChange = (e) => {
-//     const checkbox = e.target;
-//     checkbox.style.backgroundColor = checkbox.checked ? "#06B2B6" : "#FFFFFF";
-//   };
+  const onSubmit = (data) => {
+    console.log("Form data:", data);
+    // API yoki navigation shu yerda
+  };
 
   const getLangImage = () => {
     switch (selectedLang) {
@@ -47,13 +61,13 @@ const Password = () => {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-white overflow-hidden px-4 sm:px-6">
-      {/* 🔵 Dekor doiralar */}
+      {/* Dekor doiralar */}
       <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[-111px] left-[1098px] hidden md:block" />
       <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[520px] left-[-39px] hidden md:block" />
 
-      {/* 📦 LoginCard */}
+      {/* LoginCard */}
       <div className="relative z-10 flex flex-col items-center bg-white rounded-[12px] shadow-[0px_2px_6px_0px_#2553B91A] w-full max-w-[960px] md:h-[706px] p-5 md:p-[30px] gap-[20px] md:gap-[30px]">
-        {/* 🌐 Language selector */}
+        {/* Language selector */}
         <div className="flex gap-2 md:gap-4 justify-center mb-2 mt-1 flex-wrap">
           {[
             { code: "UZ", flag: uzFlag },
@@ -84,9 +98,9 @@ const Password = () => {
           ))}
         </div>
 
-        {/* 🔹 Kontent (chap + o‘ng) */}
+        {/* Kontent */}
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full bg-white rounded-[12px] gap-[30px] md:h-[560px]">
-          {/* 🟢 Chap (Rasm qismi) */}
+          {/* Chap rasm */}
           <div className="hidden md:flex items-center justify-center w-[435px] h-[560px] rounded-[12px] overflow-hidden bg-transparent">
             <img
               src={getLangImage()}
@@ -95,8 +109,11 @@ const Password = () => {
             />
           </div>
 
-          {/* 🟣 O‘ng (forma) */}
-          <div className="flex flex-col w-full md:w-[435px] md:h-[512px] p-2 rounded-[12px] relative">
+          {/* Forma */}
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col w-full md:w-[435px] md:h-[512px] p-2 rounded-[12px] relative"
+          >
             <div className="mb-2 text-center md:text-left">
               <h2 className="text-2xl font-semibold text-[#1E1E1E]">
                 Parolni tiklash
@@ -107,8 +124,7 @@ const Password = () => {
               </p>
             </div>
 
-            {/* ⭐ Dekor chiziq */}
-            <div className="flex w-full md:w-[435px] h-[40px] md:h-[50px] rounded-[12px] overflow-hidden bg-transparent justify-center md:justify-start mt-3">
+            <div className="flex w-full h-[40px] md:h-[50px] rounded-[12px] overflow-hidden bg-transparent justify-center md:justify-start mt-3">
               <img
                 src={Option}
                 alt="option"
@@ -116,30 +132,64 @@ const Password = () => {
               />
             </div>
 
-            {/* 🔢 Inputs */}
+            {/* Inputs */}
             <div className="flex flex-col gap-3 mt-4">
-              {/* 📞 Telefon input */}
+              {/* Telefon */}
               <div>
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
                   *Telefon
                 </label>
-                <Input
-                  type="text"
-                  value={phone}
-                  onChange={handlePhoneChange}
-                  className="rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[48px] transition-all duration-300"
+                <Controller
+                  name="phone"
+                  control={control}
+                  rules={{
+                    required: "Telefon raqam kiritish majburiy",
+                    pattern: {
+                      value: /^\+998\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/,
+                      message: "Telefon raqam noto‘g‘ri formatda",
+                    },
+                  }}
+                  render={({ field: { onChange, value } }) => (
+                    <Input
+                      value={value}
+                      onChange={(e) =>
+                        handlePhoneChange(e.target.value, onChange)
+                      }
+                      placeholder="Phone"
+                      status={errors.phone ? "error" : ""}
+                    />
+                  )}
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
 
-              {/* 🔒 Parol input */}
+              {/* Parol */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
                   *Parol
                 </label>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Parol"
-                  className="rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[48px] transition-all duration-300"
+                <Controller
+                  name="password"
+                  control={control}
+                  rules={{
+                    required: "Parol kiritish majburiy",
+                    minLength: {
+                      value: 6,
+                      message: "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Parol"
+                      status={errors.password ? "error" : ""}
+                    />
+                  )}
                 />
                 <button
                   type="button"
@@ -148,15 +198,34 @@ const Password = () => {
                 >
                   {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
+
+              {/* Parol qayta */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
                   *Parol (qayta kiriting)
                 </label>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Parol"
-                  className="rounded-[12px] border-2 border-[#E0E0E0] hover:border-[#06B2B6] px-4 py-2 h-[48px] transition-all duration-300"
+                <Controller
+                  name="confirmPassword"
+                  control={control}
+                  rules={{
+                    required: "Parolni qayta kiriting",
+                    validate: (value) =>
+                      value === password || "Parollar mos emas",
+                  }}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Parol"
+                      status={errors.confirmPassword ? "error" : ""}
+                    />
+                  )}
                 />
                 <button
                   type="button"
@@ -165,42 +234,35 @@ const Password = () => {
                 >
                   {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
+                {errors.confirmPassword && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.confirmPassword.message}
+                  </p>
+                )}
               </div>
             </div>
 
-            {/* ✅ Remember & Forgot
-            <div className="flex items-center justify-between text-sm mt-5">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  onChange={handleCheckboxChange}
-                  className="w-4 h-4 border-2 border-[#06B2B6] rounded-[4px] appearance-none outline-none cursor-pointer bg-white checked:bg-[#06B2B6]"
-                />
-                <span className="text-[#1E1E1E] text-sm">Meni eslab qol</span>
-              </label>
-              <Link to="/login" className="text-sm text-[#06B2B6] underline">
-                Kirish
-              </Link>
-            </div> */}
-
-            {/* 🆕 Akkount yaratish */}
+            {/* Akkount yaratish */}
             <div className="text-sm text-gray-600 mt-8 text-center md:text-left">
               Yangi foydalanuvchimisiz?{" "}
               <Link
                 to="/Registir"
                 className="underline font-semibold text-[#06B2B6]"
               >
-                Akkount yaratish
+                Akkaunt yaratish
               </Link>
             </div>
 
-            {/* 🔘 Davom etish tugmasi */}
+            {/* Tugma */}
             <div className="mt-4">
-              <CustomButton className="w-full py-3 rounded-[12px] bg-[#06B2B6] text-white font-medium hover:opacity-90 transition mt-5">
+              <PrimaryButton
+                type="submit"
+                className="w-full py-3 rounded-[12px] text-white font-medium  mt-5"
+              >
                 Davom etish
-              </CustomButton>
+              </PrimaryButton>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
