@@ -12,11 +12,14 @@ import NotificationsPage from "./pages/notifications/NotificationsPage";
 import SectionsPage from "./pages/sections/SectionsPage";
 import SubBrendsPage from "./pages/subBrends/SubBrendsPage";
 import ProductsPage from "./pages/products/ProductsPage";
-
+import Login from "./pages/auth/Login"
+import Registir from "./pages/auth/Registir"
 function App() {
   return (
     <>
       <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/Registir" element={<Registir />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="sections" element={<SectionsPage />} />
