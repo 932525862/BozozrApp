@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input, Select } from "antd";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Uzb from "../../assets/left-part.svg";
 import Eng from "../../assets/eng.svg";
 import Rus from "../../assets/rus.svg";
@@ -13,6 +13,10 @@ import uzcFlag from "../../assets/flags/uzbekistan.png";
 import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
 import PrimaryButton from "../../components/PrimaryButton";
+import useApiMutation from "../../hooks/useMutation";
+import CustomModal from "../../components/CustomModal";
+import { toast } from "react-toastify";
+import { useStore } from "../../store/userStore";
 
 const { Option } = Select;
 
@@ -20,7 +24,15 @@ const Registir = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("+998 ");
   const [selectedLang, setSelectedLang] = useState("UZ");
+  const [verify, setVerify] = useState(false);
+  const [code, setCode] = useState(["", "", "", ""]);
+  const inputRefs = useRef([]);
+  const [dataResponse, setDataResponse] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minut = 120 sekund
+  const [canResend, setCanResend] = useState(false);
+  const { setUser } = useStore();
 
+  const handleClose = () => setVerify(false);
   // 🔹 react-hook-form setup
   const {
     handleSubmit,
@@ -38,14 +50,89 @@ const Registir = () => {
     },
   });
 
+  const { mutate, isLoading } = useApiMutation({
+    url: "/auth/register/user",
+    method: "POST",
+    onSuccess: (data) => {
+      toast.info("Telfon raqamingizga tasdiqlash kodi yoborildi");
+      setVerify(true);
+      setDataResponse(data);
+    },
+
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
+
+  const { mutate: otpMutate, isLoading: otpLoading } = useApiMutation({
+    url: "/auth/verify/otp",
+    method: "POST",
+    onSuccess: (data) => {
+      setUser(data?.access_token, data?.refresh_token, data?.user);
+      toast.success("Tizimga muvaffaqiyatli kirdingiz");
+      navigate("/");
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
+
+  useEffect(() => {
+    let timer;
+
+    if (verify && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setCanResend(true);
+    }
+
+    return () => clearInterval(timer);
+  }, [verify, timeLeft]);
+
+  const { mutate: resendMutate } = useApiMutation({
+    url: "/auth/sendotp/again/for-register",
+    method: "POST",
+    onSuccess: (data) => {
+      toast.success("Kod qayta yuborildi");
+      setTimeLeft(120); // vaqtni qaytadan 2 minutga o‘rnatamiz
+      setCanResend(false);
+      setDataResponse(data)
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
+
+  const handleResend = () => {
+    resendMutate({
+      phoneNumber: phone.replace(/\s/g, ""),
+      verification_key: dataResponse?.details,
+    });
+  };
+
   const handlePhoneChange = (e) => {
     const input = e.target.value;
     if (!input.startsWith("+998")) {
       setPhone("+998 ");
-      setValue("phone", "+998 ");
+      setValue("phoneNumber", "+998 ");
     } else {
       setPhone(input);
-      setValue("phone", input);
+      setValue("phoneNumber", input);
+    }
+  };
+
+  const handleCodeChange = (value, index) => {
+    if (/^\d?$/.test(value)) {
+      const newCode = [...code];
+      newCode[index] = value;
+      setCode(newCode);
+
+      // avtomatik keyingi inputga o'tish
+      if (value && inputRefs.current[index + 1]) {
+        inputRefs.current[index + 1]?.focus();
+      }
     }
   };
 
@@ -64,7 +151,31 @@ const Registir = () => {
 
   // 🔸 Forma submit funksiyasi
   const onSubmit = (data) => {
-    console.log("✅ Forma ma'lumotlari:", data);
+    const newData = {
+      fullName: data.name,
+      phoneNumber: data.phoneNumber.replace(/\s/g, ""),
+      password: data.password,
+      region: data.region, // backendga yuboriladi
+      gender: data.gender, // backendga yuboriladi
+      confirmPassword: data?.confirmPassword,
+    };
+
+    mutate(newData);
+  };
+
+  const handleVerify = async () => {
+    const enteredCode = code.join("");
+    if (enteredCode.length !== 4) {
+      toast.error("Kodni 4 ta raqam bulsin");
+      return;
+    }
+    const data = {
+      verification_key: dataResponse?.details,
+      phoneNumber: phone.replace(/\s/g, ""),
+      otp: enteredCode,
+    };
+
+    otpMutate(data);
   };
 
   return (
@@ -161,7 +272,9 @@ const Registir = () => {
                     )}
                   />
                   {errors.name && (
-                    <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.name.message}
+                    </p>
                   )}
                 </div>
 
@@ -171,22 +284,27 @@ const Registir = () => {
                     *Telefon
                   </label>
                   <Controller
-                    name="phone"
+                    name="phoneNumber"
                     control={control}
-                    rules={{ required: "Telefon raqam majburiy", pattern: {
-                      value: /^\+998\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/,
-                      message: "Telefon raqam formati noto‘g‘ri",
-                    }, }}
+                    rules={{
+                      required: "Telefon raqam majburiy",
+                      pattern: {
+                        value: /^\+998\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/,
+                        message: "Telefon raqam formati noto‘g‘ri",
+                      },
+                    }}
                     render={() => (
                       <Input
                         value={phone}
-                        status={errors.phone ? "error" : ""}
+                        status={errors.phoneNumber ? "error" : ""}
                         onChange={handlePhoneChange}
                       />
                     )}
                   />
-                  {errors.phone && (
-                    <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>
+                  {errors.phoneNumber && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.phoneNumber.message}
+                    </p>
                   )}
                 </div>
               </div>
@@ -219,7 +337,9 @@ const Registir = () => {
                     {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                   </button>
                   {errors.password && (
-                    <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.password.message}
+                    </p>
                   )}
                 </div>
 
@@ -277,7 +397,9 @@ const Registir = () => {
                     )}
                   />
                   {errors.gender && (
-                    <p className="text-red-500 text-xs mt-1">{errors.gender.message}</p>
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.gender.message}
+                    </p>
                   )}
                 </div>
 
@@ -291,7 +413,12 @@ const Registir = () => {
                     control={control}
                     rules={{ required: "Hududni tanlang" }}
                     render={({ field }) => (
-                      <Select {...field} placeholder="Hududni tanlang" status={errors.region ? "error" : ""} className="w-full">
+                      <Select
+                        {...field}
+                        placeholder="Hududni tanlang"
+                        status={errors.region ? "error" : ""}
+                        className="w-full"
+                      >
                         <Option value="toshkent">Toshkent</Option>
                         <Option value="andijon">Andijon</Option>
                         <Option value="fargona">Farg‘ona</Option>
@@ -304,12 +431,16 @@ const Registir = () => {
                         <Option value="surxondaryo">Surxondaryo</Option>
                         <Option value="jizzax">Jizzax</Option>
                         <Option value="sirdaryo">Sirdaryo</Option>
-                        <Option value="qarakalpogiston">Qoraqalpog‘iston</Option>
+                        <Option value="qarakalpogiston">
+                          Qoraqalpog‘iston
+                        </Option>
                       </Select>
                     )}
                   />
                   {errors.region && (
-                    <p className="text-red-500 text-xs mt-1">{errors.region.message}</p>
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.region.message}
+                    </p>
                   )}
                 </div>
               </div>
@@ -318,13 +449,17 @@ const Registir = () => {
             {/* Pastki qism */}
             <div className="text-sm text-gray-600 mt-8 text-center md:text-left">
               Akkauntingiz mavjudmi?{" "}
-              <Link to="/Login" className="underline font-semibold text-[#06B2B6]">
+              <Link
+                to="/Login"
+                className="underline font-semibold text-[#06B2B6]"
+              >
                 Kirish
               </Link>
             </div>
 
             <div className="mt-4">
               <PrimaryButton
+                disabled={isLoading}
                 type="submit"
                 className="w-full py-3 rounded-[12px] text-white font-medium mt-5"
               >
@@ -334,6 +469,49 @@ const Registir = () => {
           </form>
         </div>
       </div>
+      <CustomModal
+        open={verify}
+        title="Tasdiqlash kodi"
+        onCancel={handleClose}
+        width={351}
+      >
+        <div className="flex justify-center mt-4 gap-2">
+          {code.map((digit, i) => (
+            <Input
+              key={i}
+              ref={(el) => {
+                inputRefs.current[i] = el;
+              }}
+              value={digit}
+              maxLength={1}
+              onChange={(e) => handleCodeChange(e.target.value, i)}
+              className="w-12 h-12 text-center text-lg font-bold border-gray-300 focus:border-green-500"
+            />
+          ))}
+        </div>
+        <PrimaryButton onClick={handleResend} disabled={!canResend} className="w-full rounded-[14px] py-[12px] mb-[16px] mt-[16px]">
+          <span className={`${canResend ? "" : "text-[#1e1e1e31]"} font-[500]`}>
+            Kodni qayta yuborish{" "}
+            {!canResend && <span>
+              {Math.floor(timeLeft / 60)}:
+              {(timeLeft % 60).toString().padStart(2, "0")}
+            </span>}
+          </span>
+          
+        </PrimaryButton>
+
+        <PrimaryButton
+          onClick={handleVerify}
+          disabled={otpLoading}
+          className="w-full rounded-[14px] py-[12px]"
+        >
+          {otpLoading ? (
+            <Loader2 className="animate-spin h-4 w-4 mr-2" />
+          ) : (
+            "Tasdiqlash"
+          )}
+        </PrimaryButton>
+      </CustomModal>
     </div>
   );
 };

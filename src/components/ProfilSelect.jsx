@@ -3,8 +3,10 @@ import { IoChevronDown } from "react-icons/io5";
 import Logout from "../assets/icons/logout.svg"
 import LogoCircle from "../assets/logo-circle.png"
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../store/userStore";
 
 const ProfilSelect = () => {
+  const {clearUser} = useStore()
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate()
@@ -12,6 +14,7 @@ const ProfilSelect = () => {
   const handleLogout = () => {
     navigate("/login")
     setOpen(false);
+    clearUser()
   };
 
   // 🔹 Tashqariga bosilganda dropdown yopiladi

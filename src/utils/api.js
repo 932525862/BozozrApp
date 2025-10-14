@@ -1,6 +1,5 @@
-
+import axios from "axios";
 import { useStore } from "../store/userStore";
-import { deleteCookie } from "cookies-next";
 
 const REACT_APP_BASE_URL = "https://backend.marketveb.uz";
 
@@ -29,8 +28,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config  & { _retry};
+    const originalRequest = error.config;
     if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
 
       const storedUser = localStorage.getItem("user-store-market-client");
       const refreshToken = storedUser
@@ -61,7 +61,6 @@ api.interceptors.response.use(
           }
         } catch (refreshError) {
           console.error("Error refreshing token:", refreshError);
-          deleteCookie("token");  
           clearUser();
         }
       } else {

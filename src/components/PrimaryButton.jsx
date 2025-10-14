@@ -7,9 +7,9 @@ const PrimaryButton = ({ children, onClick, className = "", disabled = false, ty
     disabled={disabled}
     type={type}
       className={`
-        bg-[#06B2B6] text-white
-        transition-transform duration-200 cursor-pointer
-        ${disabled ? "opacity-60 cursor-not-allowed" : " hover:bg-[#06A0A3]"}
+         text-white
+        transition-transform duration-200 
+        ${disabled ? "bg-[#0000001A] cursor-not-allowed" : "hover:bg-[#06A0A3] cursor-pointer bg-[#06B2B6]"}
         ${className}
       `}
     >

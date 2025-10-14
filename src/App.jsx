@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import AboutPage from "./pages/about/AboutPage";
 import NotFoundPage from "./pages/notFound/NotFoundPage";
@@ -15,9 +15,33 @@ import ProductsPage from "./pages/products/ProductsPage";
 import Login from "./pages/auth/Login"
 import Registir from "./pages/auth/Registir"
 import Password from "./pages/auth/Password"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
+import { useStore } from "./store/userStore";
+import { useEffect } from "react";
 function App() {
+  const navigate = useNavigate();
+  const { accessToken } = useStore();
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login");
+    }
+  }, [accessToken]);
   return (
     <>
+    <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/Registir" element={<Registir />} />

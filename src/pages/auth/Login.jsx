@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import Uzb from "../../assets/left-part.svg";
@@ -13,10 +13,15 @@ import uzcFlag from "../../assets/flags/uzbekistan.png";
 import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
 import PrimaryButton from "../../components/PrimaryButton";
+import useApiMutation from "../../hooks/useMutation";
+import { useStore } from "../../store/userStore";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedLang, setSelectedLang] = useState("UZ");
+  const { setUser } = useStore();
+  const navigate = useNavigate()
 
   const {
     handleSubmit,
@@ -26,12 +31,24 @@ const Login = () => {
     reset
   } = useForm({
     defaultValues: {
-      phone: "+998 ",
+      phoneNumber: "+998 ",
       password: "",
     },
   });
 
-  // const phoneValue = watch("phone");
+  const { mutate, isLoading } = useApiMutation({
+    url: "/auth/login/user",
+    method: "POST",
+    onSuccess: (data) => {
+      setUser(data?.access_token, data?.refresh_token, data?.user);
+      navigate("/");
+      toast.success("Tizimga muvaffaqiyatli kirildi");
+      reset()
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
 
   const handlePhoneChange = (value, onChange) => {
     if (!value.startsWith("+998")) {
@@ -42,8 +59,12 @@ const Login = () => {
   };
 
   const onSubmit = (data) => {
-    console.log("Login ma'lumotlari:", data);
-    reset()
+    const newData = {
+      phoneNumber: data?.phoneNumber.replace(/\s/g, ""),
+      password: data?.password,
+    };
+    mutate(newData);
+    
   };
 
   const getLangImage = () => {
@@ -140,7 +161,7 @@ const Login = () => {
                   *Telefon
                 </label>
                 <Controller
-                  name="phone"
+                  name="phoneNumber"
                   control={control}
                   
                   rules={{
@@ -153,16 +174,16 @@ const Login = () => {
                   render={({ field: { onChange, value } }) => (
                     <Input
                       value={value}
-                      status={errors.phone ? "error" : ""}
+                      status={errors.phoneNumber ? "error" : ""}
                       onChange={(e) =>
                         handlePhoneChange(e.target.value, onChange)
                       }
                     />
                   )}
                 />
-                {errors.phone && (
+                {errors.phoneNumber && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors.phone.message}
+                    {errors.phoneNumber.message}
                   </p>
                 )}
               </div>
@@ -238,6 +259,7 @@ const Login = () => {
             {/* Davom etish */}
             <div className="mt-4">
               <PrimaryButton
+              disabled={isLoading}
                 type="submit"
                 className="w-full py-3 rounded-[12px]  text-white font-medium  mt-5"
               >

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Uzb from "../../assets/left-part.svg";
 import Eng from "../../assets/eng.svg";
 import Rus from "../../assets/rus.svg";
@@ -13,10 +13,23 @@ import uzcFlag from "../../assets/flags/uzbekistan.png";
 import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
 import PrimaryButton from "../../components/PrimaryButton";
+import useApiMutation from "../../hooks/useMutation";
+import { toast } from "react-toastify";
+import CustomModal from "../../components/CustomModal";
 
 const Password = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedLang, setSelectedLang] = useState("UZ");
+  const [canResend, setCanResend] = useState(false);
+  const [verify, setVerify] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minut = 120 sekund
+  const [code, setCode] = useState(["", "", "", ""]);
+  const [dataResponse, setDataResponse] = useState(null);
+  const inputRefs = useRef([]);
+  const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
+
+  const handleClose = () => setVerify(false);
 
   const {
     control,
@@ -33,7 +46,61 @@ const Password = () => {
 
   const password = watch("password");
 
+  useEffect(() => {
+    let timer;
+
+    if (verify && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setCanResend(true);
+    }
+
+    return () => clearInterval(timer);
+  }, [verify, timeLeft]);
+
+  const { mutate, isLoading } = useApiMutation({
+    url: "/auth/forgot/password",
+    method: "POST",
+    onSuccess: (data) => {
+      toast.info("Telfon raqamingizga tasdiqlash kodi yuborildi");
+      setVerify(true);
+      setDataResponse(data);
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
+
+  const { mutate: otpMutate, isLoading: otpLoading } = useApiMutation({
+    url: "/auth/forget/password/verify-otp",
+    method: "PATCH",
+    onSuccess: (data) => {
+      toast.success("Parol muvaffaqiyatli uzgartirildi");
+      navigate("/login");
+    },
+    onError: (error) => {
+      toast.error(error.message || t("auth.invalidCode"));
+    },
+  });
+
+  const { mutate: resendMutate} = useApiMutation({
+    url: "/auth/sendotp/again/for-register",
+    method: "POST",
+    onSuccess: (data) => {
+      toast.success("Kod qayta yuborildi");
+      setTimeLeft(120); // vaqtni qaytadan 2 minutga o‘rnatamiz
+      setCanResend(false);
+      setDataResponse(data)
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
+
   const handlePhoneChange = (value, onChange) => {
+    setPhone(value);
     if (!value.startsWith("+998")) {
       onChange("+998 ");
     } else {
@@ -41,8 +108,40 @@ const Password = () => {
     }
   };
 
+  const handleCodeChange = (value, index) => {
+    if (/^\d?$/.test(value)) {
+      const newCode = [...code];
+      newCode[index] = value;
+      setCode(newCode);
+
+      // avtomatik keyingi inputga o'tish
+      if (value && inputRefs.current[index + 1]) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    }
+  };
+
+  const handleVerify = async () => {
+    const enteredCode = code.join("");
+    if (enteredCode.length !== 4) {
+      toast.error("4 talik kod kirit");
+      return;
+    }
+    const data = {
+      verification_key: dataResponse?.details,
+      phoneNumber: phone.replace(/\s/g, ""),
+      otp: enteredCode,
+    };
+
+    otpMutate(data);
+  };
+
   const onSubmit = (data) => {
-    console.log("Form data:", data);
+    const newData = {
+      phoneNumber: data?.phoneNumber.replace(/\s/g, ""),
+      newPassword: data?.password,
+    };
+    mutate(newData);
     // API yoki navigation shu yerda
   };
 
@@ -57,6 +156,13 @@ const Password = () => {
       default:
         return Uzb;
     }
+  };
+
+  const handleResend = () => {
+    resendMutate({
+      phoneNumber: phone.replace(/\s/g, ""),
+      verification_key: dataResponse?.details
+    });
   };
 
   return (
@@ -140,7 +246,7 @@ const Password = () => {
                   *Telefon
                 </label>
                 <Controller
-                  name="phone"
+                  name="phoneNumber"
                   control={control}
                   rules={{
                     required: "Telefon raqam kiritish majburiy",
@@ -156,13 +262,13 @@ const Password = () => {
                         handlePhoneChange(e.target.value, onChange)
                       }
                       placeholder="Phone"
-                      status={errors.phone ? "error" : ""}
+                      status={errors.phoneNumber ? "error" : ""}
                     />
                   )}
                 />
-                {errors.phone && (
+                {errors.phoneNumber && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors.phone.message}
+                    {errors.phoneNumber.message}
                   </p>
                 )}
               </div>
@@ -179,7 +285,8 @@ const Password = () => {
                     required: "Parol kiritish majburiy",
                     minLength: {
                       value: 6,
-                      message: "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
+                      message:
+                        "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
                     },
                   }}
                   render={({ field }) => (
@@ -256,6 +363,7 @@ const Password = () => {
             {/* Tugma */}
             <div className="mt-4">
               <PrimaryButton
+                disabled={isLoading}
                 type="submit"
                 className="w-full py-3 rounded-[12px] text-white font-medium  mt-5"
               >
@@ -265,6 +373,49 @@ const Password = () => {
           </form>
         </div>
       </div>
+      <CustomModal
+        open={verify}
+        title="Tasdiqlash kodi"
+        onCancel={handleClose}
+        width={351}
+      >
+        <div className="flex justify-center mt-4 gap-2">
+          {code.map((digit, i) => (
+            <Input
+              key={i}
+              ref={(el) => {
+                inputRefs.current[i] = el;
+              }}
+              value={digit}
+              maxLength={1}
+              onChange={(e) => handleCodeChange(e.target.value, i)}
+              className="w-12 h-12 text-center text-lg font-bold border-gray-300 focus:border-green-500"
+            />
+          ))}
+        </div>
+        <PrimaryButton onClick={handleResend} disabled={!canResend} className="w-full rounded-[14px] py-[12px] mb-[16px] mt-[16px]">
+          <span className={`${canResend ? "" : "text-[#1e1e1e31]"} font-[500]`}>
+            Kodni qayta yuborish{" "}
+            {!canResend && <span>
+              {Math.floor(timeLeft / 60)}:
+              {(timeLeft % 60).toString().padStart(2, "0")}
+            </span>}
+          </span>
+          
+        </PrimaryButton>
+
+        <PrimaryButton
+          onClick={handleVerify}
+          disabled={otpLoading}
+          className="w-full rounded-[14px] py-[12px]"
+        >
+          {otpLoading ? (
+            <Loader2 className="animate-spin h-4 w-4 mr-2" />
+          ) : (
+            "Tasdiqlash"
+          )}
+        </PrimaryButton>
+      </CustomModal>
     </div>
   );
 };
