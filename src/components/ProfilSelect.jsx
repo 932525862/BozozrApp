@@ -4,9 +4,10 @@ import Logout from "../assets/icons/logout.svg"
 import LogoCircle from "../assets/logo-circle.png"
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../store/userStore";
+import { maskUzPhone } from "../utils/utils";
 
 const ProfilSelect = () => {
-  const {clearUser} = useStore()
+  const {clearUser, user} = useStore()
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate()
@@ -16,6 +17,8 @@ const ProfilSelect = () => {
     setOpen(false);
     clearUser()
   };
+  console.log(user);
+  
 
   // 🔹 Tashqariga bosilganda dropdown yopiladi
   useEffect(() => {
@@ -42,8 +45,8 @@ const ProfilSelect = () => {
         //   className="w-10 h-10 rounded-full object-cover"
         />
         <div className="flex flex-col items-start">
-          <p className="text-[14px] text-[#1E1E1E]">Nurullayev</p>
-          <p className="text-sm text-[#4B4B4B]">99 *** 1777</p>
+          <p className="text-[14px] text-[#1E1E1E]">{user?.fullName}</p>
+          <p className="text-sm text-[#4B4B4B]">{maskUzPhone(user?.phoneNumber)}</p>
         </div>
         <IoChevronDown
           className={`text-gray-600 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
