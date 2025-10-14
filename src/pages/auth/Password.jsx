@@ -14,6 +14,7 @@ import engFlag from "../../assets/flags/united-kingdom.png";
 import ruFlag from "../../assets/flags/russia.png";
 import PrimaryButton from "../../components/PrimaryButton";
 import useApiMutation from "../../hooks/useMutation";
+import bgImg from "../../assets/back.svg"
 import { toast } from "react-toastify";
 import CustomModal from "../../components/CustomModal";
 
@@ -166,10 +167,15 @@ const Password = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-white overflow-hidden px-4 sm:px-6">
+    <div className="relative flex items-center justify-center min-h-screen bg-white overflow-hidden px-4 sm:px-6"
+    style={{
+            backgroundImage: `url(${bgImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+    >
       {/* Dekor doiralar */}
-      <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[-111px] left-[1098px] hidden md:block" />
-      <div className="absolute w-[471px] h-[471px] bg-[#06B2B6] rounded-full top-[520px] left-[-39px] hidden md:block" />
 
       {/* LoginCard */}
       <div className="relative z-10 flex flex-col items-center bg-white rounded-[12px] shadow-[0px_2px_6px_0px_#2553B91A] w-full max-w-[960px] md:h-[706px] p-5 md:p-[30px] gap-[20px] md:gap-[30px]">
