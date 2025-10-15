@@ -15,21 +15,24 @@ import ruFlag from "../../assets/flags/russia.png";
 import PrimaryButton from "../../components/PrimaryButton";
 import useApiMutation from "../../hooks/useMutation";
 import { useStore } from "../../store/userStore";
-import bgImg from "../../assets/back.svg"
+import bgImg from "../../assets/back.svg";
 import { toast } from "react-toastify";
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedLang, setSelectedLang] = useState("UZ");
   const { setUser } = useStore();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     handleSubmit,
     control,
     // watch,
     formState: { errors },
-    reset
+    reset,
   } = useForm({
     defaultValues: {
       phoneNumber: "+998 ",
@@ -44,7 +47,7 @@ const Login = () => {
       setUser(data?.access_token, data?.refresh_token, data?.user);
       navigate("/");
       toast.success("Tizimga muvaffaqiyatli kirildi");
-      reset()
+      reset();
     },
     onError: (error) => {
       toast.error(error.response?.data?.message);
@@ -65,7 +68,6 @@ const Login = () => {
       password: data?.password,
     };
     mutate(newData);
-    
   };
 
   const getLangImage = () => {
@@ -82,13 +84,14 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-white overflow-hidden px-4 sm:px-6"
-    style={{
-                backgroundImage: `url(${bgImg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
+    <div
+      className="relative flex items-center justify-center min-h-screen bg-white overflow-hidden px-4 sm:px-6"
+      style={{
+        backgroundImage: `url(${bgImg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       {/* Dekor doiralar */}
 
@@ -104,14 +107,30 @@ const Login = () => {
           ].map((lang) => (
             <button
               key={lang.code}
-              onClick={() => setSelectedLang(lang.code)}
+              onClick={() => {
+                setSelectedLang(lang.code);
+
+                // 🔹 Til kodi xaritasi (i18n uchun)
+                const langMap = {
+                  UZ: "uz",
+                  ЎЗ: "uz-ru",
+                  ENG: "en",
+                  RU: "ru",
+                };
+
+                // 🔹 Tilni o‘zgartirish
+                i18n.changeLanguage(langMap[lang.code]);
+
+                // 🔹 LocalStorage'ga saqlash
+                localStorage.setItem("marketAppLng", langMap[lang.code]);
+              }}
               className={`flex items-center justify-center rounded-[16px] border-2 bg-white transition-all duration-300 
-                ${
-                  selectedLang === lang.code
-                    ? "border-[#06B2B6]"
-                    : "border-[#E0E0E0] hover:border-[#06B2B6]"
-                }
-                w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
+      ${
+        selectedLang === lang.code
+          ? "border-[#06B2B6]"
+          : "border-[#E0E0E0] hover:border-[#06B2B6]"
+      }
+      w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
             >
               <img
                 src={lang.flag}
@@ -143,10 +162,10 @@ const Login = () => {
           >
             <div className="mb-2 text-center md:text-left">
               <h2 className="text-2xl font-semibold text-[#1E1E1E]">
-                Xush kelibsiz!
+                {t("welcome")}
               </h2>
               <p className="text-sm text-[#1E1E1E]/60 mt-2">
-                Iltimos tizimga kirish uchun login va parol kiriting
+                {t("login_description")}
               </p>
             </div>
 
@@ -169,7 +188,6 @@ const Login = () => {
                 <Controller
                   name="phoneNumber"
                   control={control}
-                  
                   rules={{
                     required: "Telefon raqam majburiy",
                     pattern: {
@@ -202,12 +220,12 @@ const Login = () => {
                 <Controller
                   name="password"
                   control={control}
-                  
                   rules={{
                     required: "Parol majburiy",
                     minLength: {
                       value: 6,
-                      message: "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
+                      message:
+                        "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
                     },
                   }}
                   render={({ field }) => (
@@ -243,10 +261,7 @@ const Login = () => {
                 />
                 <span className="text-[#1E1E1E] text-sm">Meni eslab qol</span>
               </label>
-              <Link
-                to="/password"
-                className="text-sm text-[#06B2B6] underline"
-              >
+              <Link to="/password" className="text-sm text-[#06B2B6] underline">
                 Parolimni unutdim
               </Link>
             </div>
@@ -265,7 +280,7 @@ const Login = () => {
             {/* Davom etish */}
             <div className="mt-4">
               <PrimaryButton
-              disabled={isLoading}
+                disabled={isLoading}
                 type="submit"
                 className="w-full py-3 rounded-[12px]  text-white font-medium  mt-5"
               >
