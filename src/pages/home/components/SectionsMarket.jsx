@@ -30,10 +30,51 @@ const SectionsMarket = () => {
       </div>
       <div className="mt-[12px]">
         <Swiper
-          slidesPerView={2.5}
           spaceBetween={12}
           modules={[Pagination]}
           className="mySwiper"
+          breakpoints={{
+            0: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 1,
+            },
+            396: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 1.2,
+            },
+            477: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 1.5,
+            },
+            566: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 1.8,
+            },
+            647: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 2.1,
+            },
+            728: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 2.4,
+            },
+            768: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 1.8,
+            },
+            793: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 2,
+            },
+            845: {
+              // o‘rta ekranlar (planshet)
+              slidesPerView: 2.2,
+            },
+            945: {
+              // katta ekranlar (noutbuk)
+              slidesPerView: 2.5,
+            },
+          }}
         >
           <SwiperSlide>
             <div

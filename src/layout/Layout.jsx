@@ -10,7 +10,9 @@ const Layout = () => {
   return (
     <div className="flex flex-col h-screen md:h-auto">
       {/* Header */}
+      <div className="relative z-[999]">
       <Header/>
+      </div>
 
       {/* Body (Sidebar + Content) */}
       <div className=" bg-[#F9F9F9] py-[16px] h-full px-[15px] relative">

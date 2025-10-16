@@ -79,14 +79,28 @@ const HeroSlider = () => {
           effect="coverflow"
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={"auto"}
-          spaceBetween={75}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
             depth: 150,
             modifier: 1,
             slideShadows: false,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              centeredSlides: false,
+              spaceBetween: 0,
+              effect: "slide", 
+              loop: true,
+            },
+            640: {
+              slidesPerView: "auto",
+              centeredSlides: true,
+              spaceBetween: 75,
+              effect: "coverflow",
+              loop: true,
+            },
           }}
           pagination={{
             clickable: true,
@@ -104,7 +118,7 @@ const HeroSlider = () => {
           {slides.map((slide) => (
             <SwiperSlide 
               key={slide.id} 
-              className="!w-[600px] !h-[220px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
+              className="!w-[full] !h-[190px] md:!w-[580px] sm:!h-[210px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
             >
               <div className={`relative w-full h-full bg-gradient-to-br ${slide.bgGradient} text-white rounded-2xl p-6 flex flex-col justify-between  transform transition-transform duration-300 `}>
                 {/* Logo */}
@@ -141,6 +155,7 @@ const HeroSlider = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+     
       </div>
 
     </div>

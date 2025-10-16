@@ -26,20 +26,20 @@ const MarketsSections = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="mt-[12px] whitespace-nowrap">
-      <div className="hidden md:inline-block align-top">
+    <div className="mt-[12px] flex flex-col-reverse gap-[12px]">
+      <div className="block w-full">
         <CustomButton
           onClick={handleOpen}
-          className="h-full md:w-[65px] px-[2px] w-[370px] py-[16px]"
+          className="h-full mx-[auto] py-[16px] px-[1px] sm:px-[108px] w-full sm:w-auto"
         >
-          <span className=" md:hidden">Yangi bozorlik</span>
+          <span>Yangi bozorlik</span>
           <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
             <LuPlus className="text-[16px]" />
           </span>
         </CustomButton>
       </div>
-      <div className="inline-block align-top max">
-        <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px] max-w-[fit-content]">
+      <div className="">
+        <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px]">
           <div className="flex justify-between">
             <div className="font-[600]">Bozorliklar</div>
             <Link
@@ -51,24 +51,57 @@ const MarketsSections = () => {
           </div>
           <div className="mt-[12px]">
             <Swiper
-              // slidesPerView={1.9}
-              // spaceBetween={12}
               modules={[Pagination]}
               className="mySwiper"
               breakpoints={{
-                640: {
+                0: {
                   // kichik ekranlar (mobil)
-                  slidesPerView: 1,
+                  slidesPerView: 0.7,
+                  spaceBetween: 12,
+                },
+                375: {
+                  // kichik ekranlar (mobil)
+                  slidesPerView: 0.9,
+                  spaceBetween: 12,
+                },
+                450: {
+                  // kichik ekranlar (mobil)
+                  slidesPerView: 1.1,
+                  spaceBetween: 12,
+                },
+                520: {
+                  // kichik ekranlar (mobil)
+                  slidesPerView: 1.3,
+                  spaceBetween: 12,
+                },
+                599: {
+                  // kichik ekranlar (mobil)
+                  slidesPerView: 1.5,
+                  spaceBetween: 12,
+                },
+                700: {
+                  // kichik ekranlar (mobil)
+                  slidesPerView: 1.8,
                   spaceBetween: 12,
                 },
                 768: {
-                  // o‘rta ekranlar (planshet)
+                  // kichik ekranlar (mobil)
+                  slidesPerView: 1.5,
+                  spaceBetween: 12,
+                },
+                844: {
+                  // kichik ekranlar (mobil)
                   slidesPerView: 1.7,
                   spaceBetween: 12,
                 },
-                920: {
-                  // katta ekranlar (noutbuk)
+                913: {
+                  // o‘rta ekranlar (planshet)
                   slidesPerView: 1.9,
+                  spaceBetween: 12,
+                },
+                985: {
+                  // katta ekranlar (noutbuk)
+                  slidesPerView: 2.1,
                   spaceBetween: 12,
                 },
               }}
@@ -281,17 +314,6 @@ const MarketsSections = () => {
             </Swiper>
           </div>
         </div>
-      </div>
-      <div className="block md:hidden mt-[15px] w-full">
-        <CustomButton
-          onClick={handleOpen}
-          className="h-full md:w-[65px] px-[2px] w-[370px] py-[16px] mx-[auto]"
-        >
-          <span className=" md:hidden">Yangi bozorlik</span>
-          <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
-            <LuPlus className="text-[16px]" />
-          </span>
-        </CustomButton>
       </div>
       <CustomModal
         open={open}
