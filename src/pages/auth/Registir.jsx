@@ -3,6 +3,8 @@ import { Input, Select } from "antd";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
 import Uzb from "../../assets/left-part.svg";
 import Eng from "../../assets/eng.svg";
 import Rus from "../../assets/rus.svg";
@@ -22,6 +24,7 @@ import { useStore } from "../../store/userStore";
 const { Option } = Select;
 
 const Registir = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("+998 ");
   const [selectedLang, setSelectedLang] = useState("UZ");
@@ -55,7 +58,7 @@ const Registir = () => {
     url: "/auth/register/user",
     method: "POST",
     onSuccess: (data) => {
-      toast.info("Telfon raqamingizga tasdiqlash kodi yoborildi");
+      toast.info(t("toast.otp_sent"));
       setVerify(true);
       setDataResponse(data);
     },
@@ -70,7 +73,7 @@ const Registir = () => {
     method: "POST",
     onSuccess: (data) => {
       setUser(data?.access_token, data?.refresh_token, data?.user);
-      toast.success("Tizimga muvaffaqiyatli kirdingiz");
+      toast.success(t("toast.login_success"));
       navigate("/");
     },
     onError: (error) => {
@@ -96,7 +99,7 @@ const Registir = () => {
     url: "/auth/sendotp/again/for-register",
     method: "POST",
     onSuccess: (data) => {
-      toast.success("Kod qayta yuborildi");
+      toast.success(t("toast.otp_resent"));
       setTimeLeft(120); // vaqtni qaytadan 2 minutga o‘rnatamiz
       setCanResend(false);
       setDataResponse(data)
@@ -167,7 +170,7 @@ const Registir = () => {
   const handleVerify = async () => {
     const enteredCode = code.join("");
     if (enteredCode.length !== 4) {
-      toast.error("Kodni 4 ta raqam bulsin");
+      toast.error(t("errors.otp_length"));
       return;
     }
     const data = {
@@ -202,16 +205,32 @@ const Registir = () => {
           ].map((lang) => (
             <button
               key={lang.code}
-              onClick={() => setSelectedLang(lang.code)}
+              onClick={() => {
+                setSelectedLang(lang.code);
+
+                // 🔹 Til kodi xaritasi (i18n uchun)
+                const langMap = {
+                  UZ: "uz",
+                  ЎЗ: "krl",
+                  ENG: "en",
+                  RU: "ru",
+                };
+
+                // 🔹 Tilni o‘zgartirish
+                i18n.changeLanguage(langMap[lang.code]);
+
+                // 🔹 LocalStorage'ga saqlash
+                localStorage.setItem("marketAppLng", langMap[lang.code]);
+              }}
               className={`flex items-center justify-center rounded-[16px] border-2 bg-white transition-all duration-300 
-                ${
-                  selectedLang === lang.code
-                    ? "border-[#06B2B6]"
-                    : "border-[#E0E0E0] hover:border-[#06B2B6]"
-                }
-                w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
-            >
-              <img
+                      ${
+                      selectedLang === lang.code
+                     ? "border-[#06B2B6]"
+                       : "border-[#E0E0E0] hover:border-[#06B2B6]"
+                        }
+                          w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
+                    >
+               <img
                 src={lang.flag}
                 alt={lang.code}
                 className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] mr-1 md:mr-2"
@@ -229,7 +248,7 @@ const Registir = () => {
           <div className="hidden md:flex items-center justify-center w-[435px] h-[560px] rounded-[12px] overflow-hidden bg-transparent">
             <img
               src={getLangImage()}
-              alt="App preview"
+              alt={t("alt.app_preview")}
               className="w-full h-full object-contain"
             />
           </div>
@@ -241,10 +260,10 @@ const Registir = () => {
           >
             <div className="mb-2 text-center md:text-left">
               <h2 className="text-2xl font-semibold text-[#1E1E1E]">
-                Xush kelibsiz!
+                {t("welcome")}
               </h2>
               <p className="text-sm text-[#1E1E1E]/60 mt-2">
-                Iltimos tizimga kirish uchun login va parol kiriting
+                {t("subtitle")}
               </p>
             </div>
 
@@ -263,17 +282,17 @@ const Registir = () => {
                 {/* Ism */}
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                    *Ismingiz
+                    {t("labels.name")}
                   </label>
                   <Controller
                     name="name"
                     control={control}
-                    rules={{ required: "Ism majburiy" }}
+                    rules={{ required: t("errors.required_name") }}
                     render={({ field }) => (
                       <Input
                         {...field}
                         status={errors.name ? "error" : ""}
-                        placeholder="Ismingizni kiriting"
+                        placeholder={t("placeholders.name")}
                       />
                     )}
                   />
@@ -287,16 +306,16 @@ const Registir = () => {
                 {/* Telefon */}
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                    *Telefon
+                    {t("labels.phone")}
                   </label>
                   <Controller
                     name="phoneNumber"
                     control={control}
                     rules={{
-                      required: "Telefon raqam majburiy",
+                      required: t("errors.required_phone"),
                       pattern: {
                         value: /^\+998\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/,
-                        message: "Telefon raqam formati noto‘g‘ri",
+                        message: t("errors.phone_invalid"),
                       },
                     }}
                     render={() => (
@@ -320,18 +339,18 @@ const Registir = () => {
                 {/* Parol */}
                 <div className="flex-1 relative">
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                    *Parol
+                    {t("labels.password")}
                   </label>
                   <Controller
                     name="password"
                     control={control}
-                    rules={{ required: "Parol majburiy" }}
+                    rules={{ required: t("errors.required_password") }}
                     render={({ field }) => (
                       <Input
                         {...field}
                         type={showPassword ? "text" : "password"}
                         status={errors.password ? "error" : ""}
-                        placeholder="Parol"
+                        placeholder={t("placeholders.password")}
                       />
                     )}
                   />
@@ -352,25 +371,33 @@ const Registir = () => {
                 {/* Qayta parol */}
                 <div className="flex-1 relative">
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                    *Parol (qayta kiriting)
+                    {t("labels.confirmPassword")}
                   </label>
                   <Controller
                     name="confirmPassword"
                     control={control}
                     rules={{
-                      required: "Parolni qayta kiriting",
-                      validate: (value, formValues) =>
-                        value === formValues.password || "Parollar mos emas",
+                      required: t("errors.required_confirm"),
+                      validate: (value) =>
+                        value === (control._formValues?.password || "") ||
+                        t("errors.password_mismatch"),
                     }}
                     render={({ field }) => (
                       <Input
                         {...field}
                         type={showPassword ? "text" : "password"}
                         status={errors.confirmPassword ? "error" : ""}
-                        placeholder="Parolni qayta kiriting"
+                        placeholder={t("placeholders.confirmPassword")}
                       />
                     )}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-[38px] text-gray-500 hover:text-[#06B2B6]"
+                  >
+                    {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+                  </button>
                   {errors.confirmPassword && (
                     <p className="text-red-500 text-xs mt-1">
                       {errors.confirmPassword.message}
@@ -384,21 +411,21 @@ const Registir = () => {
                 {/* Jinsi */}
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                    *Jins
+                    {t("labels.gender")}
                   </label>
                   <Controller
                     name="gender"
                     control={control}
-                    rules={{ required: "Jinsni tanlang" }}
+                    rules={{ required: t("errors.required_gender") }}
                     render={({ field }) => (
                       <Select
                         {...field}
-                        placeholder="Jinsni tanlang"
+                        placeholder={t("placeholders.gender")}
                         className="w-full"
                         status={errors.gender ? "error" : ""}
                       >
-                        <Option value="erkak">Erkak</Option>
-                        <Option value="ayol">Ayol</Option>
+                        <Option value="erkak">{t("gender.male")}</Option>
+                        <Option value="ayol">{t("gender.female")}</Option>
                       </Select>
                     )}
                   />
@@ -412,34 +439,32 @@ const Registir = () => {
                 {/* Joylashuv */}
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                    *Joylashuv
+                    {t("labels.region")}
                   </label>
                   <Controller
                     name="region"
                     control={control}
-                    rules={{ required: "Hududni tanlang" }}
+                    rules={{ required: t("errors.required_region") }}
                     render={({ field }) => (
                       <Select
                         {...field}
-                        placeholder="Hududni tanlang"
+                        placeholder={t("placeholders.region")}
                         status={errors.region ? "error" : ""}
                         className="w-full"
                       >
-                        <Option value="toshkent">Toshkent</Option>
-                        <Option value="andijon">Andijon</Option>
-                        <Option value="fargona">Farg‘ona</Option>
-                        <Option value="namangan">Namangan</Option>
-                        <Option value="samarqand">Samarqand</Option>
-                        <Option value="buxoro">Buxoro</Option>
-                        <Option value="xorazm">Xorazm</Option>
-                        <Option value="navoiy">Navoiy</Option>
-                        <Option value="qashqadaryo">Qashqadaryo</Option>
-                        <Option value="surxondaryo">Surxondaryo</Option>
-                        <Option value="jizzax">Jizzax</Option>
-                        <Option value="sirdaryo">Sirdaryo</Option>
-                        <Option value="qarakalpogiston">
-                          Qoraqalpog‘iston
-                        </Option>
+                        <Option value="toshkent">{t("regions.toshkent")}</Option>
+                        <Option value="andijon">{t("regions.andijon")}</Option>
+                        <Option value="fargona">{t("regions.fargona")}</Option>
+                        <Option value="namangan">{t("regions.namangan")}</Option>
+                        <Option value="samarqand">{t("regions.samarqand")}</Option>
+                        <Option value="buxoro">{t("regions.buxoro")}</Option>
+                        <Option value="xorazm">{t("regions.xorazm")}</Option>
+                        <Option value="navoiy">{t("regions.navoiy")}</Option>
+                        <Option value="qashqadaryo">{t("regions.qashqadaryo")}</Option>
+                        <Option value="surxondaryo">{t("regions.surxondaryo")}</Option>
+                        <Option value="jizzax">{t("regions.jizzax")}</Option>
+                        <Option value="sirdaryo">{t("regions.sirdaryo")}</Option>
+                        <Option value="qarakalpogiston">{t("regions.qarakalpogiston")}</Option>
                       </Select>
                     )}
                   />
@@ -454,12 +479,12 @@ const Registir = () => {
 
             {/* Pastki qism */}
             <div className="text-sm text-gray-600 mt-8 text-center md:text-left">
-              Akkauntingiz mavjudmi?{" "}
+              {t("account_exists")}{" "}
               <Link
                 to="/Login"
                 className="underline font-semibold text-[#06B2B6]"
               >
-                Kirish
+                {t("login")}
               </Link>
             </div>
 
@@ -469,7 +494,7 @@ const Registir = () => {
                 type="submit"
                 className="w-full py-3 rounded-[12px] text-white font-medium mt-5"
               >
-                Davom etish
+                {t("continue")}
               </PrimaryButton>
             </div>
           </form>
@@ -477,7 +502,7 @@ const Registir = () => {
       </div>
       <CustomModal
         open={verify}
-        title="Tasdiqlash kodi"
+        title={t("modal.title")}
         onCancel={handleClose}
         width={351}
       >
@@ -497,11 +522,8 @@ const Registir = () => {
         </div>
         <PrimaryButton onClick={handleResend} disabled={!canResend} className="w-full rounded-[14px] py-[12px] mb-[16px] mt-[16px]">
           <span className={`${canResend ? "" : "text-[#1e1e1e31]"} font-[500]`}>
-            Kodni qayta yuborish{" "}
-            {!canResend && <span>
-              {Math.floor(timeLeft / 60)}:
-              {(timeLeft % 60).toString().padStart(2, "0")}
-            </span>}
+            {t("modal.resend")}
+            {!canResend && <span> {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, "0")}</span>}
           </span>
           
         </PrimaryButton>
@@ -514,7 +536,7 @@ const Registir = () => {
           {otpLoading ? (
             <Loader2 className="animate-spin h-4 w-4 mr-2" />
           ) : (
-            "Tasdiqlash"
+            t("modal.verify")
           )}
         </PrimaryButton>
       </CustomModal>

@@ -1,4 +1,105 @@
 {
-  "welcome": "Xush kelibsiz!",
-  "login_description": "Iltimos tizimga kirish uchun login va parol kiriting"
+  "welcome": "Xush kelibsiz",
+  "login_description": "Tizimga kirish uchun ma'lumotlaringizni kiriting",
+  "phone": "Telefon",
+  "password": "Parol",
+  "password_placeholder": "Parol",
+  "remember_me": "Meni eslab qol",
+  "forgot_password": "Parolimni unutdim",
+  "new_user": "Yangi foydalanuvchimisiz?",
+  "create_account": "Akkount yaratish",
+  "continue": "Davom etish",
+  "phone_required": "Telefon raqam majburiy",
+  "phone_invalid": "Telefon raqam formati noto'g'ri",
+  "password_required": "Parol majburiy",
+  "password_min_length": "Parol kamida 6 ta belgidan iborat bo'lishi kerak",
+  "login_success": "Tizimga muvaffaqiyatli kirildi",
+  "subtitle": "Iltimos tizimga kirish uchun login va parol kiriting",
+  "alt": {
+    "app_preview": "Ilova ko‘rinishi"
+  },
+  "placeholders": {
+    "name": "Ismingizni kiriting",
+    "phone": "+998 ",
+    "password": "Parol",
+    "confirmPassword": "Parolni qayta kiriting",
+    "gender": "Jinsni tanlang",
+    "region": "Hududni tanlang"
+  },
+  "labels": {
+    "name": "*Ismingiz",
+    "phone": "*Telefon",
+    "password": "*Parol",
+    "confirmPassword": "*Parol (qayta kiriting)",
+    "gender": "*Jins",
+    "region": "*Joylashuv"
+  },
+  "errors": {
+    "required_name": "Ism majburiy",
+    "required_phone": "Telefon raqam majburiy",
+    "phone_invalid": "Telefon raqam formati noto‘g‘ri",
+    "required_password": "Parol majburiy",
+    "required_confirm": "Parolni qayta kiriting",
+    "password_mismatch": "Parollar mos emas",
+    "required_gender": "Jinsni tanlang",
+    "required_region": "Hududni tanlang",
+    "otp_length": "Kodni 4 ta raqam bulsin"
+  },
+  "gender": {
+    "male": "Erkak",
+    "female": "Ayol"
+  },
+  "regions": {
+    "toshkent": "Toshkent",
+    "andijon": "Andijon",
+    "fargona": "Farg‘ona",
+    "namangan": "Namangan",
+    "samarqand": "Samarqand",
+    "buxoro": "Buxoro",
+    "xorazm": "Xorazm",
+    "navoiy": "Navoiy",
+    "qashqadaryo": "Qashqadaryo",
+    "surxondaryo": "Surxondaryo",
+    "jizzax": "Jizzax",
+    "sirdaryo": "Sirdaryo",
+    "qarakalpogiston": "Qoraqalpog‘iston"
+  },
+  "account_exists": "Akkauntingiz mavjudmi?",
+  "login": "Kirish",
+  
+  "modal": {
+    "title": "Tasdiqlash kodi",
+    "resend": "Kodni qayta yuborish",
+    "verify": "Tasdiqlash"
+  },
+  "toast": {
+    "otp_sent": "Telefon raqamingizga tasdiqlash kodi yuborildi",
+    "otp_resent": "Kod qayta yuborildi",
+    "login_success": "Tizimga muvaffaqiyatli kirdingiz",
+      "codeSent": "Telfon raqamingizga tasdiqlash kodi yuborildi",
+    "passwordChanged": "Parol muvaffaqiyatli uzgartirildi",
+    "codeResent": "Kod qayta yuborildi"
+  },
+  "auth": {
+    "resetPasswordTitle": "Parolni tiklash",
+    "resetPasswordDesc": "Iltimos, parolingizni tiklash uchun kerakli ma’lumotlarni kiriting.",
+    "phone": "*Telefon",
+    "phonePlaceholder": "Telefon",
+    "phoneRequired": "Telefon raqam kiritish majburiy",
+    "phoneInvalid": "Telefon raqam noto‘g‘ri formatda",
+    "password": "*Parol",
+    "passwordRequired": "Parol kiritish majburiy",
+    "passwordMin": "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
+    "confirmPassword": "*Parol (qayta kiriting)",
+    "confirmPasswordRequired": "Parolni qayta kiriting",
+    "passwordsNoMatch": "Parollar mos emas",
+    "newUser": "Yangi foydalanuvchimisiz?",
+    "createAccount": "Akkaunt yaratish",
+    "continue": "Davom etish",
+    "verificationTitle": "Tasdiqlash kodi",
+    "resendCode": "Kodni qayta yuborish",
+    "verify": "Tasdiqlash",
+    "enter4code": "4 talik kod kirit",
+    "invalidCode": "Noto'g'ri kod"
+  }
 }

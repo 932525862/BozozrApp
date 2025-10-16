@@ -1,0 +1,105 @@
+{
+  "welcome": "Хуш келибсиз",
+  "login_description": "Тизимга кириш учун маълумотларингизни киритинг",
+  "phone": "Телефон",
+  "password": "Парол",
+  "password_placeholder": "Парол",
+  "remember_me": "Мени ёдда сақла",
+  "forgot_password": "Паролимни унутдим",
+  "new_user": "Янги фойдаланувчимисиз?",
+  "create_account": "Аккаунт яратиш",
+  "continue": "Давом этиш",
+  "phone_required": "Телефон рақами мажбурий",
+  "phone_invalid": "Телефон рақами формати нотўғри",
+  "password_required": "Парол мажбурий",
+  "password_min_length": "Парол камида 6 та белгидан иборат бўлиши керак",
+  "login_success": "Тизимга муваффақиятли кирилди",
+  "subtitle": "Илтимос, тизимга кириш учун логин ва парол киритинг",
+  "alt": {
+    "app_preview": "Илова кўриниши"
+  },
+  "placeholders": {
+    "name": "Исмигизни киритинг",
+    "phone": "+998 ",
+    "password": "Парол",
+    "confirmPassword": "Паролни қайта киритинг",
+    "gender": "Жинсни танланг",
+    "region": "Ҳудудни танланг"
+  },
+  "labels": {
+    "name": "*Исмигизни киритинг",
+    "phone": "*Телефон",
+    "password": "*Парол",
+    "confirmPassword": "*Парол (қайта киритинг)",
+    "gender": "*Жинс",
+    "region": "*Жойлашув"
+  },
+  "errors": {
+    "required_name": "Исм мажбурий",
+    "required_phone": "Телефон рақами мажбурий",
+    "phone_invalid": "Телефон рақами формати нотўғри",
+    "required_password": "Парол мажбурий",
+    "required_confirm": "Паролни қайта киритинг",
+    "password_mismatch": "Пароллар мос эмас",
+    "required_gender": "Жинсни танланг",
+    "required_region": "Ҳудудни танланг",
+    "otp_length": "Код 4 та рақамдан иборат бўлсин"
+  },
+  "gender": {
+    "male": "Эркак",
+    "female": "Аёл"
+  },
+  "regions": {
+    "toshkent": "Тошкент",
+    "andijon": "Андижон",
+    "fargona": "Фарғона",
+    "namangan": "Наманган",
+    "samarqand": "Самарқанд",
+    "buxoro": "Бухоро",
+    "xorazm": "Хоразм",
+    "navoiy": "Навоий",
+    "qashqadaryo": "Қашқадарё",
+    "surxondaryo": "Сурхондарё",
+    "jizzax": "Жиззах",
+    "sirdaryo": "Сирдарё",
+    "qarakalpogiston": "Қорақалпоғистон"
+  },
+  "account_exists": "Аккаунтингиз мавжудми?",
+  "login": "Кириш",
+  
+  "modal": {
+    "title": "Тасдиқлаш коди",
+    "resend": "Кодни қайта юбориш",
+    "verify": "Тасдиқлаш"
+  },
+  "toast": {
+    "otp_sent": "Телефон рақамингизга тасдиқлаш коди юборилди",
+    "otp_resent": "Код қайта юборилди",
+    "login_success": "Тизимга муваффақиятли кирдингиз",
+    "codeSent": "Телефон рақамингизга тасдиқлаш коди юборилди",
+    "passwordChanged": "Парол муваффақиятли ўзгартирилди",
+    "codeResent": "Код қайта юборилди"
+  },
+  "auth": {
+    "resetPasswordTitle": "Паролни тиклаш",
+    "resetPasswordDesc": "Илтимос, паролингизни тиклаш учун керакли маълумотларни киритинг.",
+    "phone": "*Телефон",
+    "phonePlaceholder": "Телефон",
+    "phoneRequired": "Телефон рақамини киритиш мажбурий",
+    "phoneInvalid": "Телефон рақами нотўғри форматда",
+    "password": "*Парол",
+    "passwordRequired": "Паролни киритиш мажбурий",
+    "passwordMin": "Парол камида 6 та белгидан иборат бўлиши керак",
+    "confirmPassword": "*Парол (қайта киритинг)",
+    "confirmPasswordRequired": "Паролни қайта киритинг",
+    "passwordsNoMatch": "Пароллар мос эмас",
+    "newUser": "Янги фойдаланувчимисиз?",
+    "createAccount": "Аккаунт яратиш",
+    "continue": "Давом этиш",
+    "verificationTitle": "Тасдиқлаш коди",
+    "resendCode": "Кодни қайта юбориш",
+    "verify": "Тасдиқлаш",
+    "enter4code": "4 хонали кодни киритинг",
+    "invalidCode": "Нотўғри код"
+  }
+}

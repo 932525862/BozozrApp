@@ -6,7 +6,7 @@ import languageDetector from "i18next-browser-languagedetector";
 import uzTranslation from "./locales/uz.json";
 import ruTranslation from "./locales/ru.json";
 import enTranslation from "./locales/en.json";
-import uzruTranslation from "./locales/uz-ru.json";
+import uzruTranslation from "./locales/krl.json";
 
 const language = localStorage.getItem('marketAppLng') || 'uz'
 
@@ -22,7 +22,7 @@ i18n
         uz: {translation: uzTranslation},
         ru: {translation: ruTranslation},
         en: {translation: enTranslation},
-        uzru: {translation: uzruTranslation}
+        krl: {translation: uzruTranslation}
     }
     }
 )

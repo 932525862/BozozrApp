@@ -113,7 +113,7 @@ const Login = () => {
                 // 🔹 Til kodi xaritasi (i18n uchun)
                 const langMap = {
                   UZ: "uz",
-                  ЎЗ: "uz-ru",
+                  ЎЗ: "krl",
                   ENG: "en",
                   RU: "ru",
                 };
@@ -125,14 +125,14 @@ const Login = () => {
                 localStorage.setItem("marketAppLng", langMap[lang.code]);
               }}
               className={`flex items-center justify-center rounded-[16px] border-2 bg-white transition-all duration-300 
-      ${
-        selectedLang === lang.code
-          ? "border-[#06B2B6]"
-          : "border-[#E0E0E0] hover:border-[#06B2B6]"
-      }
-      w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
-            >
-              <img
+                      ${
+                      selectedLang === lang.code
+                     ? "border-[#06B2B6]"
+                       : "border-[#E0E0E0] hover:border-[#06B2B6]"
+                        }
+                          w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
+                    >
+               <img
                 src={lang.flag}
                 alt={lang.code}
                 className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] mr-1 md:mr-2"
@@ -183,16 +183,16 @@ const Login = () => {
               {/* Telefon input */}
               <div>
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                  *Telefon
+                  *{t("phone")}
                 </label>
                 <Controller
                   name="phoneNumber"
                   control={control}
                   rules={{
-                    required: "Telefon raqam majburiy",
+                    required: t("password_required"),
                     pattern: {
                       value: /^\+998\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/,
-                      message: "Telefon raqam formati noto‘g‘ri",
+                      message: t("password_min_length"),
                     },
                   }}
                   render={({ field: { onChange, value } }) => (
@@ -215,7 +215,7 @@ const Login = () => {
               {/* Parol input */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                  *Parol
+                  *{t("password")}
                 </label>
                 <Controller
                   name="password"
@@ -259,21 +259,23 @@ const Login = () => {
                   type="checkbox"
                   className="w-4 h-4 border-2 border-[#06B2B6] rounded-[4px] appearance-none outline-none cursor-pointer bg-white checked:bg-[#06B2B6]"
                 />
-                <span className="text-[#1E1E1E] text-sm">Meni eslab qol</span>
+                <span className="text-[#1E1E1E] text-sm">
+                  {t("remember_me")}
+                </span>
               </label>
               <Link to="/password" className="text-sm text-[#06B2B6] underline">
-                Parolimni unutdim
+                {t("forgot_password")}
               </Link>
             </div>
 
             {/* Yangi akkount */}
             <div className="text-sm text-gray-600 mt-8 text-center md:text-left">
-              Yangi foydalanuvchimisiz?{" "}
+              {t("new_user")}{" "}
               <Link
                 to="/Registir"
                 className="underline font-semibold text-[#06B2B6]"
               >
-                Akkount yaratish
+                {t("create_account")}
               </Link>
             </div>
 
@@ -284,7 +286,7 @@ const Login = () => {
                 type="submit"
                 className="w-full py-3 rounded-[12px]  text-white font-medium  mt-5"
               >
-                Davom etish
+                {t("continue")}
               </PrimaryButton>
             </div>
           </form>

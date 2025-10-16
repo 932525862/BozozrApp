@@ -16,9 +16,12 @@ import PrimaryButton from "../../components/PrimaryButton";
 import useApiMutation from "../../hooks/useMutation";
 import bgImg from "../../assets/back.svg"
 import { toast } from "react-toastify";
+import i18n from "../../i18n";
 import CustomModal from "../../components/CustomModal";
+import { useTranslation } from "react-i18next";
 
 const Password = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [selectedLang, setSelectedLang] = useState("UZ");
   const [canResend, setCanResend] = useState(false);
@@ -65,7 +68,7 @@ const Password = () => {
     url: "/auth/forgot/password",
     method: "POST",
     onSuccess: (data) => {
-      toast.info("Telfon raqamingizga tasdiqlash kodi yuborildi");
+      toast.info(t("toast.codeSent"));
       setVerify(true);
       setDataResponse(data);
     },
@@ -78,7 +81,7 @@ const Password = () => {
     url: "/auth/forget/password/verify-otp",
     method: "PATCH",
     onSuccess: (data) => {
-      toast.success("Parol muvaffaqiyatli uzgartirildi");
+      toast.success(t("toast.passwordChanged"));
       navigate("/login");
     },
     onError: (error) => {
@@ -90,7 +93,7 @@ const Password = () => {
     url: "/auth/sendotp/again/for-register",
     method: "POST",
     onSuccess: (data) => {
-      toast.success("Kod qayta yuborildi");
+      toast.success(t("toast.codeResent"));
       setTimeLeft(120); // vaqtni qaytadan 2 minutga o‘rnatamiz
       setCanResend(false);
       setDataResponse(data)
@@ -125,7 +128,7 @@ const Password = () => {
   const handleVerify = async () => {
     const enteredCode = code.join("");
     if (enteredCode.length !== 4) {
-      toast.error("4 talik kod kirit");
+      toast.error(t("auth.enter4code"));
       return;
     }
     const data = {
@@ -189,16 +192,32 @@ const Password = () => {
           ].map((lang) => (
             <button
               key={lang.code}
-              onClick={() => setSelectedLang(lang.code)}
+              onClick={() => {
+                setSelectedLang(lang.code);
+
+                // 🔹 Til kodi xaritasi (i18n uchun)
+                const langMap = {
+                  UZ: "uz",
+                  ЎЗ: "krl",
+                  ENG: "en",
+                  RU: "ru",
+                };
+
+                // 🔹 Tilni o‘zgartirish
+                i18n.changeLanguage(langMap[lang.code]);
+
+                // 🔹 LocalStorage'ga saqlash
+                localStorage.setItem("marketAppLng", langMap[lang.code]);
+              }}
               className={`flex items-center justify-center rounded-[16px] border-2 bg-white transition-all duration-300 
-                ${
-                  selectedLang === lang.code
-                    ? "border-[#06B2B6]"
-                    : "border-[#E0E0E0] hover:border-[#06B2B6]"
-                }
-                w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
-            >
-              <img
+                      ${
+                      selectedLang === lang.code
+                     ? "border-[#06B2B6]"
+                       : "border-[#E0E0E0] hover:border-[#06B2B6]"
+                        }
+                          w-[80px] h-[48px] md:w-[103px] md:h-[56px] px-3 md:px-4 py-2 md:py-3`}
+                    >
+               <img
                 src={lang.flag}
                 alt={lang.code}
                 className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] mr-1 md:mr-2"
@@ -228,11 +247,10 @@ const Password = () => {
           >
             <div className="mb-2 text-center md:text-left">
               <h2 className="text-2xl font-semibold text-[#1E1E1E]">
-                Parolni tiklash
+                {t("auth.resetPasswordTitle")}
               </h2>
               <p className="text-sm text-[#1E1E1E]/60 mt-2">
-                Iltimos, parolingizni tiklash uchun kerakli ma’lumotlarni
-                kiriting.
+                {t("auth.resetPasswordDesc")}
               </p>
             </div>
 
@@ -249,16 +267,16 @@ const Password = () => {
               {/* Telefon */}
               <div>
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                  *Telefon
+                  {t("auth.phone")}
                 </label>
                 <Controller
                   name="phoneNumber"
                   control={control}
                   rules={{
-                    required: "Telefon raqam kiritish majburiy",
+                    required: t("auth.phoneRequired"),
                     pattern: {
                       value: /^\+998\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/,
-                      message: "Telefon raqam noto‘g‘ri formatda",
+                      message: t("auth.phoneInvalid"),
                     },
                   }}
                   render={({ field: { onChange, value } }) => (
@@ -267,7 +285,7 @@ const Password = () => {
                       onChange={(e) =>
                         handlePhoneChange(e.target.value, onChange)
                       }
-                      placeholder="Phone"
+                      placeholder={t("auth.phonePlaceholder")}
                       status={errors.phoneNumber ? "error" : ""}
                     />
                   )}
@@ -282,24 +300,23 @@ const Password = () => {
               {/* Parol */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                  *Parol
+                  {t("auth.password")}
                 </label>
                 <Controller
                   name="password"
                   control={control}
                   rules={{
-                    required: "Parol kiritish majburiy",
+                    required: t("auth.passwordRequired"),
                     minLength: {
                       value: 6,
-                      message:
-                        "Parol kamida 6 ta belgidan iborat bo‘lishi kerak",
+                      message: t("auth.passwordMin"),
                     },
                   }}
                   render={({ field }) => (
                     <Input
                       {...field}
                       type={showPassword ? "text" : "password"}
-                      placeholder="Parol"
+                      placeholder={t("auth.password")}
                       status={errors.password ? "error" : ""}
                     />
                   )}
@@ -321,21 +338,21 @@ const Password = () => {
               {/* Parol qayta */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[#1E1E1E] mb-1">
-                  *Parol (qayta kiriting)
+                  {t("auth.confirmPassword")}
                 </label>
                 <Controller
                   name="confirmPassword"
                   control={control}
                   rules={{
-                    required: "Parolni qayta kiriting",
+                    required: t("auth.confirmPasswordRequired"),
                     validate: (value) =>
-                      value === password || "Parollar mos emas",
+                      value === password || t("auth.passwordsNoMatch"),
                   }}
                   render={({ field }) => (
                     <Input
                       {...field}
                       type={showPassword ? "text" : "password"}
-                      placeholder="Parol"
+                      placeholder={t("auth.password")}
                       status={errors.confirmPassword ? "error" : ""}
                     />
                   )}
@@ -357,12 +374,12 @@ const Password = () => {
 
             {/* Akkount yaratish */}
             <div className="text-sm text-gray-600 mt-8 text-center md:text-left">
-              Yangi foydalanuvchimisiz?{" "}
+              {t("auth.newUser")}{" "}
               <Link
                 to="/Registir"
                 className="underline font-semibold text-[#06B2B6]"
               >
-                Akkaunt yaratish
+                {t("auth.createAccount")}
               </Link>
             </div>
 
@@ -373,7 +390,7 @@ const Password = () => {
                 type="submit"
                 className="w-full py-3 rounded-[12px] text-white font-medium  mt-5"
               >
-                Davom etish
+                {t("auth.continue")}
               </PrimaryButton>
             </div>
           </form>
@@ -381,7 +398,7 @@ const Password = () => {
       </div>
       <CustomModal
         open={verify}
-        title="Tasdiqlash kodi"
+        title={t("auth.verificationTitle")}
         onCancel={handleClose}
         width={351}
       >
@@ -401,7 +418,7 @@ const Password = () => {
         </div>
         <PrimaryButton onClick={handleResend} disabled={!canResend} className="w-full rounded-[14px] py-[12px] mb-[16px] mt-[16px]">
           <span className={`${canResend ? "" : "text-[#1e1e1e31]"} font-[500]`}>
-            Kodni qayta yuborish{" "}
+            {t("auth.resendCode")}{" "}
             {!canResend && <span>
               {Math.floor(timeLeft / 60)}:
               {(timeLeft % 60).toString().padStart(2, "0")}
@@ -418,7 +435,7 @@ const Password = () => {
           {otpLoading ? (
             <Loader2 className="animate-spin h-4 w-4 mr-2" />
           ) : (
-            "Tasdiqlash"
+            t("auth.verify")
           )}
         </PrimaryButton>
       </CustomModal>
