@@ -26,8 +26,8 @@ const MarketsSections = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="mt-[12px]">
-      <div className="hidden md:block">
+    <div className="mt-[12px] whitespace-nowrap">
+      <div className="hidden md:inline-block align-top">
         <CustomButton
           onClick={handleOpen}
           className="h-full md:w-[65px] px-[2px] w-[370px] py-[16px]"
@@ -38,8 +38,8 @@ const MarketsSections = () => {
           </span>
         </CustomButton>
       </div>
-      <div className="">
-        <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px]">
+      <div className="inline-block align-top max">
+        <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px] max-w-[fit-content]">
           <div className="flex justify-between">
             <div className="font-[600]">Bozorliklar</div>
             <Link
