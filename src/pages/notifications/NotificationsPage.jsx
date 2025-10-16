@@ -43,7 +43,7 @@ const NotificationsPage = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`w-[32%] h-[34px] rounded-[14px] text-sm font-medium transition-colors duration-300
+              className={`w-[32%] h-[34px] rounded-[14px] text-sm font-medium transition-colors duration-300 cursor-pointer
               ${
                 activeTab === tab.id
                   ? "bg-[#06B2B6] text-white"
@@ -62,7 +62,7 @@ const NotificationsPage = () => {
             flex items-center justify-center
             gap-[6px]
             rounded-[8px]
-            
+            cursor-pointer
           "
         >
           <img

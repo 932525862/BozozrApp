@@ -104,7 +104,7 @@ const HeroSlider = () => {
           {slides.map((slide) => (
             <SwiperSlide 
               key={slide.id} 
-              className="!w-[670px] !h-[264px] transition-all duration-300"
+              className="!w-[600px] !h-[220px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
             >
               <div className={`relative w-full h-full bg-gradient-to-br ${slide.bgGradient} text-white rounded-2xl p-6 flex flex-col justify-between  transform transition-transform duration-300 `}>
                 {/* Logo */}

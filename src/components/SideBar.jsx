@@ -244,7 +244,7 @@ const links = [
 
 const SideBar = () => {
   return (
-    <aside className="p-4 flex flex-col gap-4 bg-white rounded-2xl">
+    <aside className="p-4 flex flex-row md:flex-col gap-4 bg-white rounded-2xl">
       {links.map(({ to, label, icon, svg }) => (
         <NavLink
           key={to}
@@ -255,7 +255,7 @@ const SideBar = () => {
                 (location.pathname === "/" ||
                   location.pathname.startsWith("/sections"))) ||
               isActive;
-            return `px-[16px] py-[18px] rounded-[12px] font-[500] flex flex-col items-center transition-all duration-200 ${
+            return `px-[12px] md:px-[16px] py-[18px] rounded-[12px] font-[500] flex flex-col items-center  flex-1 md:flex-none text-[14px] md:text-[16px] min-w-0  transition-all duration-200 ${
               customActive
                 ? "bg-[#06B2B6] text-white"
                 : "bg-[#F9F9F9] text-[#4B4B4B] hover:bg-[#06B2B6] hover:text-white"
