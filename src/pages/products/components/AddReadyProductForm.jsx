@@ -10,29 +10,29 @@ import { useFetchOne } from "../../../hooks/useFetchOne";
 const { Option } = Select;
 
 const AddReadyProductForm = ({ onClose, product }) => {
-    const {
-        handleSubmit,
-        control,
-        formState: { errors },
-        reset,
-        getValues,
-      } = useForm({
-        defaultValues: {
-          marketId: null,
-          quantity: "",
-          unitId: null,
-          description: "",
-        },
-      });
-  const { data: marketData  } = useFetchOne({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+    getValues,
+  } = useForm({
+    defaultValues: {
+      marketId: null,
+      quantity: "",
+      unitId: null,
+      description: "",
+    },
+  });
+  const { data: marketData } = useFetchOne({
     key: [`market`],
     url: `/market`,
   });
 
   const { data: unitData } = useFetch({
-      key: [`unit`,],
-      url: `/unit`,
-    });
+    key: [`unit`],
+    url: `/unit`,
+  });
 
   const { mutate, isLoading } = useApiMutation({
     url: "/market-list",
@@ -57,10 +57,14 @@ const AddReadyProductForm = ({ onClose, product }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-        <div>
-            <div className="max-h-[104px] h-[104px] py-[15px] bg-[#F9F9F9] rounded-[14px]"><img className="h-full w-auto mx-auto" src={product?.images} alt="" /></div>
-            <div className="text-[#1E1E1E] font-[600] text-[18px]">{product?.titleUz}, {product?.descriptionUz}</div>
+      <div>
+        <div className="max-h-[104px] h-[104px] py-[15px] bg-[#F9F9F9] rounded-[14px]">
+          <img className="h-full w-auto mx-auto" src={product?.images} alt="" />
         </div>
+        <div className="text-[#1E1E1E] font-[600] text-[18px]">
+          {product?.titleUz}, {product?.descriptionUz}
+        </div>
+      </div>
       <div>
         <label className="font-medium block mb-1">
           *Mahsulotni qaysi bozorlikka qo'shasiz

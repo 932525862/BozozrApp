@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input, Select } from "antd";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/PrimaryButton";
@@ -27,16 +27,20 @@ const AddMarketForm = ({onClose, refetch}) => {
     url: "/market",
     method: "POST",
     onSuccess: (data) => {
+      reset();
       onClose()
       refetch()
-      navigate("/markets");
+      navigate(`/market/${data?.data?.name}`, {
+        state: { id: data?.data?.id },
+      });
       toast.success("Bozorlik qo'shildi");
-      reset();
+      
     },
     onError: (error) => {
       toast.error(error.response?.data?.message);
     },
   });
+
 
   const { data } = useFetch({
       key: [`market-type`],

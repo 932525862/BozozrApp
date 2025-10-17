@@ -7,6 +7,7 @@ import CustomModal from "../../components/CustomModal";
 import AddMarketForm from "./components/AddMarketForm";
 import { LuPlus } from "react-icons/lu";
 import EditMarketForm from "./components/EditMarketForm";
+import DeleteMarket from "./components/DeleteMarket";
 
 const MarketPage = () => {
   const [open, setOpen] = useState(false);
@@ -56,7 +57,7 @@ const MarketPage = () => {
         onCancel={handleClose}
         width={351}
       >
-        {modalType == "add" ? <AddMarketForm refetch={refetch} onClose={handleClose} /> : <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/>}
+        {modalType == "add" ? <AddMarketForm refetch={refetch} onClose={handleClose} /> : modalType == "edit" ? <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : <DeleteMarket onClose={handleClose} refetch={refetch} selectMarket={selectMarket}/>}
       </CustomModal>
     </div>
   );

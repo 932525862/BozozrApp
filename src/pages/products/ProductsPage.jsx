@@ -33,9 +33,6 @@ const ProductsPage = () => {
       },
     },
   });
-  console.log(selectProduct);
-  
-
   return (
     <div>
       <div className="bg-[#FFFFFF] rounded-[8px] mb-4 py-[10px] px-[12px]">

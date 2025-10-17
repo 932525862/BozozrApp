@@ -5,7 +5,7 @@ import ticketImg from "../../../assets/icons/receipt.svg";
 import moneyImg from "../../../assets/icons/Frame.svg";
 import calendarImg from "../../../assets/icons/calendar-tick.svg";
 import bgStar from "../../../assets/star.png";
-import { Popconfirm, Popover } from "antd";
+import { Popover } from "antd";
 import editImg from "../../../assets/market-icons/edit.svg";
 import deleteImg from "../../../assets/market-icons/delete.svg";
 import sendImg from "../../../assets/market-icons/send.svg";
@@ -13,7 +13,6 @@ import nextImg from "../../../assets/market-icons/next.svg";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
   const navigate = useNavigate();
@@ -23,24 +22,16 @@ const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
       state: { id: market?.id },
     });
   };
-  const { mutate: deleteMutate } = useApiMutation({
-    url: "/market",
-    method: "DELETE",
-    onSuccess: () => {
-      toast.success("Bozorlik muvaffaqiyatli o‘chirildi");
-      refetch();
-    },
-    onError: () => {
-      toast.error("Bozorlikni o‘chirishda xatolik yuz berdi");
-    },
-  });
+  
   const handleEditClick = () => {
     setSelectMarket(market)
     handleOpen("edit");
     setPopoverOpen(false); // 🔹 modal ochilgandan so‘ng Popover yopiladi
   };
-  const handleDelete = (record) => {
-    deleteMutate({ id: record?.id });
+  const handleDelete = () => {
+    setSelectMarket(market)
+    handleOpen("delete")
+    setPopoverOpen(false)
   };
   const content = (
     <div>
@@ -54,17 +45,12 @@ const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
         <span className="text-[18px]">Ulashish</span>{" "}
         <img src={nextImg} alt="edit icon" />
       </div>
-      <Popconfirm
-        title="Ushbu bozorlikni o'chirishga aminmisiz?"
-        icon={<AiOutlineQuestionCircle style={{ color: "red" }} />}
-        onConfirm={() => handleDelete(market)}
-      >
-        <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
+     
+        <div onClick={handleDelete} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
           <img src={deleteImg} alt="delete icon" />{" "}
           <span className="text-[18px]">O'chirish</span>{" "}
           <img src={nextImg} alt="edit icon" />
         </div>
-      </Popconfirm>
     </div>
   );
 
