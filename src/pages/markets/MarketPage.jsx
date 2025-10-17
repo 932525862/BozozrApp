@@ -1,10 +1,65 @@
-import React from 'react'
-import EmptyShoppingList from './components/EmptyShoppingList'
+import React, { useState } from "react";
+import EmptyShoppingList from "./components/EmptyShoppingList";
+import { useFetchOne } from "../../hooks/useFetchOne";
+import MarketCard from "./components/MarketCard";
+import CustomButton from "../../components/CustomButton";
+import CustomModal from "../../components/CustomModal";
+import AddMarketForm from "./components/AddMarketForm";
+import { LuPlus } from "react-icons/lu";
+import EditMarketForm from "./components/EditMarketForm";
 
 const MarketPage = () => {
-  return (
-    <div><EmptyShoppingList/></div>
-  )
-}
+  const [open, setOpen] = useState(false);
+  const [selectMarket, setSelectMarket] = useState(null);
+  const [modalType, setModalType] = useState(null);
 
-export default MarketPage
+  const handleOpen = (type) => {
+    setModalType(type)
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+  const { data, refetch } = useFetchOne({
+    key: [`market`],
+    url: `/market`,
+  });
+
+  return (
+    <div>
+      {data?.length > 0 ? (
+        <div className="flex flex-col gap-[20px]">
+          <div className="grid grid-cols-3 gap-[12px]">
+            {data?.map((item) => (
+              <MarketCard
+                key={item?.id}
+                market={item}
+                refetch={refetch}
+                setSelectMarket={setSelectMarket}
+                handleOpen={handleOpen}
+              />
+            ))}
+          </div>
+          <div className="self-end">
+            <CustomButton onClick={() => handleOpen("add")} className="w-[278px]">
+              <span>Yangi bozorlik</span>
+              <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
+                <LuPlus className="text-[16px]" />
+              </span>
+            </CustomButton>
+          </div>
+        </div>
+      ) : (
+        <EmptyShoppingList handleOpen={handleOpen}/>
+      )}
+      <CustomModal
+        open={open}
+        title={modalType == "add" ? "Yangi bozorlik" : "Tahrirlash"}
+        onCancel={handleClose}
+        width={351}
+      >
+        {modalType == "add" ? <AddMarketForm refetch={refetch} onClose={handleClose} /> : <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/>}
+      </CustomModal>
+    </div>
+  );
+};
+
+export default MarketPage;

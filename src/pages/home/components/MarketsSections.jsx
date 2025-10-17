@@ -20,6 +20,7 @@ import { formatDateDot } from "../../../utils/utils";
 
 const MarketsSections = () => {
   const navigate = useNavigate();
+
   const handleNavigate = () => {
     navigate("/markets");
   };
@@ -28,7 +29,7 @@ const MarketsSections = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { data } = useFetchOne({
+  const { data, refetch } = useFetchOne({
         key: [`market`, ],
         url: `/market`,
       });   
@@ -168,7 +169,7 @@ const MarketsSections = () => {
         onCancel={handleClose}
         width={351}
       >
-        <AddMarketForm onClose={handleClose}/>
+        <AddMarketForm onClose={handleClose} refetch={refetch}/>
       </CustomModal>
     </div>
   );

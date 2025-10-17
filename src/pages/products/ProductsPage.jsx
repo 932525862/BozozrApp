@@ -7,33 +7,8 @@ import CustomModal from "../../components/CustomModal";
 import { useFetchOne } from "../../hooks/useFetchOne";
 import { useFetch } from "../../hooks/useFetch";
 import { useShoppingStore } from "../../store/shoppingStore";
+import AddReadyProductForm from "./components/AddReadyProductForm";
 
-const products = [
-  {
-    id: 1,
-    title: "Chortoq",
-    text: "mahsulotlari",
-    img: logo,
-  },
-  {
-    id: 2,
-    title: "Rash Milk",
-    text: "mahsulotlari",
-    img: logo,
-  },
-  {
-    id: 3,
-    title: "Dena",
-    text: "mahsulotlari",
-    img: logo,
-  },
-  {
-    id: 4,
-    title: "Ermak",
-    text: "mahsulotlari",
-    img: logo,
-  },
-];
 
 const ProductsPage = () => {
   const [selectProduct, setSelectProduct] = useState(null);
@@ -58,6 +33,8 @@ const ProductsPage = () => {
       },
     },
   });
+  console.log(selectProduct);
+  
 
   return (
     <div>
@@ -88,9 +65,9 @@ const ProductsPage = () => {
         open={open}
         title="Mahsulot qo'shish"
         onCancel={handleClose}
-        width={351}
+        width={391}
       >
-        {/* <AddMarketForm/> */}
+        <AddReadyProductForm onClose={handleClose} product={selectProduct}/>
       </CustomModal>
     </div>
   );

@@ -1,15 +1,12 @@
-import React from "react";
-import { Input, Select } from "antd";
+import React, { useEffect } from "react";
+import { Input } from "antd";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/PrimaryButton";
-import { useFetch } from "../../../hooks/useFetch";
-import { useStore } from "../../../store/userStore";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation"
 
-const { Option } = Select;
 
-const AddMarketForm = ({onClose, refetch}) => {
+const EditMarketForm = ({onClose, refetch, selectMarket}) => {
   const {
     handleSubmit,
     control,
@@ -17,20 +14,25 @@ const AddMarketForm = ({onClose, refetch}) => {
     reset
   } = useForm({
     defaultValues: {
-      name: "",
-      marketTypeId: null,
+      name: selectMarket?.name,
     },
   });
-  const {user} = useStore()
+
+  useEffect(() => {
+    if (selectMarket) {
+      reset({
+        name: selectMarket.name,
+      });
+    }
+  }, [selectMarket, reset]);
 
   const { mutate, isLoading } = useApiMutation({
-    url: "/market",
-    method: "POST",
+    url: `/market/${selectMarket?.id}`,
+    method: "PATCH",
     onSuccess: (data) => {
       onClose()
       refetch()
-      navigate("/markets");
-      toast.success("Bozorlik qo'shildi");
+      toast.success("Bozorlik tahrirlandi");
       reset();
     },
     onError: (error) => {
@@ -38,17 +40,8 @@ const AddMarketForm = ({onClose, refetch}) => {
     },
   });
 
-  const { data } = useFetch({
-      key: [`market-type`],
-      url: `/market-type`,
-    });
-
     const onSubmit = (data) => {
-      const form = {
-        userId: user?.id,
-        ...data
-      }
-      mutate(form)
+      mutate(data)
     }
 
   return (
@@ -77,32 +70,6 @@ const AddMarketForm = ({onClose, refetch}) => {
         )}
       </div>
 
-      {/* Bo‘lim */}
-      <div>
-        <label className="font-medium block mb-1">
-          *Bozorlik qaysi bo‘limga tegishli
-        </label>
-        <Controller
-          name="marketTypeId"
-          control={control}
-          rules={{ required: "Bo‘lim tanlanishi kerak" }}
-          render={({ field }) => (
-            <Select
-              {...field}
-              placeholder="Bo‘limni tanlang"
-              status={errors.marketTypeId ? "error" : ""}
-              className="w-full"
-            >
-              {data?.items?.map(item => <Option value={item?.id}>{item?.titleUz}</Option>)}
-            </Select>
-          )}
-        />
-        {errors.marketTypeId && (
-          <p className="text-red-500 text-sm mt-1">
-            {errors.marketTypeId.message}
-          </p>
-        )}
-      </div>
 
       {/* Qo‘shish tugmasi */}
       <PrimaryButton
@@ -110,10 +77,10 @@ const AddMarketForm = ({onClose, refetch}) => {
         className="mt-3 rounded-[14px] py-[14px] font-[500]"
         disabled={isLoading}
       >
-        Qo‘shish
+        Saqlash
       </PrimaryButton>
     </form>
   );
 };
 
-export default AddMarketForm;
+export default EditMarketForm;
