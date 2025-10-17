@@ -4,12 +4,12 @@ import PrimaryButton from '../../../components/PrimaryButton'
 const ProductCard = ({product, handleOpen}) => {
   return (
     <div className='px-[8px] pt-[8px] pb-[12px] bg-[#FFFFFF] rounded-[16px]'>
-        <div className='rounded-[14px] bg-[#F9F9F9] h-[105px] flex justify-center items-center'>
-            <img src={product?.img} alt="logo photo" />
+        <div className='rounded-[14px] bg-[#F9F9F9] h-[105px] py-[15px] flex justify-center items-center'>
+            <img src={product?.images} alt="logo photo" className='h-full w-auto'/>
         </div>
         <div className='flex flex-col mt-[8px]'>
-            <span className='font-[600]'>{product?.title}</span>
-            <span className='text-[#06B2B6] text-[14px] font-[500]'>{product?.text}</span>
+            <span className='font-[600]'>{product?.titleUz}</span>
+            <span className='text-[#06B2B6] text-[14px] font-[500]'>{product?.descriptionUz}</span>
         </div>
         <PrimaryButton onClick={() => handleOpen(product)} className='w-full rounded-[8px] font-[500] py-[4px] mt-[8px]'>Qo'shish</PrimaryButton>
     </div>

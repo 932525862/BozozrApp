@@ -15,6 +15,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
+import { useFetchOne } from "../../../hooks/useFetchOne";
+import { formatDateDot } from "../../../utils/utils";
 
 const MarketsSections = () => {
   const navigate = useNavigate();
@@ -25,6 +27,12 @@ const MarketsSections = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { data } = useFetchOne({
+        key: [`market`, ],
+        url: `/market`,
+      });   
+      
   return (
     <div className="mt-[12px] flex flex-col-reverse gap-[12px]">
       <div className="block w-full">
@@ -106,7 +114,8 @@ const MarketsSections = () => {
                 },
               }}
             >
-              <SwiperSlide>
+              {data?.map(item => 
+                <SwiperSlide key={item?.id}>
                 <div
                   onClick={handleNavigate}
                   className="cursor-pointer max-w-[350px] bg-[#F9F9F9] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
@@ -119,198 +128,36 @@ const MarketsSections = () => {
                       backgroundImage: `url(${bgStar})`,
                     }}
                   >
-                    O
+                    {item?.marketType?.titleUz?.charAt(0)}
                   </div>
                   <div>
                     <div className="font-[600]">
-                      Oilam:{" "}
+                    {item?.marketType?.titleUz}:{" "}
                       <span className="font-[500] text-[14px] text-[#06B2B6]">
-                        #bozorlik14
+                        #{item?.name}
                       </span>
                     </div>
                     <div className="flex gap-[10px] items-center">
                       <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
                         <img src={ticketImg} alt="photo" />
-                        <span>55</span>
+                        <span>{item?.marketLists?.length > 0 ? "1" : "0"}</span>
                       </div>
                       <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
                       <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
                         <img src={moneyImg} alt="photo" />
-                        <span>5 555 555</span>
+                        <span>{item?.marketLists?.length > 0 ? "1" : "0"}</span>
                       </div>
                       <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
                       <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
                         <img src={calendarImg} alt="photo" />
-                        <span>05.05.2025</span>
+                        <span>{formatDateDot(item?.createdAt)}</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  onClick={handleNavigate}
-                  className="cursor-pointer max-w-[350px] bg-[#F9F9F9] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
-                >
-                  <div
-                    className="w-[52px] h-[52px] flex justify-center items-center font-[600] text-[22px]"
-                    style={{
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "right center",
-                      backgroundImage: `url(${bgStar})`,
-                    }}
-                  >
-                    O
-                  </div>
-                  <div>
-                    <div className="font-[600]">
-                      Oilam:{" "}
-                      <span className="font-[500] text-[14px] text-[#06B2B6]">
-                        #bozorlik14
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={ticketImg} alt="photo" />
-                        <span>55</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={moneyImg} alt="photo" />
-                        <span>5 555 555</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={calendarImg} alt="photo" />
-                        <span>05.05.2025</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  onClick={handleNavigate}
-                  className="cursor-pointer max-w-[350px] bg-[#F9F9F9] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
-                >
-                  <div
-                    className="w-[52px] h-[52px] flex justify-center items-center font-[600] text-[22px]"
-                    style={{
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "right center",
-                      backgroundImage: `url(${bgStar})`,
-                    }}
-                  >
-                    O
-                  </div>
-                  <div>
-                    <div className="font-[600]">
-                      Oilam:{" "}
-                      <span className="font-[500] text-[14px] text-[#06B2B6]">
-                        #bozorlik14
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={ticketImg} alt="photo" />
-                        <span>55</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={moneyImg} alt="photo" />
-                        <span>5 555 555</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={calendarImg} alt="photo" />
-                        <span>05.05.2025</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  onClick={handleNavigate}
-                  className="cursor-pointer max-w-[350px] bg-[#F9F9F9] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
-                >
-                  <div
-                    className="w-[52px] h-[52px] flex justify-center items-center font-[600] text-[22px]"
-                    style={{
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "right center",
-                      backgroundImage: `url(${bgStar})`,
-                    }}
-                  >
-                    O
-                  </div>
-                  <div>
-                    <div className="font-[600]">
-                      Oilam:{" "}
-                      <span className="font-[500] text-[14px] text-[#06B2B6]">
-                        #bozorlik14
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={ticketImg} alt="photo" />
-                        <span>55</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={moneyImg} alt="photo" />
-                        <span>5 555 555</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={calendarImg} alt="photo" />
-                        <span>05.05.2025</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  onClick={handleNavigate}
-                  className="cursor-pointer max-w-[350px] bg-[#F9F9F9] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
-                >
-                  <div
-                    className="w-[52px] h-[52px] flex justify-center items-center font-[600] text-[22px]"
-                    style={{
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "right center",
-                      backgroundImage: `url(${bgStar})`,
-                    }}
-                  >
-                    O
-                  </div>
-                  <div>
-                    <div className="font-[600]">
-                      Oilam:{" "}
-                      <span className="font-[500] text-[14px] text-[#06B2B6]">
-                        #bozorlik14
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={ticketImg} alt="photo" />
-                        <span>55</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={moneyImg} alt="photo" />
-                        <span>5 555 555</span>
-                      </div>
-                      <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
-                      <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={calendarImg} alt="photo" />
-                        <span>05.05.2025</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
+              )}
+              
             </Swiper>
           </div>
         </div>
@@ -321,7 +168,7 @@ const MarketsSections = () => {
         onCancel={handleClose}
         width={351}
       >
-        <AddMarketForm />
+        <AddMarketForm onClose={handleClose}/>
       </CustomModal>
     </div>
   );

@@ -1,35 +1,54 @@
-// store/shoppingStore.ts
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useShoppingStore = create((set) => ({
-  shoppingList: null,
-  showExtraProductDialog: false,
-  shoppingId: null,
-  setShoppingList: (newItem) =>
-    set((state) => ({
-      shoppingList: [...state.shoppingList, newItem],
-    })),
+export const useShoppingStore = create(
+  persist(
+    (set, get) => ({
+      shoppingList: [],
+      showExtraProductDialog: false,
+      shoppingId: null,
+      brendId: null,
 
-    updateShoppingItemName: (id, newName) =>
-      set((state) => ({
-        shoppingList: state.shoppingList.map((item) =>
-          item.id === id ? { ...item, name: newName } : item
-        ),
-      })),
+      setShoppingList: (newItem) =>
+        set((state) => ({
+          shoppingList: [...(state.shoppingList || []), newItem],
+        })),
 
-  setShoppingListAll: (newItemAll) =>
-    set(() => ({
-      shoppingList: newItemAll,
-    })),
-  setShoppingId: (id) =>
-    set(() => ({
-      shoppingId: id,
-    })),
-  removeShoppingItem: (id) =>
-    set((state) => ({
-      shoppingList: state?.shoppingList?.filter((item) => item?.id !== id),
-    })),
+      updateShoppingItemName: (id, newName) =>
+        set((state) => ({
+          shoppingList: state.shoppingList.map((item) =>
+            item.id === id ? { ...item, name: newName } : item
+          ),
+        })),
 
-  setShowExtraProductDialog: (show) =>
-    set({ showExtraProductDialog: show }),
-}));
+      setShoppingListAll: (newItemAll) =>
+        set(() => ({
+          shoppingList: newItemAll,
+        })),
+
+      setShoppingId: (id) =>
+        set(() => ({
+          shoppingId: id,
+        })),
+
+      setBrendId: (id) =>
+        set(() => ({
+          brendId: id,
+        })),
+
+      removeShoppingItem: (id) =>
+        set((state) => ({
+          shoppingList: state.shoppingList.filter((item) => item.id !== id),
+        })),
+
+      setShowExtraProductDialog: (show) =>
+        set({ showExtraProductDialog: show }),
+    }),
+    {
+      name: "shopping-storage", // localStorage kaliti nomi
+      partialize: (state) => ({
+        brendId: state.brendId, // faqat kerakli narsani saqlaymiz
+      }),
+    }
+  )
+);

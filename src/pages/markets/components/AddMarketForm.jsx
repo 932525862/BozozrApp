@@ -2,20 +2,54 @@ import React from "react";
 import { Input, Select } from "antd";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/PrimaryButton";
+import { useFetch } from "../../../hooks/useFetch";
+import { useStore } from "../../../store/userStore";
+import { toast } from "react-toastify";
+import useApiMutation from "../../../hooks/useMutation"
 
 const { Option } = Select;
 
-const AddMarketForm = ({ onSubmit }) => {
+const AddMarketForm = ({onClose}) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset
   } = useForm({
     defaultValues: {
       name: "",
-      category: null,
+      marketTypeId: null,
     },
   });
+  const {user} = useStore()
+
+  const { mutate, isLoading } = useApiMutation({
+    url: "/market",
+    method: "POST",
+    onSuccess: (data) => {
+      console.log(data);
+      onClose()
+      navigate("/markets");
+      toast.success("Bozorlik qo'shildi");
+      reset();
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message);
+    },
+  });
+
+  const { data } = useFetch({
+      key: [`market-type`],
+      url: `/market-type`,
+    });
+
+    const onSubmit = (data) => {
+      const form = {
+        userId: user?.id,
+        ...data
+      }
+      mutate(form)
+    }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -49,25 +83,23 @@ const AddMarketForm = ({ onSubmit }) => {
           *Bozorlik qaysi bo‘limga tegishli
         </label>
         <Controller
-          name="category"
+          name="marketTypeId"
           control={control}
           rules={{ required: "Bo‘lim tanlanishi kerak" }}
           render={({ field }) => (
             <Select
               {...field}
               placeholder="Bo‘limni tanlang"
-              status={errors.category ? "error" : ""}
+              status={errors.marketTypeId ? "error" : ""}
               className="w-full"
             >
-              <Option value="Oila">Oila</Option>
-              <Option value="Ish">Ish</Option>
-              <Option value="Shaxsiy">Shaxsiy</Option>
+              {data?.items?.map(item => <Option value={item?.id}>{item?.titleUz}</Option>)}
             </Select>
           )}
         />
-        {errors.category && (
+        {errors.marketTypeId && (
           <p className="text-red-500 text-sm mt-1">
-            {errors.category.message}
+            {errors.marketTypeId.message}
           </p>
         )}
       </div>
@@ -76,6 +108,7 @@ const AddMarketForm = ({ onSubmit }) => {
       <PrimaryButton
         type="submit"
         className="mt-3 rounded-[14px] py-[14px] font-[500]"
+        disabled={isLoading}
       >
         Qo‘shish
       </PrimaryButton>

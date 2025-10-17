@@ -17,9 +17,6 @@ const ProfilSelect = () => {
     setOpen(false);
     clearUser()
   };
-  console.log(user);
-  
-
   // 🔹 Tashqariga bosilganda dropdown yopiladi
   useEffect(() => {
     const handleClickOutside = (e) => {

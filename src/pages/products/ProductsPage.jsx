@@ -4,6 +4,9 @@ import logo from "../../assets/logo.png";
 import ProductCard from "./components/ProductCard";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import CustomModal from "../../components/CustomModal";
+import { useFetchOne } from "../../hooks/useFetchOne";
+import { useFetch } from "../../hooks/useFetch";
+import { useShoppingStore } from "../../store/shoppingStore";
 
 const products = [
   {
@@ -34,6 +37,7 @@ const products = [
 
 const ProductsPage = () => {
   const [selectProduct, setSelectProduct] = useState(null);
+  const {brendId} = useShoppingStore()
 
   const [open, setOpen] = useState(false);
 
@@ -45,7 +49,15 @@ const ProductsPage = () => {
   const { state } = useLocation();
   const brend = state;
 
-  console.log(brend);
+  const { data } = useFetch({
+    key: [`products`, brend?.selectedSub?.id],
+    url: `/products`,
+    config: {
+      params: {
+        categoryId: brend?.selectedSub?.id,
+      },
+    },
+  });
 
   return (
     <div>
@@ -54,17 +66,19 @@ const ProductsPage = () => {
           items={[
             { label: "Brendlar", to: "/brends" },
             {
-              label: brend?.title,
-              to: `/brends/${brend?.title?.replace(/\s+/g, "-")}/subbrends`,
+              label: brendId?.titleUz,
+              to: `/brends/${brendId?.titleUz?.replace(/\s+/g, "-")}/subbrends`,
             },
             // faqat selectSub mavjud bo‘lsa uchinchi elementni qo‘shamiz
-            ...(brend?.selectedSub ? [{ label: brend?.selectedSub?.title }] : []),
+            ...(brend?.selectedSub
+              ? [{ label: brend?.selectedSub?.titleUz }]
+              : []),
           ]}
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-[12px]">
-        {products.map((item) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[12px]">
+        {data?.items.map((item) => (
           <div key={item.id} className="cursor-pointer">
             <ProductCard product={item} handleOpen={handleOpen} />
           </div>
