@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import logo from "../../assets/logo.png";
 import ProductCard from "./components/ProductCard";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import CustomModal from "../../components/CustomModal";
-import { useFetchOne } from "../../hooks/useFetchOne";
 import { useFetch } from "../../hooks/useFetch";
 import { useShoppingStore } from "../../store/shoppingStore";
 import AddReadyProductForm from "./components/AddReadyProductForm";
@@ -25,11 +23,11 @@ const ProductsPage = () => {
   const brend = state;
 
   const { data } = useFetch({
-    key: [`products`, brend?.selectedSub?.id],
+    key: [`products`, brend?.selectedSub ? brend?.selectedSub?.id : brend?.id],
     url: `/products`,
     config: {
       params: {
-        categoryId: brend?.selectedSub?.id,
+        categoryId: brend?.selectedSub ? brend?.selectedSub?.id : brend?.id,
       },
     },
   });
@@ -41,7 +39,7 @@ const ProductsPage = () => {
             { label: "Brendlar", to: "/brends" },
             {
               label: brendId?.titleUz,
-              to: `/brends/${brendId?.titleUz?.replace(/\s+/g, "-")}/subbrends`,
+              to: `/brends/${brendId?.titleEn?.replace(/\s+/g, "-")}/subbrends`,
             },
             // faqat selectSub mavjud bo‘lsa uchinchi elementni qo‘shamiz
             ...(brend?.selectedSub

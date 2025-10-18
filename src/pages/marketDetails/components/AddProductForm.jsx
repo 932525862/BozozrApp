@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 const { Option } = Select;
 const { TextArea } = Input;
 
-const AddProductForm = ({ onClose }) => {
+const AddProductForm = ({ onClose, marketId, refetch }) => {
   const { t } = useTranslation();
 
   const {
@@ -21,7 +21,7 @@ const AddProductForm = ({ onClose }) => {
     getValues,
   } = useForm({
     defaultValues: {
-      name: "",
+      productName: "",
       quantity: "",
       unitId: null,
       description: "",
@@ -40,6 +40,7 @@ const AddProductForm = ({ onClose }) => {
       onClose();
       toast.success(t("addReadyProductForm.success"));
       reset();
+      refetch()
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || t("addReadyProductForm.error"));
@@ -47,7 +48,7 @@ const AddProductForm = ({ onClose }) => {
   });
 
   const onSubmit = (data) => {
-    mutate(data);
+    mutate({...data, marketId: marketId});
   };
 
   return (
@@ -58,7 +59,7 @@ const AddProductForm = ({ onClose }) => {
           {t("addReadyProductForm.nameLabel")}
         </label>
         <Controller
-          name="name"
+          name="productName"
           control={control}
           rules={{ required: t("addReadyProductForm.nameRequired") }}
           render={({ field }) => (
@@ -68,8 +69,8 @@ const AddProductForm = ({ onClose }) => {
             />
           )}
         />
-        {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+        {errors.productName && (
+          <p className="text-red-500 text-sm mt-1">{errors.productName.message}</p>
         )}
       </div>
 

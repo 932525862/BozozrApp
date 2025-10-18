@@ -1,13 +1,16 @@
 import React from 'react'
-import { useFetch } from '../../hooks/useFetch';
 import EmptyHistory from './components/EmptyHistory';
+import { useFetchOne } from '../../hooks/useFetchOne';
 
 const HistoryPage = () => {
 
-  const { data } = useFetch({
+  const { data } = useFetchOne({
       key: [`history`],
       url: `/history`,
     });
+
+    console.log(data?.data);
+    
     
     return <div className="h-full">
     {data?.items?.length > 0 ? (

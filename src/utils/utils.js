@@ -59,3 +59,7 @@ export const getLangValue = (valueObj, field, lang) => {
     ""
   );
 };
+
+export function formatNumberWithSpace(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

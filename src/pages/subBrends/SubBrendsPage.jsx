@@ -16,12 +16,13 @@ const SubBrendsPage = () => {
     });
 
   const handleSubClick = (sub) => {
-    // Bo‘sh joylarni "-" bilan almashtirish
     const formattedTitle = data?.titleEn.replace(/\s+/g, "-");
     navigate(`/brends/${formattedTitle}/products`, {
       state: { ...brend, selectedSub: sub },
     });
   };
+
+
 
   return (
     <div>
