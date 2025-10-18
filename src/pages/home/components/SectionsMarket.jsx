@@ -12,10 +12,11 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useFetch } from "../../../hooks/useFetch";
 import { useTranslation } from "react-i18next";
+import { getLangValue } from "../../../utils/utils";
 
 const SectionsMarket = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { data } = useFetch({
     key: [`market-type`],
@@ -86,7 +87,7 @@ const SectionsMarket = () => {
                 }}
               >
                 <div className="flex flex-col justify-between h-full">
-                  <div className="font-[600] max-w-[84px]">{item?.titleUz}</div>
+                  <div className="font-[600] max-w-[84px]">{getLangValue(item, "title", i18n.language)}</div>
                   <div className="w-[61px] h-[36px]">
                     <img src={logo} alt={t("logoAlt")} />
                   </div>

@@ -16,11 +16,11 @@ import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
 import { useFetchOne } from "../../../hooks/useFetchOne";
-import { formatDateDot } from "../../../utils/utils";
+import { formatDateDot, getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
 
 const MarketsSections = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -136,7 +136,7 @@ const MarketsSections = () => {
                   </div>
                   <div>
                     <div className="font-[600]">
-                      {item?.marketType?.titleUz}:{" "}
+                      {getLangValue(item?.marketType, "title", i18n.language)}:{" "}
                       <span className="font-[500] text-[14px] text-[#06B2B6]">
                         #{item?.name}
                       </span>
