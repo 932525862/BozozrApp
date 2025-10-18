@@ -101,5 +101,117 @@
     "verify": "Tasdiqlash",
     "enter4code": "4 talik kod kirit",
     "invalidCode": "Noto'g'ri kod"
+  },
+   
+  "markets": {
+    "newMarket": "Yangi bozorlik",
+    "title": "Bozorliklar",
+    "viewLinkAria": "Bozorlar sahifasiga o'tish",
+    "item": {
+      "labelTemplate": "{{type}}: #{{name}}",
+      "ticketsLabel": "Chipta",
+      "revenueLabel": "Daromad",
+      "dateLabel": "Sana",
+      "imageAlt": "rasm"
+    },
+    "button": {
+      "create": "Yangi bozorlik"
+    },
+    "modal": {
+      "title": "Yangi bozorlik",
+      "close": "Yopish"
+    }
+  },
+  "sections": {
+    "title": "Bo'limlar"
+  },
+  "logoAlt": "Market ilovasi logotipi",
+
+  "addMarketForm": {
+    "nameLabel": "*Bozorlik nomi",
+    "nameRequired": "Bozorlik nomi kiritilishi kerak",
+    "namePlaceholder": "Bozorlik nomini kiriting",
+    "typeLabel": "*Bozorlik qaysi bo‘limga tegishli",
+    "typeRequired": "Bo‘lim tanlanishi kerak",
+    "typePlaceholder": "Bo‘limni tanlang",
+    "submit": "Qo‘shish",
+    "success": "Bozorlik qo'shildi",
+    "error": "Xatolik yuz berdi"
+  },
+  "deleteMarket": {
+    "confirm": "{{name}} nomli bozorligingizni o'chirmoqchimisiz?",
+    "delete": "O'chirish",
+    "cancel": "Bekor qilish",
+    "success": "Bozorlik muvaffaqiyatli o‘chirildi",
+    "error": "Bozorlikni o‘chirishda xatolik yuz berdi"
+  },
+   "editMarketForm": {
+    "nameLabel": "*Bozorlik nomi",
+    "nameRequired": "Bozorlik nomi kiritilishi kerak",
+    "namePlaceholder": "Bozorlik nomini kiriting",
+    "submit": "Saqlash",
+    "success": "Bozorlik tahrirlandi",
+    "error": "Bozorlikni tahrirlashda xatolik yuz berdi"
+   },
+    "emptyShoppingList": {
+    "title": "Bozorliklar yo‘q...",
+    "description": "“Yangi bozorlik” yarating va o‘z ro‘yxatingizni shakllantiring",
+    "createButton": "Yangi bozorlik",
+    "imageAlt": "Bo‘sh bozor rasmi"
+  },
+  "marketCard": {
+    "edit": "Tahrirlash",
+    "share": "Ulashish",
+    "delete": "O'chirish",
+    "editIconAlt": "Tahrirlash ikonkasi",
+    "sendIconAlt": "Ulashish ikonkasi",
+    "deleteIconAlt": "O'chirish ikonkasi",
+    "nextIconAlt": "Keyingi",
+    "receiptAlt": "Chek",
+    "moneyAlt": "Narx",
+    "calendarAlt": "Kalendar"
+  },
+   "menuPage": {
+    "avatarAlt": "Foydalanuvchi avatari",
+    "noName": "Ism mavjud emas",
+    "noPhone": "Telefon raqam mavjud emas",
+    "editProfile": "Profilni tahrirlash",
+    "changePassword": "Parolni o'zgartirish",
+    "changePhone": "Telefon raqamni o'zgartirish",
+    "feedback": "Taklif va murojaat",
+    "logout": "Profilidan chiqish",
+    "deleteProfile": "Profilni o'chirish"
+  },
+   "notFound": {
+    "code": "404",
+    "description": "Kechirasiz, siz tashrif buyurgan sahifa mavjud emas.",
+    "backHome": "Uyga qaytish"
+  },
+   "addReadyProductForm": {
+    "productImageAlt": "Mahsulot rasmi",
+    "marketLabel": "*Mahsulotni qaysi bozorlikka qo'shasiz",
+    "marketRequired": "Bozorlik tanlanishi kerak",
+    "marketPlaceholder": "Bozorlikni tanlang",
+    "quantityLabel": "*Mahsulot miqdori va birligi",
+    "quantityPlaceholder": "miqdorini yozing",
+    "unitPlaceholder": "dona",
+    "quantityUnitError": "Miqdor va birlik kiritilishi kerak",
+    "descriptionLabel": "Izoh (majburiy emas)",
+    "descriptionPlaceholder": "mahsulotga izoh",
+    "submit": "Qo‘shish",
+    "success": "Mahsulot bozorlikka qo'shildi",
+    "error": "Xatolik yuz berdi"
+  },
+  "productCard": {
+    "add": "Qo'shish",
+    "imageAlt": "Mahsulot rasmi"
+  },
+  "sidebar": {
+    "home": "Asosiy",
+    "brands": "Brendlar",
+    "markets": "Bozorlik",
+    "histories": "Tarix",
+    "menu": "Menu",
+    "notifications": "Xabarnoma"
   }
 }

@@ -11,10 +11,13 @@ import deleteImg from "../../../assets/market-icons/delete.svg";
 import sendImg from "../../../assets/market-icons/send.svg";
 import nextImg from "../../../assets/market-icons/next.svg";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
+const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
   const navigate = useNavigate();
   const [popoverOpen, setPopoverOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
   const handleNavigate = () => {
     navigate(`/market/${market?.name}`, {
       state: { id: market?.id },
@@ -31,23 +34,30 @@ const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
     handleOpen("delete")
     setPopoverOpen(false)
   };
+
+  // language-ga qarab serverdagi title maydonini tanlash (fallback uz)
+  const typeTitle =
+    (i18n?.language === "uz" ? market?.marketType?.titleUz : market?.marketType?.titleEn) ||
+    market?.marketType?.titleUz ||
+    "";
+
   const content = (
     <div>
       <div  onClick={handleEditClick} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
-        <img src={editImg} alt="edit icon" />{" "}
-        <span className="text-[18px]">Tahrirlash</span>{" "}
-        <img src={nextImg} alt="edit icon" />
+        <img src={editImg} alt={t("marketCard.editIconAlt")} />{" "}
+        <span className="text-[18px]">{t("marketCard.edit")}</span>{" "}
+        <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
       <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0] pt-[8px]">
-        <img src={sendImg} alt="send icon" />{" "}
-        <span className="text-[18px]">Ulashish</span>{" "}
-        <img src={nextImg} alt="edit icon" />
+        <img src={sendImg} alt={t("marketCard.sendIconAlt")} />{" "}
+        <span className="text-[18px]">{t("marketCard.share")}</span>{" "}
+        <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
      
         <div onClick={handleDelete} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
-          <img src={deleteImg} alt="delete icon" />{" "}
-          <span className="text-[18px]">O'chirish</span>{" "}
-          <img src={nextImg} alt="edit icon" />
+          <img src={deleteImg} alt={t("marketCard.deleteIconAlt")} />{" "}
+          <span className="text-[18px]">{t("marketCard.delete")}</span>{" "}
+          <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
         </div>
     </div>
   );
@@ -79,12 +89,12 @@ const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
             backgroundImage: `url(${bgStar})`,
           }}
         >
-          {market?.marketType?.titleUz?.charAt(0)}
+          {typeTitle?.charAt(0)}
         </div>
       </div>
       <div>
         <h4 className="mt-3 text-[18px] font-semibold text-gray-800">
-          {market?.marketType?.titleUz}
+          {typeTitle}
         </h4>
         <p className="text-[#00AEEF] text-[16px] font-medium">
           #{market?.name}
@@ -94,17 +104,17 @@ const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
       {/* Bottom icons */}
       <div className="flex gap-[10px] flex-wrap items-center mt-[10px]">
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-          <img src={ticketImg} alt="photo" />
+          <img src={ticketImg} alt={t("marketCard.receiptAlt")} />
           <span>{market?.marketLists?.length > 0 ? "1" : "0"}</span>
         </div>
         <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-          <img src={moneyImg} alt="photo" />
+          <img src={moneyImg} alt={t("marketCard.moneyAlt")} />
           <span>{market?.marketLists?.length > 0 ? "1" : "0"}</span>
         </div>
         <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-          <img src={calendarImg} alt="photo" />
+          <img src={calendarImg} alt={t("marketCard.calendarAlt")} />
           <span>{formatDateDot(market?.createdAt)}</span>
         </div>
       </div>

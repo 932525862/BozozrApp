@@ -101,5 +101,116 @@
     "verify": "Тасдиқлаш",
     "enter4code": "4 хонали кодни киритинг",
     "invalidCode": "Нотўғри код"
+  },
+    "markets": {
+    "newMarket": "Янги бозорлик",
+    "title": "Бозорликлар",
+    "viewLinkAria": "Бозорлар саҳифасига ўтиш",
+    "item": {
+      "labelTemplate": "{{type}}: #{{name}}",
+      "ticketsLabel": "Чипта",
+      "revenueLabel": "Даромад",
+      "dateLabel": "Сана",
+      "imageAlt": "Расм"
+    },
+    "button": {
+      "create": "Янги бозорлик"
+    },
+    "modal": {
+      "title": "Янги бозорлик",
+      "close": "Ёпиш"
+    }
+  },
+  "sections": {
+    "title": "Бўлимлар"
+  },
+  "logoAlt": "Маркет иловаси логотипи",
+
+  "addMarketForm": {
+    "nameLabel": "*Бозорлик номи",
+    "nameRequired": "Бозорлик номи киритилиши керак",
+    "namePlaceholder": "Бозорлик номини киритинг",
+    "typeLabel": "*Бозорлик қайси бўлимга тегишли",
+    "typeRequired": "Бўлим танланиши керак",
+    "typePlaceholder": "Бўлимни танланг",
+    "submit": "Қўшиш",
+    "success": "Бозорлик қўшилди",
+    "error": "Хатолик юз берди"
+  },
+  "deleteMarket": {
+    "confirm": "{{name}} номли бозорлигингизни ўчирмоқчимисиз?",
+    "delete": "Ўчириш",
+    "cancel": "Бекор қилиш",
+    "success": "Бозорлик муваффақиятли ўчирилди",
+    "error": "Бозорликни ўчиришда хатолик юз берди"
+  },
+  "editMarketForm": {
+    "nameLabel": "*Бозорлик номи",
+    "nameRequired": "Бозорлик номи киритилиши керак",
+    "namePlaceholder": "Бозорлик номини киритинг",
+    "submit": "Сақлаш",
+    "success": "Бозорлик таҳрирланди",
+    "error": "Бозорликни таҳрирлашда хатолик юз берди"
+  },
+  "emptyShoppingList": {
+    "title": "Бозорликлар йўқ...",
+    "description": "“Янги бозорлик” яратинг ва ўз рўйхатингизни шакллантиринг",
+    "createButton": "Янги бозорлик",
+    "imageAlt": "Бўш бозор расми"
+  },
+  "marketCard": {
+    "edit": "Таҳрирлаш",
+    "share": "Улашиш",
+    "delete": "Ўчириш",
+    "editIconAlt": "Таҳрирлаш иконкаси",
+    "sendIconAlt": "Улашиш иконкаси",
+    "deleteIconAlt": "Ўчириш иконкаси",
+    "nextIconAlt": "Кейинги",
+    "receiptAlt": "Чек",
+    "moneyAlt": "Нарх",
+    "calendarAlt": "Календар"
+  },
+  "menuPage": {
+    "avatarAlt": "Фойдаланувчи аватари",
+    "noName": "Исм мавжуд эмас",
+    "noPhone": "Телефон рақам мавжуд эмас",
+    "editProfile": "Профилни таҳрирлаш",
+    "changePassword": "Паролни ўзгартириш",
+    "changePhone": "Телефон рақамни ўзгартириш",
+    "feedback": "Таклиф ва мурожаат",
+    "logout": "Профилдан чиқиш",
+    "deleteProfile": "Профилни ўчириш"
+  },
+  "notFound": {
+    "code": "404",
+    "description": "Кечирасиз, сиз ташриф буюрган саҳифа мавжуд эмас.",
+    "backHome": "Уйга қайтиш"
+  },
+  "addReadyProductForm": {
+    "productImageAlt": "Маҳсулот расми",
+    "marketLabel": "*Маҳсулотни қайси бозорликка қўшасиз",
+    "marketRequired": "Бозорлик танланиши керак",
+    "marketPlaceholder": "Бозорликни танланг",
+    "quantityLabel": "*Маҳсулот миқдори ва бирлиги",
+    "quantityPlaceholder": "Миқдорини ёзинг",
+    "unitPlaceholder": "дона",
+    "quantityUnitError": "Миқдор ва бирлик киритилиши керак",
+    "descriptionLabel": "Изоҳ (мажбурий эмас)",
+    "descriptionPlaceholder": "маҳсулотга изоҳ",
+    "submit": "Қўшиш",
+    "success": "Маҳсулот бозорликка қўшилди",
+    "error": "Хатолик юз берди"
+  },
+  "productCard": {
+    "add": "Қўшиш",
+    "imageAlt": "Маҳсулот расми"
+  },
+  "sidebar": {
+    "home": "Асосий",
+    "brands": "Брендлар",
+    "markets": "Бозорлик",
+    "histories": "Тарих",
+    "menu": "Меню",
+    "notifications": "Хабарнома"
   }
 }

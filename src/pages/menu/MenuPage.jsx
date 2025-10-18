@@ -20,10 +20,12 @@ import EditProfile from "./components/EditProfil";
 import EditPassword from "./components/EditPassword";
 import EditPhone from "./components/EditPhone";
 
+import { useTranslation } from "react-i18next";
+
 const MenuPage = () => {
   const { user, clearUser } = useStore();
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
 
@@ -87,35 +89,31 @@ const MenuPage = () => {
           <div className="flex items-center gap-4">
             <img
               src={user?.avatar || LogoCircle}
-              alt="avatar"
+              alt={t("menuPage.avatarAlt")}
               className="w-16 h-16 rounded-full border-2 border-gray-100 object-cover"
             />
             <div>
-              <div className="text-lg font-medium text-gray-800">
-                {user?.fullName || "Ism mavjud emas"}
-              </div>
-              <div className="text-sm text-gray-500 mt-1">
-                {user?.phoneNumber ? maskUzPhone(user.phoneNumber) : ""}
-              </div>
+              <div className="text-lg font-medium text-gray-800">{user?.fullName || t("menuPage.noName")}</div>
+              <div className="text-sm text-gray-500 mt-1">{user?.phoneNumber ? maskUzPhone(user.phoneNumber) : t("menuPage.noPhone")}</div>
             </div>
           </div>
         </div>
 
         {/* 🔹 Birinchi guruh */}
         <div className="space-y-1 mb-4">
-          <MenuItem onClick={() => handleOpen("profil")} iconSrc={EditIcon} label="Profilni tahrirlash" />
-          <MenuItem onClick={() => handleOpen("password")} iconSrc={KeyIcon} label="Parolni o‘zgartirish" />
-          <MenuItem onClick={() => handleOpen("phone")} iconSrc={PhoneIcon} label="Telefon raqamni o‘zgartirish" />
-          <MenuItem onClick={() => handleOpen("feedback")} iconSrc={MessageIcon} label="Taklif va murojaat" />
+          <MenuItem onClick={() => handleOpen("profil")} iconSrc={EditIcon} label={t("menuPage.editProfile")} />
+          <MenuItem onClick={() => handleOpen("password")} iconSrc={KeyIcon} label={t("menuPage.changePassword")} />
+          <MenuItem onClick={() => handleOpen("phone")} iconSrc={PhoneIcon} label={t("menuPage.changePhone")} />
+          <MenuItem onClick={() => handleOpen("feedback")} iconSrc={MessageIcon} label={t("menuPage.feedback")} />
         </div>
 
         {/* 🔻 Ikkinchi guruh */}
         <div className="space-y-2">
-          <MenuItem onClick={() => handleOpen("left")} iconSrc={LogOutIcon} label="Profilidan chiqish" />
+          <MenuItem onClick={() => handleOpen("left")} iconSrc={LogOutIcon} label={t("menuPage.logout")} />
           <MenuItem
             onClick={() => handleOpen("delete")}
             iconSrc={DeleteIcon}
-            label="Profilni o‘chirish"
+            label={t("menuPage.deleteProfile")}
             textClass="text-sm text-red-600"
           />
         </div>

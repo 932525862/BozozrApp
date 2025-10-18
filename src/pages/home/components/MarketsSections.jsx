@@ -17,8 +17,10 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useFetchOne } from "../../../hooks/useFetchOne";
 import { formatDateDot } from "../../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 const MarketsSections = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -41,7 +43,7 @@ const MarketsSections = () => {
           onClick={handleOpen}
           className="h-full mx-[auto] py-[16px] px-[1px] sm:px-[108px] w-full sm:w-auto"
         >
-          <span>Yangi bozorlik</span>
+          <span>{t("markets.button.create")}</span>
           <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
             <LuPlus className="text-[16px]" />
           </span>
@@ -50,9 +52,10 @@ const MarketsSections = () => {
       <div className="">
         <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px]">
           <div className="flex justify-between">
-            <div className="font-[600]">Bozorliklar</div>
+            <div className="font-[600]">{t("markets.title")}</div>
             <Link
               to="/markets"
+              aria-label={t("markets.viewLinkAria")}
               className="w-[29px] h-[22px] bg-[#EFEFEF] rounded-[8px] flex justify-center items-center"
             >
               <GrNext className="text-[14px]" />
@@ -133,24 +136,24 @@ const MarketsSections = () => {
                   </div>
                   <div>
                     <div className="font-[600]">
-                    {item?.marketType?.titleUz}:{" "}
+                      {item?.marketType?.titleUz}:{" "}
                       <span className="font-[500] text-[14px] text-[#06B2B6]">
                         #{item?.name}
                       </span>
                     </div>
                     <div className="flex gap-[10px] items-center">
                       <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={ticketImg} alt="photo" />
+                        <img src={ticketImg} alt={t("markets.item.imageAlt")} />
                         <span>{item?.marketLists?.length > 0 ? "1" : "0"}</span>
                       </div>
                       <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
                       <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={moneyImg} alt="photo" />
+                        <img src={moneyImg} alt={t("markets.item.imageAlt")} />
                         <span>{item?.marketLists?.length > 0 ? "1" : "0"}</span>
                       </div>
                       <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
                       <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
-                        <img src={calendarImg} alt="photo" />
+                        <img src={calendarImg} alt={t("markets.item.imageAlt")} />
                         <span>{formatDateDot(item?.createdAt)}</span>
                       </div>
                     </div>
@@ -165,7 +168,7 @@ const MarketsSections = () => {
       </div>
       <CustomModal
         open={open}
-        title="Yangi bozorlik"
+        title={t("markets.modal.title")}
         onCancel={handleClose}
         width={351}
       >

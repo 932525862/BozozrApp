@@ -11,9 +11,11 @@ import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
 import { useFetch } from "../../../hooks/useFetch";
+import { useTranslation } from "react-i18next";
 
 const SectionsMarket = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data } = useFetch({
     key: [`market-type`],
@@ -26,7 +28,7 @@ const SectionsMarket = () => {
   return (
     <div className="bg-[#FFFFFF] shadow-[0_4px_12px_#1E1E1E0A] rounded-[12px] py-[12px] px-[16px] mt-[16px]">
       <div className="flex justify-between">
-        <div className="font-[600]">Bo'limlar</div>
+        <div className="font-[600]">{t("sections.title")}</div>
         <Link
           to="/sections"
           className="w-[29px] h-[22px] bg-[#EFEFEF] rounded-[8px] flex justify-center items-center"
@@ -86,7 +88,7 @@ const SectionsMarket = () => {
                 <div className="flex flex-col justify-between h-full">
                   <div className="font-[600] max-w-[84px]">{item?.titleUz}</div>
                   <div className="w-[61px] h-[36px]">
-                    <img src={logo} alt="market app logo" />
+                    <img src={logo} alt={t("logoAlt")} />
                   </div>
                 </div>
               </div>

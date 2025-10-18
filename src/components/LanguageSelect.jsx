@@ -7,7 +7,7 @@ import i18n from "../i18n";
 
 const languages = [
   { code: "uz", label: "UZ", flag: uzFlag },
-  { code: "uz-ru", label: "ЎЗ", flag: uzFlag },
+  { code: "krl", label: "ЎЗ", flag: uzFlag },
   { code: "en", label: "ENG", flag: enFlag },
   { code: "ru", label: "RU", flag: ruFlag },
 ];
