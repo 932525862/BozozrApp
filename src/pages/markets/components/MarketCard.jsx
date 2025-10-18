@@ -11,8 +11,6 @@ import deleteImg from "../../../assets/market-icons/delete.svg";
 import sendImg from "../../../assets/market-icons/send.svg";
 import nextImg from "../../../assets/market-icons/next.svg";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import useApiMutation from "../../../hooks/useMutation";
 
 const MarketCard = ({ market, refetch, handleOpen, setSelectMarket }) => {
   const navigate = useNavigate();

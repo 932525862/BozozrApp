@@ -3,27 +3,27 @@ import useApiMutation from "../../../hooks/useMutation";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../../components/PrimaryButton";
 
-const DeleteMarket = ({ refetch, selectMarket, onClose }) => {
+const DeleteProfile = ({ onClose, id }) => {
   const { mutate: deleteMutate } = useApiMutation({
-    url: "/market",
+    url: "/user",
     method: "DELETE",
     onSuccess: () => {
-      toast.success("Bozorlik muvaffaqiyatli o‘chirildi");
+      toast.success("Profilingiz o‘chirildi");
       refetch();
       onClose();
     },
     onError: () => {
-      toast.error("Bozorlikni o‘chirishda xatolik yuz berdi");
+      toast.error("Profilnini o‘chirishda xatolik yuz berdi");
     },
   });
   const handleDelete = () => {
-    deleteMutate({ id: selectMarket?.id });
+    deleteMutate({ id: id });
   };
 
   return (
     <div className="w-full">
       <p className="text-[#4B4B4B] text-center mx-auto w-full text-[18px] mb-[24px]">
-        {selectMarket?.name} nomli bozorligingizni o'chirmoqchimisiz?
+         Haqiqatdan ham profilingizni o'chirmoqchimisiz?
       </p>
       <div className="flex flex-col gap-[12px]">
         <PrimaryButton
@@ -43,4 +43,4 @@ const DeleteMarket = ({ refetch, selectMarket, onClose }) => {
   );
 };
 
-export default DeleteMarket;
+export default DeleteProfile;

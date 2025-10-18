@@ -74,6 +74,10 @@
     padding: 10px 16px !important;
   }
 
+  .ant-input-affix-wrapper {
+    padding: 0 10px 0 0  !important;
+  }
+
   .ant-select-selector {
     padding: 10px 16px !important; /* vertikal 10px, gorizontal 14px */
     height: auto !important;       /* kerak bo‘lsa: height auto qilinadi */
