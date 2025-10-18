@@ -23,8 +23,17 @@ const LanguageSelect = () => {
     localStorage.setItem("marketAppLng", lang?.code);
     setOpen(false);
   };
+
   // 🔹 Tashqariga bosilganda dropdown yopiladi
   useEffect(() => {
+    const savedLang = localStorage.getItem("marketAppLng");
+    if (savedLang) {
+      const foundLang = languages.find((l) => l.code === savedLang);
+      if (foundLang) {
+        setSelected(foundLang);
+        i18n.changeLanguage(foundLang.code);
+      }
+    }
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setOpen(false);

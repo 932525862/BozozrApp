@@ -204,6 +204,9 @@
     "quantityUnitError": "Miqdor va birlik kiritilishi kerak",
     "descriptionLabel": "Izoh (majburiy emas)",
     "descriptionPlaceholder": "mahsulotga izoh",
+    "nameLabel": "Mahsulot nomi",
+  "namePlaceholder": "Mahsulot nomini kiriting",
+  "nameRequired": "Mahsulot nomini kiriting",
     "submit": "Qo‘shish",
     "success": "Mahsulot bozorlikka qo'shildi",
     "error": "Xatolik yuz berdi"

@@ -205,7 +205,10 @@
     "descriptionPlaceholder": "маҳсулотга изоҳ",
     "submit": "Қўшиш",
     "success": "Маҳсулот бозорликка қўшилди",
-    "error": "Хатолик юз берди"
+    "error": "Хатолик юз берди",
+    "nameLabel": "Маҳсулот номи",
+"namePlaceholder": "Маҳсулот номини киритинг",
+"nameRequired": "Маҳсулот номини киритинг"
   },
   "productCard": {
     "add": "Қўшиш",

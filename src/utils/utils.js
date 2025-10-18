@@ -31,3 +31,31 @@ export function formatDate(dateString) {
     const maskedMiddle = '*'.repeat(Math.max(0, middleLen));
     return `${first2} ${maskedMiddle} ${last4}`;
   }
+
+  // utils/getLocalizedValue.ts
+export const getLangValue = (valueObj, field, lang) => {
+  if (!valueObj || !field) return "";
+
+  // Krill (krl) tilini Uzk sifatida qabul qilamiz
+  let normalizedLang = lang?.toLowerCase() === "krl" ? "uzk" : lang?.toLowerCase();
+
+  // Bosh harfini katta qilamiz (uz → Uz, ru → Ru, uzk → Uzk)
+  const langKey = normalizedLang.charAt(0).toUpperCase() + normalizedLang.slice(1);
+
+  // Dinamik property nomini yasaymiz
+  const localizedKey = `${field}${langKey}`; // masalan: titleUz / titleUzk / titleRu / titleEn
+
+  // Agar shu til mavjud bo‘lsa, uni qaytaramiz
+  if (valueObj[localizedKey]) {
+    return valueObj[localizedKey];
+  }
+
+  // Aks holda fallback tartibi
+  return (
+    valueObj[`${field}Uz`] ||
+    valueObj[`${field}Uzk`] ||
+    valueObj[`${field}En`] ||
+    valueObj[`${field}Ru`] ||
+    ""
+  );
+};

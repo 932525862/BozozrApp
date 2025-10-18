@@ -206,7 +206,10 @@
     "descriptionPlaceholder": "Product note",
     "submit": "Add",
     "success": "Product added to the shopping list",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "nameLabel": "Product name",
+"namePlaceholder": "Enter product name",
+"nameRequired": "Please enter the product name"
   },
   "productCard": {
     "add": "Add",

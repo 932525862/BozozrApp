@@ -25,7 +25,7 @@ const MarketPage = () => {
   });
 
   return (
-    <div>
+    <div className="h-full">
       {data?.length > 0 ? (
         <div className="flex flex-col gap-[20px]">
           <div className="grid grid-cols-3 gap-[12px]">
