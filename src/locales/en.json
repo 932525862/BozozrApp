@@ -180,7 +180,13 @@
     "changePhone": "Change Phone Number",
     "feedback": "Feedback & Support",
     "logout": "Log Out",
-    "deleteProfile": "Delete Profile"
+    "deleteProfile": "Delete Profile",
+    "edit": "Edit",
+  "delete": {
+    "text": "Are you sure you want to delete your profile?",
+    "btn": "Delete"
+  },
+  "back": "Cancel"
   },
   "notFound": {
     "code": "404",

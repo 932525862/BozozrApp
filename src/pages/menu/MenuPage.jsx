@@ -69,15 +69,15 @@ const MenuPage = () => {
   const getModalTitle = () => {
     switch (modalType) {
       case "feedback":
-        return "Taklif va murojaat";
+        return t("menuPage.feedback");
       case "profil":
-        return "Profilni tahrirlash";
+        return t("menuPage.editProfile");
       case "password":
-        return "Parolni o‘zgartirish";
+        return t("menuPage.editPassword");
       case "phone":
-        return "Telefon raqamni o‘zgartirish";
+        return t("menuPage.changePhone");
       default:
-        return "Tahrirlash";
+        return t("menuPage.deleteProfile");
     }
   };
 

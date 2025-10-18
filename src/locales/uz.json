@@ -66,7 +66,7 @@
   },
   "account_exists": "Akkauntingiz mavjudmi?",
   "login": "Kirish",
-  
+
   "modal": {
     "title": "Tasdiqlash kodi",
     "resend": "Kodni qayta yuborish",
@@ -76,7 +76,7 @@
     "otp_sent": "Telefon raqamingizga tasdiqlash kodi yuborildi",
     "otp_resent": "Kod qayta yuborildi",
     "login_success": "Tizimga muvaffaqiyatli kirdingiz",
-      "codeSent": "Telfon raqamingizga tasdiqlash kodi yuborildi",
+    "codeSent": "Telfon raqamingizga tasdiqlash kodi yuborildi",
     "passwordChanged": "Parol muvaffaqiyatli uzgartirildi",
     "codeResent": "Kod qayta yuborildi"
   },
@@ -102,7 +102,7 @@
     "enter4code": "4 talik kod kirit",
     "invalidCode": "Noto'g'ri kod"
   },
-   
+
   "markets": {
     "newMarket": "Yangi bozorlik",
     "title": "Bozorliklar",
@@ -145,15 +145,15 @@
     "success": "Bozorlik muvaffaqiyatli o‘chirildi",
     "error": "Bozorlikni o‘chirishda xatolik yuz berdi"
   },
-   "editMarketForm": {
+  "editMarketForm": {
     "nameLabel": "*Bozorlik nomi",
     "nameRequired": "Bozorlik nomi kiritilishi kerak",
     "namePlaceholder": "Bozorlik nomini kiriting",
     "submit": "Saqlash",
     "success": "Bozorlik tahrirlandi",
     "error": "Bozorlikni tahrirlashda xatolik yuz berdi"
-   },
-    "emptyShoppingList": {
+  },
+  "emptyShoppingList": {
     "title": "Bozorliklar yo‘q...",
     "description": "“Yangi bozorlik” yarating va o‘z ro‘yxatingizni shakllantiring",
     "createButton": "Yangi bozorlik",
@@ -171,7 +171,7 @@
     "moneyAlt": "Narx",
     "calendarAlt": "Kalendar"
   },
-   "menuPage": {
+  "menuPage": {
     "avatarAlt": "Foydalanuvchi avatari",
     "noName": "Ism mavjud emas",
     "noPhone": "Telefon raqam mavjud emas",
@@ -180,14 +180,20 @@
     "changePhone": "Telefon raqamni o'zgartirish",
     "feedback": "Taklif va murojaat",
     "logout": "Profilidan chiqish",
-    "deleteProfile": "Profilni o'chirish"
+    "deleteProfile": "Profilni o'chirish",
+    "edit": "Tahrirlash",
+    "delete": {
+      "text": "Haqiqatdan ham profilingizni o'chirmoqchimisiz?",
+      "btn": "O'chirish"
+    },
+    "back": "Bekor qilish"
   },
-   "notFound": {
+  "notFound": {
     "code": "404",
     "description": "Kechirasiz, siz tashrif buyurgan sahifa mavjud emas.",
     "backHome": "Uyga qaytish"
   },
-   "addReadyProductForm": {
+  "addReadyProductForm": {
     "productImageAlt": "Mahsulot rasmi",
     "marketLabel": "*Mahsulotni qaysi bozorlikka qo'shasiz",
     "marketRequired": "Bozorlik tanlanishi kerak",
