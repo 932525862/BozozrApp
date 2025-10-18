@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation"
+import { useTranslation } from "react-i18next"
 
 
 const EditMarketForm = ({onClose, refetch, selectMarket}) => {
@@ -17,6 +18,8 @@ const EditMarketForm = ({onClose, refetch, selectMarket}) => {
       name: selectMarket?.name,
     },
   });
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (selectMarket) {
@@ -32,11 +35,11 @@ const EditMarketForm = ({onClose, refetch, selectMarket}) => {
     onSuccess: (data) => {
       onClose()
       refetch()
-      toast.success("Bozorlik tahrirlandi");
+      toast.success(t("editMarketForm.success"));
       reset();
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || t("editMarketForm.error"));
     },
   });
 
@@ -49,16 +52,16 @@ const EditMarketForm = ({onClose, refetch, selectMarket}) => {
       {/* Bozorlik nomi */}
       <div>
         <label className="mb-1">
-          *Bozorlik nomi
+          {t("editMarketForm.nameLabel")}
         </label>
         <Controller
           name="name"
           control={control}
-          rules={{ required: "Bozorlik nomi kiritilishi kerak" }}
+          rules={{ required: t("editMarketForm.nameRequired") }}
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="Bozorlik nomini kiriting"
+              placeholder={t("editMarketForm.namePlaceholder")}
               status={errors.name ? "error" : ""}
             />
           )}
@@ -77,7 +80,7 @@ const EditMarketForm = ({onClose, refetch, selectMarket}) => {
         className="mt-3 rounded-[14px] py-[14px] font-[500]"
         disabled={isLoading}
       >
-        Saqlash
+        {t("editMarketForm.submit")}
       </PrimaryButton>
     </form>
   );

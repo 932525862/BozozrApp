@@ -6,6 +6,8 @@ import { useFetch } from "../../../hooks/useFetch";
 import { useStore } from "../../../store/userStore";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation"
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
@@ -22,6 +24,8 @@ const AddMarketForm = ({onClose, refetch}) => {
     },
   });
   const {user} = useStore()
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { mutate, isLoading } = useApiMutation({
     url: "/market",
@@ -33,11 +37,11 @@ const AddMarketForm = ({onClose, refetch}) => {
       navigate(`/market/${data?.data?.name}`, {
         state: { id: data?.data?.id },
       });
-      toast.success("Bozorlik qo'shildi");
+      toast.success(t("addMarketForm.success"));
       
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || t("addMarketForm.error"));
     },
   });
 
@@ -47,10 +51,10 @@ const AddMarketForm = ({onClose, refetch}) => {
       url: `/market-type`,
     });
 
-    const onSubmit = (data) => {
+    const onSubmit = (formData) => {
       const form = {
         userId: user?.id,
-        ...data
+        ...formData
       }
       mutate(form)
     }
@@ -60,16 +64,16 @@ const AddMarketForm = ({onClose, refetch}) => {
       {/* Bozorlik nomi */}
       <div>
         <label className="mb-1">
-          *Bozorlik nomi
+          {t("addMarketForm.nameLabel")}
         </label>
         <Controller
           name="name"
           control={control}
-          rules={{ required: "Bozorlik nomi kiritilishi kerak" }}
+          rules={{ required: t("addMarketForm.nameRequired") }}
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="Bozorlik nomini kiriting"
+              placeholder={t("addMarketForm.namePlaceholder")}
               status={errors.name ? "error" : ""}
             />
           )}
@@ -84,20 +88,24 @@ const AddMarketForm = ({onClose, refetch}) => {
       {/* Bo‘lim */}
       <div>
         <label className="font-medium block mb-1">
-          *Bozorlik qaysi bo‘limga tegishli
+          {t("addMarketForm.typeLabel")}
         </label>
         <Controller
           name="marketTypeId"
           control={control}
-          rules={{ required: "Bo‘lim tanlanishi kerak" }}
+          rules={{ required: t("addMarketForm.typeRequired") }}
           render={({ field }) => (
             <Select
               {...field}
-              placeholder="Bo‘limni tanlang"
+              placeholder={t("addMarketForm.typePlaceholder")}
               status={errors.marketTypeId ? "error" : ""}
               className="w-full"
             >
-              {data?.items?.map(item => <Option value={item?.id}>{item?.titleUz}</Option>)}
+              {data?.items?.map(item => (
+                <Option key={item?.id} value={item?.id}>
+                  {item?.titleUz}
+                </Option>
+              ))}
             </Select>
           )}
         />
@@ -114,7 +122,7 @@ const AddMarketForm = ({onClose, refetch}) => {
         className="mt-3 rounded-[14px] py-[14px] font-[500]"
         disabled={isLoading}
       >
-        Qo‘shish
+        {t("addMarketForm.submit")}
       </PrimaryButton>
     </form>
   );

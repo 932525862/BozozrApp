@@ -9,11 +9,13 @@ import PhoneIcon from "../../assets/simcard.svg"
 import MessageIcon from "../../assets/edit.svg"
 import DeleteIcon from "../../assets/delet.svg"
 import  LogOutIcon  from "../../assets/logout.svg"
+import { useTranslation } from "react-i18next";
+
 const MenuItem = ({ iconSrc, label, textClass = "text-sm text-gray-700", onClick }) => (
   <button type="button" onClick={onClick} className="w-full text-left flex items-center px-4 py-3 bg-white rounded-lg shadow-sm">
     <div className="flex items-center gap-3 flex-1">
       <div className="w-9 h-9 flex items-center justify-center bg-gray-50 rounded-md border border-gray-100">
-        <img src={iconSrc} alt="" className="w-5 h-5" /> {/* o'zingiz shu joyga icon qo'ying */}
+        <img src={iconSrc} alt={label} className="w-5 h-5" /> {/* icon alt now uses label */}
       </div>
       <span className={textClass}>{label}</span>
     </div>
@@ -23,6 +25,7 @@ const MenuItem = ({ iconSrc, label, textClass = "text-sm text-gray-700", onClick
 const MenuPage = () => {
   const { user, clearUser } = useStore()
   const navigate = useNavigate()
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     clearUser()
@@ -37,28 +40,28 @@ const MenuPage = () => {
           <div className="flex items-center gap-4">
             <img
               src={user?.avatar || LogoCircle}
-              alt="avatar"
+              alt={t("menuPage.avatarAlt")}
               className="w-16 h-16 rounded-full border-2 border-gray-100 object-cover"
             />
             <div>
-              <div className="text-lg font-medium text-gray-800">{user?.fullName || "Ism mavjud emas"}</div>
-              <div className="text-sm text-gray-500 mt-1">{user?.phoneNumber ? maskUzPhone(user.phoneNumber) : ""}</div>
+              <div className="text-lg font-medium text-gray-800">{user?.fullName || t("menuPage.noName")}</div>
+              <div className="text-sm text-gray-500 mt-1">{user?.phoneNumber ? maskUzPhone(user.phoneNumber) : t("menuPage.noPhone")}</div>
             </div>
           </div>
         </div>
 
         {/* First group */}
         <div className="space-y-1 mb-4">
-          <MenuItem iconSrc={EditIcon} label="Profilni tahrirlash" />
-          <MenuItem iconSrc={KeyIcon} label="Parolni o'zgartirish" />
-          <MenuItem iconSrc={PhoneIcon} label="Telefon raqamni o'zgartirish" />
-          <MenuItem iconSrc={MessageIcon} label="Taklif va murojaat" />
+          <MenuItem iconSrc={EditIcon} label={t("menuPage.editProfile")} />
+          <MenuItem iconSrc={KeyIcon} label={t("menuPage.changePassword")} />
+          <MenuItem iconSrc={PhoneIcon} label={t("menuPage.changePhone")} />
+          <MenuItem iconSrc={MessageIcon} label={t("menuPage.feedback")} />
         </div>
 
         {/* Second group */}
         <div className="space-y-2">
-          <MenuItem iconSrc={LogOutIcon} label="Profilidan chiqish" onClick={handleLogout} />
-          <MenuItem iconSrc={DeleteIcon} label="Profilni o'chirish" textClass="text-sm text-red-600" />
+          <MenuItem iconSrc={LogOutIcon} label={t("menuPage.logout")} onClick={handleLogout} />
+          <MenuItem iconSrc={DeleteIcon} label={t("menuPage.deleteProfile")} textClass="text-sm text-red-600" />
         </div>
       </div>
     </div>

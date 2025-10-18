@@ -101,5 +101,117 @@
     "verify": "Verify",
     "enter4code": "Enter a 4-digit code",
     "invalidCode": "Invalid code"
+  },
+
+    "markets": {
+    "newMarket": "New Shopping List",
+    "title": "Shopping Lists",
+    "viewLinkAria": "Go to shopping lists page",
+    "item": {
+      "labelTemplate": "{{type}}: #{{name}}",
+      "ticketsLabel": "Ticket",
+      "revenueLabel": "Revenue",
+      "dateLabel": "Date",
+      "imageAlt": "image"
+    },
+    "button": {
+      "create": "New Shopping List"
+    },
+    "modal": {
+      "title": "New Shopping List",
+      "close": "Close"
+    }
+  },
+  "sections": {
+    "title": "Categories"
+  },
+  "logoAlt": "Market app logo",
+
+  "addMarketForm": {
+    "nameLabel": "*Shopping list name",
+    "nameRequired": "Shopping list name is required",
+    "namePlaceholder": "Enter shopping list name",
+    "typeLabel": "*Which category does this shopping list belong to",
+    "typeRequired": "Category selection is required",
+    "typePlaceholder": "Select a category",
+    "submit": "Add",
+    "success": "Shopping list added successfully",
+    "error": "An error occurred"
+  },
+  "deleteMarket": {
+    "confirm": "Are you sure you want to delete the shopping list '{{name}}'?",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "success": "Shopping list deleted successfully",
+    "error": "An error occurred while deleting the shopping list"
+  },
+  "editMarketForm": {
+    "nameLabel": "*Shopping list name",
+    "nameRequired": "Shopping list name is required",
+    "namePlaceholder": "Enter shopping list name",
+    "submit": "Save",
+    "success": "Shopping list updated successfully",
+    "error": "An error occurred while editing the shopping list"
+  },
+  "emptyShoppingList": {
+    "title": "No shopping lists...",
+    "description": "Create a “New Shopping List” to start building your list",
+    "createButton": "New Shopping List",
+    "imageAlt": "Empty shopping list illustration"
+  },
+  "marketCard": {
+    "edit": "Edit",
+    "share": "Share",
+    "delete": "Delete",
+    "editIconAlt": "Edit icon",
+    "sendIconAlt": "Share icon",
+    "deleteIconAlt": "Delete icon",
+    "nextIconAlt": "Next",
+    "receiptAlt": "Receipt",
+    "moneyAlt": "Price",
+    "calendarAlt": "Calendar"
+  },
+  "menuPage": {
+    "avatarAlt": "User avatar",
+    "noName": "No name available",
+    "noPhone": "No phone number available",
+    "editProfile": "Edit Profile",
+    "changePassword": "Change Password",
+    "changePhone": "Change Phone Number",
+    "feedback": "Feedback & Support",
+    "logout": "Log Out",
+    "deleteProfile": "Delete Profile"
+  },
+  "notFound": {
+    "code": "404",
+    "description": "Sorry, the page you are looking for doesn’t exist.",
+    "backHome": "Go Home"
+  },
+  "addReadyProductForm": {
+    "productImageAlt": "Product image",
+    "marketLabel": "*Which shopping list to add this product to",
+    "marketRequired": "Shopping list selection is required",
+    "marketPlaceholder": "Select a shopping list",
+    "quantityLabel": "*Product quantity and unit",
+    "quantityPlaceholder": "Enter quantity",
+    "unitPlaceholder": "pcs",
+    "quantityUnitError": "Quantity and unit are required",
+    "descriptionLabel": "Note (optional)",
+    "descriptionPlaceholder": "Product note",
+    "submit": "Add",
+    "success": "Product added to the shopping list",
+    "error": "An error occurred"
+  },
+  "productCard": {
+    "add": "Add",
+    "imageAlt": "Product image"
+  },
+  "sidebar": {
+    "home": "Home",
+    "brands": "Brands",
+    "markets": "Shopping",
+    "histories": "History",
+    "menu": "Menu",
+    "notifications": "Notifications"
   }
 }

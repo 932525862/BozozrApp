@@ -101,5 +101,116 @@
     "verify": "Подтвердить",
     "enter4code": "Введите 4-значный код",
     "invalidCode": "Неверный код"
+  },
+  "markets": {
+    "newMarket": "Новый список покупок",
+    "title": "Списки покупок",
+    "viewLinkAria": "Перейти на страницу списков покупок",
+    "item": {
+      "labelTemplate": "{{type}}: #{{name}}",
+      "ticketsLabel": "Билет",
+      "revenueLabel": "Доход",
+      "dateLabel": "Дата",
+      "imageAlt": "изображение"
+    },
+    "button": {
+      "create": "Новый список покупок"
+    },
+    "modal": {
+      "title": "Новый список покупок",
+      "close": "Закрыть"
+    }
+  },
+  "sections": {
+    "title": "Разделы"
+  },
+  "logoAlt": "Логотип приложения Market",
+
+  "addMarketForm": {
+    "nameLabel": "*Название списка покупок",
+    "nameRequired": "Необходимо указать название списка покупок",
+    "namePlaceholder": "Введите название списка покупок",
+    "typeLabel": "*К какому разделу относится список покупок",
+    "typeRequired": "Необходимо выбрать раздел",
+    "typePlaceholder": "Выберите раздел",
+    "submit": "Добавить",
+    "success": "Список покупок успешно добавлен",
+    "error": "Произошла ошибка"
+  },
+  "deleteMarket": {
+    "confirm": "Вы действительно хотите удалить список покупок '{{name}}'?",
+    "delete": "Удалить",
+    "cancel": "Отмена",
+    "success": "Список покупок успешно удалён",
+    "error": "Ошибка при удалении списка покупок"
+  },
+  "editMarketForm": {
+    "nameLabel": "*Название списка покупок",
+    "nameRequired": "Необходимо указать название списка покупок",
+    "namePlaceholder": "Введите название списка покупок",
+    "submit": "Сохранить",
+    "success": "Список покупок успешно изменён",
+    "error": "Ошибка при редактировании списка покупок"
+  },
+  "emptyShoppingList": {
+    "title": "Списков покупок нет...",
+    "description": "Создайте «Новый список покупок» и начните формировать свой список",
+    "createButton": "Новый список покупок",
+    "imageAlt": "Пустой список покупок"
+  },
+  "marketCard": {
+    "edit": "Редактировать",
+    "share": "Поделиться",
+    "delete": "Удалить",
+    "editIconAlt": "Иконка редактирования",
+    "sendIconAlt": "Иконка отправки",
+    "deleteIconAlt": "Иконка удаления",
+    "nextIconAlt": "Далее",
+    "receiptAlt": "Чек",
+    "moneyAlt": "Цена",
+    "calendarAlt": "Календарь"
+  },
+  "menuPage": {
+    "avatarAlt": "Аватар пользователя",
+    "noName": "Имя не указано",
+    "noPhone": "Номер телефона не указан",
+    "editProfile": "Редактировать профиль",
+    "changePassword": "Изменить пароль",
+    "changePhone": "Изменить номер телефона",
+    "feedback": "Обратная связь",
+    "logout": "Выйти из профиля",
+    "deleteProfile": "Удалить профиль"
+  },
+  "notFound": {
+    "code": "404",
+    "description": "Извините, страница, которую вы ищете, не существует.",
+    "backHome": "На главную"
+  },
+  "addReadyProductForm": {
+    "productImageAlt": "Изображение товара",
+    "marketLabel": "*В какой список покупок добавить товар",
+    "marketRequired": "Необходимо выбрать список покупок",
+    "marketPlaceholder": "Выберите список покупок",
+    "quantityLabel": "*Количество и единица измерения товара",
+    "quantityPlaceholder": "Введите количество",
+    "unitPlaceholder": "шт.",
+    "quantityUnitError": "Необходимо указать количество и единицу измерения",
+    "descriptionLabel": "Описание (необязательно)",
+    "descriptionPlaceholder": "Комментарий к товару",
+    "submit": "Добавить",
+    "success": "Товар добавлен в список покупок",
+    "error": "Произошла ошибка"
+  },
+  "productCard": {
+    "add": "Добавить",
+    "imageAlt": "Изображение товара"
+  },
+  "sidebar": {
+    "home": "Главная",
+    "brands": "Бренды",
+    "markets": "Покупки",
+    "histories": "История",
+    "menu": "Меню",
+    "notifications": "Уведомления"
   }
 }
