@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { formatDateDot } from "../../../utils/utils";
+import { formatDateDot, formatNumberWithSpace } from "../../../utils/utils";
 import ticketImg from "../../../assets/icons/receipt.svg";
 import moneyImg from "../../../assets/icons/Frame.svg";
 import calendarImg from "../../../assets/icons/calendar-tick.svg";
@@ -40,6 +40,26 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
     (i18n?.language === "uz" ? market?.marketType?.titleUz : market?.marketType?.titleEn) ||
     market?.marketType?.titleUz ||
     "";
+
+    function calculateAllProducts(products) {
+      if (!Array.isArray(products)) return "0";
+    
+      const total = products.reduce((sum, p) => {
+        if (!p.isBuying) return sum; // faqat isBuying true bo'lganlar
+    
+        const { calculationType, quantity = 0, price = 0 } = p;
+        const subtotal =
+          calculationType === "one"
+            ? quantity * price
+            : calculationType === "all"
+            ? price
+            : 0;
+    
+        return sum + subtotal;
+      }, 0);
+    
+      return formatNumberWithSpace(total);
+    }
 
   const content = (
     <div>
@@ -102,20 +122,20 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
       </div>
 
       {/* Bottom icons */}
-      <div className="flex gap-[10px] flex-wrap items-center mt-[10px]">
+      <div className="flex gap-[10px] items-center mt-[10px] truncate">
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
           <img src={ticketImg} alt={t("marketCard.receiptAlt")} />
-          <span>{market?.marketLists?.length > 0 ? "1" : "0"}</span>
+          <span>{market?.marketLists?.length || "0"}</span>
         </div>
         <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
           <img src={moneyImg} alt={t("marketCard.moneyAlt")} />
-          <span>{market?.marketLists?.length > 0 ? "1" : "0"}</span>
+          <span>{calculateAllProducts(market?.marketLists)}</span>
         </div>
         <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
           <img src={calendarImg} alt={t("marketCard.calendarAlt")} />
-          <span>{formatDateDot(market?.createdAt)}</span>
+          <span className="truncate">{formatDateDot(market?.createdAt)}</span>
         </div>
       </div>
     </div>
