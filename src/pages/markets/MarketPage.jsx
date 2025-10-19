@@ -11,7 +11,7 @@ import DeleteMarket from "./components/DeleteMarket";
 import Loding from "../../components/Loding";
 import ShareMarket from "./components/ShareMarket";
 
-const MarketPage = () => {
+const MarketPage = () => {   
   const [open, setOpen] = useState(false);
   const [selectMarket, setSelectMarket] = useState(null);
   const [modalType, setModalType] = useState(null);
