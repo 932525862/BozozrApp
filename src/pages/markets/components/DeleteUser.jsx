@@ -11,27 +11,27 @@ const DeleteUser = ({ refetch, selectUser, onClose, marketId }) => {
     url: "/market/delete/user",
     method: "PATCH",
     onSuccess: () => {
-      toast.success("Foydalanuvchi o'chirildi");
-      refetch()
+      toast.success(t("deleteUser.toast.success"));
+      refetch();
       onClose();
     },
     onError: () => {
-      toast.error("Foydalanuvchini o'chirishda xatolik yuz berdi");
+      toast.error(t("deleteUser.toast.error"));
     },
   });
 
   const handleDelete = () => {
     const form = {
-        deletedUserId: selectUser?.id,
-        marketId: marketId
-    }
+      deletedUserId: selectUser?.id,
+      marketId: marketId,
+    };
     deleteMutate(form);
   };
 
   return (
     <div className="w-full">
       <p className="text-[#4B4B4B] text-center mx-auto w-full text-[18px] mb-[24px]">
-        {selectUser?.fullName} nomli ishtirokchini o'chirmoqchimisiz?
+        {t("deleteUser.question", { name: selectUser?.fullName })}
       </p>
       <div className="flex flex-col gap-[12px]">
         <PrimaryButton
@@ -39,13 +39,13 @@ const DeleteUser = ({ refetch, selectUser, onClose, marketId }) => {
           className="py-[10px] rounded-[14px] bg-[#D32F2F] hover:bg-[#d32f2fbd] font-[500]"
           disabled={isLoading}
         >
-          {t("deleteMarket.delete")}
+          {t("deleteUser.button.delete")}
         </PrimaryButton>
         <PrimaryButton
-          onClick={() => onClose()}
+          onClick={onClose}
           className="py-[10px] rounded-[14px] bg-[#EFEFEF] hover:bg-[#e2e2e2] !text-[#1E1E1E] font-[500]"
         >
-          {t("deleteMarket.cancel")}
+          {t("deleteUser.button.cancel")}
         </PrimaryButton>
       </div>
     </div>

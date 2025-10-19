@@ -143,7 +143,17 @@
     "delete": "O'chirish",
     "cancel": "Bekor qilish",
     "success": "Bozorlik muvaffaqiyatli o‘chirildi",
-    "error": "Bozorlikni o‘chirishda xatolik yuz berdi"
+    "error": "Bozorlikni o‘chirishda xatolik yuz berdi",
+    "title": "Foydalanuvchini o‘chirish",
+    "question": "{{name}} nomli ishtirokchini o‘chirmoqchimisiz?",
+    "button": {
+      "delete": "O‘chirish",
+      "cancel": "Bekor qilish"
+    },
+    "toast": {
+      "success": "Foydalanuvchi o‘chirildi",
+      "error": "Foydalanuvchini o‘chirishda xatolik yuz berdi"
+    }
   },
   "editMarketForm": {
     "nameLabel": "*Bozorlik nomi",

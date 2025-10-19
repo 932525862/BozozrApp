@@ -29,7 +29,7 @@ const HistoryPage = () => {
   ) : (
     <EmptyHistory />
   )}
-</div>
+</div>  
   );
 };
 

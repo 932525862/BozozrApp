@@ -143,7 +143,17 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "success": "Shopping list deleted successfully",
-    "error": "An error occurred while deleting the shopping list"
+    "error": "An error occurred while deleting the shopping list",
+      "title": "Delete User",
+    "question": "Are you sure you want to delete the participant {{name}}?",
+    "button": {
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "toast": {
+      "success": "User has been deleted",
+      "error": "An error occurred while deleting the user"
+    }
   },
   "editMarketForm": {
     "nameLabel": "*Shopping list name",
