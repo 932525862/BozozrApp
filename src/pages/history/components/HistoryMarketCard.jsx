@@ -34,6 +34,7 @@ const HistoryMarketCard = ({ market, handleOpen, setSelectMarket }) => {
     (i18n?.language === "uz" ? market?.marketType?.titleUz : market?.marketType?.titleEn) ||
     market?.marketType?.titleUz ||
     "";
+    
 
     function calculateAllProducts(products) {
       if (!Array.isArray(products)) return "0";
