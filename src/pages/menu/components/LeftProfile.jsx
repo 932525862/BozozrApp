@@ -1,11 +1,11 @@
 import React from "react";
 import PrimaryButton from "../../../components/PrimaryButton";
-import { useTranslation } from "react-i18next"; // 🟢 Tarjima hook qo‘shildi
+import { useTranslation } from "react-i18next"; 
 
 const LeftProfile = ({ onClose, handleClose }) => {
-  const { t } = useTranslation(); // 🟢 i18n hook
+  const { t } = useTranslation(); 
 
-  return (
+  return (     
     <div className="w-full">
       <p className="text-[#4B4B4B] text-center mx-auto w-full text-[18px] mb-[24px]">
         {t("leftProfile.confirmLogout")}

@@ -319,7 +319,7 @@
   },
 
   "feedback": {
-    "title": "Send Feedback",
+    "title": "Send Feedback",                 
     "label": "Your suggestion or comment",
     "placeholder": "Enter your suggestion or comment...",
     "button": "Submit",

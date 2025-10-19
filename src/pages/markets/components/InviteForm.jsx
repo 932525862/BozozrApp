@@ -43,7 +43,7 @@ const InviteForm = ({ onClose, marketId, refetch }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      {/* Telefon raqam */}
+      
       <div>
         <label className="font-medium block mb-1">*Foydalanuvchi raqami</label>
         <Controller
