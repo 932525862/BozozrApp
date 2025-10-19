@@ -12,11 +12,11 @@ import { toast } from "react-toastify";
 const NotificationsPage = () => {
   const [activeTab, setActiveTab] = useState("barchasi");
   const { i18n } = useTranslation();
-  const [notId, setNotId] = useState(null);
+  const [not, setNot] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const handleOpen = (id) => {
-    setNotId(id);
+  const handleOpen = (not) => {
+    setNot(not);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -94,9 +94,9 @@ const NotificationsPage = () => {
         <div className="flex flex-col gap-3 w-[90%] max-w-[550px]">
           {data?.items?.map((item) => (
             <div
-              onClick={() => handleOpen(item?.id)}
+              onClick={() => handleOpen(item)}
               key={item.id}
-              className={`w-full h-[64px] bg-white rounded-[12px] px-[4%] py-2 border-2 flex flex-col justify-center relative transition-all duration-300 hover:border-[#06B2B6] ${
+              className={`w-full h-[64px] cursor-pointer bg-white rounded-[12px] px-[4%] py-2 border-2 flex flex-col justify-center relative transition-all duration-300 hover:border-[#06B2B6] ${
                 item?.isRead ? "border-transparent" : "border border-[#06B2B6]"
               }`}
             >
@@ -122,7 +122,7 @@ const NotificationsPage = () => {
         onCancel={handleClose}
         width={391}
       >
-        <MessagesForm notId={notId} refetch={refetch}/>
+        <MessagesForm not={not} refetch={refetch} onClose={handleClose}/>
       </CustomModal>
     </div>
   );

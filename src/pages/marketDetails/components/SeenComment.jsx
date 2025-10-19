@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button } from "antd";
+import { Input } from "antd";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { useTranslation } from "react-i18next";
 
