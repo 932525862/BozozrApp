@@ -63,3 +63,22 @@ export const getLangValue = (valueObj, field, lang) => {
 export function formatNumberWithSpace(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
+
+export function formatDateNot(isoString) {
+  const date = new Date(isoString);
+
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  // "April 13, 2025, 10:00 AM" ko‘rinishida chiqadi
+  const formatted = date.toLocaleString("en-US", options);
+
+  // faqat "at" so‘zi qo‘shamiz
+  return formatted.replace(",", " at");
+}

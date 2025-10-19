@@ -72,7 +72,6 @@ const InviteForm = ({ onClose, marketId, refetch }) => {
           name="note"
           control={control}
           rules={{
-            required: "Izohni kiriting",
             maxLength: { value: 300, message: "Izoh 300 belgidan oshmasin" },
           }}
           render={({ field }) => (
