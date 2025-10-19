@@ -24,16 +24,16 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
     });
   };
   
-  const handleEditClick = () => {
+  const handleClick = (type) => {
     setSelectMarket(market)
-    handleOpen("edit");
+    handleOpen(type);
     setPopoverOpen(false); // 🔹 modal ochilgandan so‘ng Popover yopiladi
   };
-  const handleDelete = () => {
-    setSelectMarket(market)
-    handleOpen("delete")
-    setPopoverOpen(false)
-  };
+  // const handleDelete = () => {
+  //   setSelectMarket(market)
+  //   handleOpen("delete")
+  //   setPopoverOpen(false)
+  // };
 
   // language-ga qarab serverdagi title maydonini tanlash (fallback uz)
   const typeTitle =
@@ -63,18 +63,18 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
 
   const content = (
     <div>
-      <div  onClick={handleEditClick} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
+      <div  onClick={() => handleClick("edit")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
         <img src={editImg} alt={t("marketCard.editIconAlt")} />{" "}
         <span className="text-[18px]">{t("marketCard.edit")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
-      <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0] pt-[8px]">
+      <div onClick={() => handleClick("share")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0] pt-[8px]">
         <img src={sendImg} alt={t("marketCard.sendIconAlt")} />{" "}
         <span className="text-[18px]">{t("marketCard.share")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
      
-        <div onClick={handleDelete} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
+        <div onClick={() => handleClick("delete")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
           <img src={deleteImg} alt={t("marketCard.deleteIconAlt")} />{" "}
           <span className="text-[18px]">{t("marketCard.delete")}</span>{" "}
           <img src={nextImg} alt={t("marketCard.nextIconAlt")} />

@@ -9,6 +9,7 @@ import { LuPlus } from "react-icons/lu";
 import EditMarketForm from "./components/EditMarketForm";
 import DeleteMarket from "./components/DeleteMarket";
 import Loding from "../../components/Loding";
+import ShareMarket from "./components/ShareMarket";
 
 const MarketPage = () => {
   const [open, setOpen] = useState(false);
@@ -60,11 +61,11 @@ const MarketPage = () => {
       )}
       <CustomModal
         open={open}
-        title={modalType == "add" ? "Yangi bozorlik" : "Tahrirlash"}
+        title={modalType == "add" ? "Yangi bozorlik" : modalType == "edit" ? "Tahrirlash" : modalType == "delet" ? "O'chirish" : "Ulashish" }
         onCancel={handleClose}
-        width={351}
+        width={modalType == "share" ? 400 : 351}
       >
-        {modalType == "add" ? <AddMarketForm refetch={refetch} onClose={handleClose} /> : modalType == "edit" ? <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : <DeleteMarket onClose={handleClose} refetch={refetch} selectMarket={selectMarket}/>}
+        {modalType == "add" ? <AddMarketForm refetch={refetch} onClose={handleClose} /> : modalType == "edit" ? <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : modalType == "delete" ? <DeleteMarket onClose={handleClose} refetch={refetch} selectMarket={selectMarket}/> : <ShareMarket refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/>}
       </CustomModal>
     </div>
   );
