@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { formatDateDot, formatNumberWithSpace } from "../../../utils/utils";
+import { formatDateDot, formatNumberWithSpace, getLangValue } from "../../../utils/utils";
 import ticketImg from "../../../assets/icons/receipt.svg";
 import moneyImg from "../../../assets/icons/Frame.svg";
 import calendarImg from "../../../assets/icons/calendar-tick.svg";
@@ -36,10 +36,7 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
   // };
 
   // language-ga qarab serverdagi title maydonini tanlash (fallback uz)
-  const typeTitle =
-    (i18n?.language === "uz" ? market?.marketType?.titleUz : market?.marketType?.titleEn) ||
-    market?.marketType?.titleUz ||
-    "";
+  const typeTitle = getLangValue(market?.marketType, "title", i18n?.language)
 
     function calculateAllProducts(products) {
       if (!Array.isArray(products)) return "0";
