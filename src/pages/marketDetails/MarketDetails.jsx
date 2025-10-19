@@ -14,6 +14,7 @@ import { formatNumberWithSpace, getLangValue } from "../../utils/utils";
 import SeenComment from "./components/SeenComment";
 import BuyProduct from "./components/BuyProduct";
 import EndMarket from "./components/EndMarket";
+import Loding from "../../components/Loding";
 
 const MarketDetails = () => {
   const [open, setOpen] = useState(false);
@@ -26,7 +27,7 @@ const MarketDetails = () => {
   const language = i18n?.language;
   const marketId = location.state?.id;
 
-  const { data, refetch } = useFetchOne({
+  const { data, refetch, isLoading } = useFetchOne({
     key: [`market/${marketId}`],
     url: `/market/${marketId}`,
   });
@@ -122,6 +123,12 @@ const MarketDetails = () => {
     }, 0);
 
     return formatNumberWithSpace(total); // masalan: 15 000
+  }
+
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center"><Loding/></div>
+    );
   }
 
   return (

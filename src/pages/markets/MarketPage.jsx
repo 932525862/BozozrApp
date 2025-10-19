@@ -8,6 +8,7 @@ import AddMarketForm from "./components/AddMarketForm";
 import { LuPlus } from "react-icons/lu";
 import EditMarketForm from "./components/EditMarketForm";
 import DeleteMarket from "./components/DeleteMarket";
+import Loding from "../../components/Loding";
 
 const MarketPage = () => {
   const [open, setOpen] = useState(false);
@@ -19,10 +20,16 @@ const MarketPage = () => {
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
-  const { data, refetch } = useFetchOne({
+  const { data, refetch, isLoading } = useFetchOne({
     key: [`market`],
     url: `/market`,
   });
+
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center"><Loding/></div>
+    );
+  }
 
   return (
     <div className="h-full">

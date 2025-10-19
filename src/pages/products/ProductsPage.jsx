@@ -6,6 +6,7 @@ import CustomModal from "../../components/CustomModal";
 import { useFetch } from "../../hooks/useFetch";
 import { useShoppingStore } from "../../store/shoppingStore";
 import AddReadyProductForm from "./components/AddReadyProductForm";
+import Loding from "../../components/Loding";
 
 
 const ProductsPage = () => {
@@ -22,7 +23,7 @@ const ProductsPage = () => {
   const { state } = useLocation();
   const brend = state;
 
-  const { data } = useFetch({
+  const { data, isLoading } = useFetch({
     key: [`products`, brend?.selectedSub ? brend?.selectedSub?.id : brend?.id],
     url: `/products`,
     config: {
@@ -31,6 +32,12 @@ const ProductsPage = () => {
       },
     },
   });
+
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center"><Loding/></div>
+    );
+  }
   return (
     <div>
       <div className="bg-[#FFFFFF] rounded-[8px] mb-4 py-[10px] px-[12px]">

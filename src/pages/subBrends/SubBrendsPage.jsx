@@ -4,13 +4,14 @@ import BrendsCard from "../category/components/BrendsCard";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import { useFetchOne } from "../../hooks/useFetchOne";
 import { useShoppingStore } from "../../store/shoppingStore";
+import Loding from "../../components/Loding";
 
 const SubBrendsPage = () => {
   const { state: brend } = useLocation();
   const navigate = useNavigate();
   const {brendId} = useShoppingStore()
   
-  const { data } = useFetchOne({
+  const { data, isLoading } = useFetchOne({
       key: [`category/${brendId?.id}`, ],
       url: `/category/${brendId?.id}`
     });
@@ -21,6 +22,12 @@ const SubBrendsPage = () => {
       state: { ...brend, selectedSub: sub },
     });
   };
+
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center"><Loding/></div>
+    );
+  }
 
 
 

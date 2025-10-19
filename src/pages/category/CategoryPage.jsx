@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { useShoppingStore } from "../../store/shoppingStore";
+import Loding from "../../components/Loding";
 
 
 
@@ -11,7 +12,7 @@ const CategoryPage = () => {
   const navigate = useNavigate();
   const {setBrendId} = useShoppingStore()
 
-  const { data } = useFetch({
+  const { data, isLoading } = useFetch({
     key: ['category', ],
     url: '/category'
   });
@@ -26,6 +27,12 @@ const CategoryPage = () => {
       navigate(`/brends/${formattedTitle}/products`, { state: brend });
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center"><Loding/></div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[12px]">

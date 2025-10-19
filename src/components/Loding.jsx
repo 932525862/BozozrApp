@@ -4,7 +4,7 @@ const Loding = ({ visible = true, fullScreen = true, text = "", size = "w-12 h-1
   if (!visible) return null;
 
   const containerClass = fullScreen
-    ? "fixed inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-sm"
+    ? "flex items-center justify-center bg-white/60 backdrop-blur-sm"
     : "inline-flex items-center";
 
   return (

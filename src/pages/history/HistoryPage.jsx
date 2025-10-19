@@ -2,14 +2,19 @@ import React from "react";
 import EmptyHistory from "./components/EmptyHistory";
 import { useFetchOne } from "../../hooks/useFetchOne";
 import HistoryMarketCard from "./components/HistoryMarketCard";
+import Loding from "../../components/Loding";
 
 const HistoryPage = () => {
-  const { data } = useFetchOne({
+  const { data, isLoading } = useFetchOne({
     key: [`history`],
     url: `/history`,
   });
 
-  console.log(data?.data);
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center"><Loding/></div>
+    );
+  }
 
   return (
     <div className="h-full">
