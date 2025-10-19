@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useStore } from "./store/userStore";
 import { useEffect } from "react";
 import MarketDetails from "./pages/marketDetails/MarketDetails";
+import HistoryDetails from "./pages/historyDetails/HistoryDetails";
 function App() {
   const navigate = useNavigate();
   const { accessToken } = useStore();
@@ -62,6 +63,7 @@ function App() {
         />
           <Route path="markets" element={<MarketPage />} />
           <Route path="market/:marketName" element={<MarketDetails />} />
+          <Route path="histories/:marketName" element={<HistoryDetails />} />
           <Route path="histories" element={<HistoryPage />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="notifications" element={<NotificationsPage />} />
