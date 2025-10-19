@@ -40,6 +40,7 @@ const InviteForm = ({ onClose, marketId, refetch }) => {
         marketId
     });
   };
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

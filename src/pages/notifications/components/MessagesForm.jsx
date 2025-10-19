@@ -45,8 +45,6 @@ const MessagesForm = ({ not, refetch, onClose }) => {
     refetch();
   }, []);
 
-  console.log(not);
-
   return (
     <div>
       <div className="text-[#4B4B4B] text-[12px]">
