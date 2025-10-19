@@ -222,5 +222,114 @@
     "histories": "Tarix",
     "menu": "Menu",
     "notifications": "Xabarnoma"
+  },
+
+
+
+
+
+    "emptyHistory": {
+    "title": "Bozorlik tarixi yo'q...",
+    "description": "Faol bozorliklarni yakunlaganingizda uni tarixi ushbu bo'limda aks etadi",
+    "imageAlt": "Bozorlik tarixi bo'sh",
+    "takror":"Takrorlash",
+    "chek":"Chek"
+  },
+  "historyDetails": {
+    "title": "Mahsulotlar",
+    "totalPrice": "Jami narx",
+    "currency": "so‘m",
+    "empty": "Bozorlik tarixi yo'q..."
+  },
+    "shoppingSummary": {
+    "imageAlt": "Bozor App logotipi",
+    "section": "Bo‘lim",
+    "amount": "Summasi",
+    "productsBought": "Mahsulotlar sotib olindi"
+  },
+
+  "Profildanchiqish": {    
+    "title": "Profildan chiqish",
+    "text": "Haqiqatdan ham profildan chiqmoqchimisiz?",
+    "btn": "Chiqish",
+    "cancel": "Bekor qilish"
+  },
+
+  "leftProfile": {
+    "confirmLogout": "Haqiqatdan ham profilingizdan chiqmoqchimisiz?",
+    "logout": "Chiqish",
+    "cancel": "Bekor qilish"
+  },
+  "editPassword": {
+    "title": "🔑 Parolni o‘zgartirish",
+    "newPasswordLabel": "Yangi parol",
+    "confirmPasswordLabel": "Parolni tasdiqlang",
+    "newPasswordPlaceholder": "Yangi parolni kiriting",
+    "confirmPasswordPlaceholder": "Parolni qayta kiriting",
+    "submitButton": "Tasdiqlash",
+    "successMessage": "Parol muvaffaqiyatli yangilandi!",
+    "errorMessage": "Xatolik yuz berdi",
+    "passwordMismatch": "Parollar mos emas!",
+    "newPasswordRequired": "Iltimos, yangi parolni kiriting",
+    "confirmPasswordRequired": "Iltimos, yangi parolni tasdiqlang",
+    "passwordMinLength": "Parol kamida 6 ta belgidan iborat bo‘lishi kerak"
+  },
+
+"editPhone": {
+    "title": "📱 Telefon raqamni o‘zgartirish",
+    "label": "Telefon raqam",
+    "placeholder": "+998 (__) ___-__-__",
+    "button": "Tasdiqlash"
+  },
+  
+  "toast1": {
+    "otp_sent": "Telefon raqamingizga kod yuborildi",
+    "otp_resent": "Kod qayta yuborildi",
+    "otp_verified": "Telefon raqamingiz o‘zgartirildi",
+    "error": "Xatolik yuz berdi",
+    "otp_length": "Iltimos, 4 xonali kodni kiriting"
+  },
+  "validation": {
+    "required": "Iltimos, telefon raqamni kiriting",
+    "invalid": "Telefon raqam noto‘g‘ri formatda"
+  },
+    "editProfile": {
+    "title": "Profilni tahrirlash",
+    "fullName": {
+      "label": "To‘liq ismingiz",
+      "placeholder": "Nurullayev",
+      "required": "Iltimos, ismingizni kiriting"
+    },
+    "region": {
+      "label": "Manzilingiz",
+      "placeholder": "Toshkent sh"
+    },
+    "gender": {
+      "label": "Jinsingiz?",
+      "male": "Erkak",
+      "female": "Ayol"
+    },
+    "button": {
+      "confirm": "Tasdiqlash"
+    },
+    "toast": {
+      "success": "Profil ma'lumotlari yangilandi",
+      "error": "Xatolik yuz berdi"
+    }
+  },
+  "feedback": {
+    "title": "Fikr bildirish",
+    "label": "Taklif yoki izohingiz",
+    "placeholder": "Taklif yoki izohingizni kiriting...",
+    "button": "Tasdiqlash",
+    "validation": {
+      "required": "Taklif yoki izoh kiritilishi kerak"
+    },
+    "toast": {
+      "success": "Taklif yoki izoh yuborildi",
+      "error": "Xatolik yuz berdi"
+    }
   }
+
+
 }

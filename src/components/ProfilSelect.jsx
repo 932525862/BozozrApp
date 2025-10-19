@@ -5,13 +5,13 @@ import LogoCircle from "../assets/logo-circle.png"
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../store/userStore";
 import { maskUzPhone } from "../utils/utils";
-
+import { useTranslation } from "react-i18next"
 const ProfilSelect = () => {
   const {clearUser, user} = useStore()
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate()
-
+  const {t} = useTranslation();
   const handleLogout = () => {
     navigate("/login")
     setOpen(false);
@@ -62,7 +62,7 @@ const ProfilSelect = () => {
             className="flex items-center gap-[6px] w-full px-[14px] py-[8px] hover:bg-gray-50 transition-all text-[#1E1E1E] cursor-pointer"
           >
             <img src={Logout} alt="logout image" />
-            <span className="">Profildan chiqish</span>
+            <span className="">{t("Profildanchiqish.title")}</span>
           </button>
       </div>
     </div>

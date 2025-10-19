@@ -222,5 +222,113 @@
     "histories": "History",
     "menu": "Menu",
     "notifications": "Notifications"
+  },
+
+
+   "emptyHistory": {
+    "title": "No shopping history...",
+    "description": "Once you complete your active shopping lists, their history will appear in this section.",
+    "imageAlt": "Empty shopping history",
+    "takror": "Repeat",
+    "chek": "Receipt"
+  },
+  "historyDetails": {
+    "title": "Products",
+    "totalPrice": "Total price",
+    "currency": "UZS",
+    "empty": "No shopping history..."
+  },
+  "shoppingSummary": {
+    "imageAlt": "Bozor App logo",
+    "section": "Section",
+    "amount": "Amount",
+    "productsBought": "Products purchased"
+  },
+
+  "Profildanchiqish": {
+    "title": "Log out from profile",
+    "text": "Are you sure you want to log out from your profile?",
+    "btn": "Log out",
+    "cancel": "Cancel"
+  },
+
+  "leftProfile": {
+    "confirmLogout": "Are you sure you want to log out from your profile?",
+    "logout": "Log out",
+    "cancel": "Cancel"
+  },
+
+  "editPassword": {
+    "title": "🔑 Change Password",
+    "newPasswordLabel": "New Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPasswordPlaceholder": "Re-enter password",
+    "submitButton": "Confirm",
+    "successMessage": "Password successfully updated!",
+    "errorMessage": "An error occurred",
+    "passwordMismatch": "Passwords do not match!",
+    "newPasswordRequired": "Please enter a new password",
+    "confirmPasswordRequired": "Please confirm the new password",
+    "passwordMinLength": "Password must be at least 6 characters long"
+  },
+
+  "editPhone": {
+    "title": "📱 Change Phone Number",
+    "label": "Phone Number",
+    "placeholder": "+998 (__) ___-__-__",
+    "button": "Confirm"
+  },
+
+  "toast1": {
+    "otp_sent": "Verification code sent to your phone number",
+    "otp_resent": "Code resent successfully",
+    "otp_verified": "Phone number successfully changed",
+    "error": "An error occurred",
+    "otp_length": "Please enter a 4-digit code"
+  },
+
+  "validation": {
+    "required": "Please enter your phone number",
+    "invalid": "Invalid phone number format"
+  },
+
+  "editProfile": {
+    "title": "Edit Profile",
+    "fullName": {
+      "label": "Full Name",
+      "placeholder": "Nurullaev",
+      "required": "Please enter your name"
+    },
+    "region": {
+      "label": "Your Address",
+      "placeholder": "Tashkent city"
+    },
+    "gender": {
+      "label": "Your Gender",
+      "male": "Male",
+      "female": "Female"
+    },
+    "button": {
+      "confirm": "Confirm"
+    },
+    "toast": {
+      "success": "Profile information updated successfully",
+      "error": "An error occurred"
+    }
+  },
+
+  "feedback": {
+    "title": "Send Feedback",
+    "label": "Your suggestion or comment",
+    "placeholder": "Enter your suggestion or comment...",
+    "button": "Submit",
+    "validation": {
+      "required": "Please enter a suggestion or comment"
+    },
+    "toast": {
+      "success": "Your feedback has been sent",
+      "error": "An error occurred"
+    }
   }
 }

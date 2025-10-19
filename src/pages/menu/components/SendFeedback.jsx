@@ -4,10 +4,13 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation";
+import { useTranslation } from "react-i18next";
 
 const { TextArea } = Input;
 
 const SendFeedback = ({ onClose }) => {
+  const { t } = useTranslation();
+
   const {
     handleSubmit,
     control,
@@ -24,10 +27,10 @@ const SendFeedback = ({ onClose }) => {
     method: "POST",
     onSuccess: () => {
       onClose();
-      toast.success("Taklif yoki izoh yuborildi");
+      toast.success(t("feedback.toast.success"));
       reset();
     },
-    onError: (error) => {
+   onError: (error) => {
       toast.error(error.response?.data?.message);
     },
   });
@@ -39,15 +42,15 @@ const SendFeedback = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
-        <label className="mb-1">Taklif yoki izohingiz</label>
+        <label className="mb-1">{t("feedback.label")}</label>
         <Controller
           name="text"
           control={control}
-          rules={{ required: "Taklif yoki izoh kiritilishi kerak" }}
+          rules={{ required: t("feedback.validation.required") }}
           render={({ field }) => (
             <TextArea
               {...field}
-              placeholder="Taklif yoki izohingizni kiriting..."
+              placeholder={t("feedback.placeholder")}
               rows={4}
               status={errors.text ? "error" : ""}
               className="resize-none"
@@ -55,9 +58,7 @@ const SendFeedback = ({ onClose }) => {
           )}
         />
         {errors.text && (
-          <p className="text-red-500 text-sm mt-1">
-            {errors.text.message}
-          </p>
+          <p className="text-red-500 text-sm mt-1">{errors.text.message}</p>
         )}
       </div>
 
@@ -66,7 +67,7 @@ const SendFeedback = ({ onClose }) => {
         className="mt-3 rounded-[14px] py-[14px] font-[500]"
         disabled={isLoading}
       >
-        Tasdiqlash
+        {t("feedback.button")}
       </PrimaryButton>
     </form>
   );

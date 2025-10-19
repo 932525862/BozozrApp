@@ -12,15 +12,14 @@ const { Option } = Select;
 export default function EditProfile({ user, onClose }) {
   const [form] = Form.useForm();
   const { t } = useTranslation();
-  const {setUserChange} = useStore()
+  const { setUserChange } = useStore();
 
-  // Foydalanuvchi ma'lumotlarini formaga yoyish
   useEffect(() => {
     if (user) {
       form.setFieldsValue({
         fullName: user.fullName || "",
         region: user.region || "",
-        gender: user.gender || "male",
+        gender: user.gender || "erkak",
       });
     }
   }, [user, form]);
@@ -29,8 +28,8 @@ export default function EditProfile({ user, onClose }) {
     url: `/user/${user?.id}`,
     method: "PATCH",
     onSuccess: (data) => {
-       setUserChange(data?.data) 
-      toast.success("Profil ma'lumotlari yangilandi");
+      setUserChange(data?.data);
+      toast.success(t("editProfile.toast.success"));
       onClose();
     },
     onError: (error) => {
@@ -39,7 +38,7 @@ export default function EditProfile({ user, onClose }) {
   });
 
   const onFinish = (values) => {
-    mutate(values)
+    mutate(values);
   };
 
   return (
@@ -52,33 +51,26 @@ export default function EditProfile({ user, onClose }) {
           </div>
         </div>
 
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={onFinish}
-          initialValues={{ gender: user?.gender }}
-        >
+        <Form form={form} layout="vertical" onFinish={onFinish}>
+          {/* To‘liq ism */}
           <Form.Item
-            label={
-              <span className="text-sm font-medium">To‘liq ismingiz</span>
-            }
+            label={<span className="text-sm font-medium">{t("editProfile.fullName.label")}</span>}
             name="fullName"
-            rules={[
-              { required: true, message: "Iltimos, ismingizni kiriting" },
-            ]}
+            rules={[{ required: true, message: t("editProfile.fullName.required") }]}
           >
             <Input
-              placeholder="Nurullayev"
+              placeholder={t("editProfile.fullName.placeholder")}
               className="rounded-lg"
             />
           </Form.Item>
 
+          {/* Manzil */}
           <Form.Item
-            label={<span className="text-sm">Manzilingiz</span>}
+            label={<span className="text-sm">{t("editProfile.region.label")}</span>}
             name="region"
           >
             <Select
-              placeholder="Toshkent sh"
+              placeholder={t("editProfile.region.placeholder")}
               className="rounded-lg"
             >
               <Option value="toshkent">{t("regions.toshkent")}</Option>
@@ -99,27 +91,29 @@ export default function EditProfile({ user, onClose }) {
             </Select>
           </Form.Item>
 
+          {/* Jins */}
           <Form.Item
-            label={<span className="text-sm">Jinsingiz?</span>}
+            label={<span className="text-sm">{t("editProfile.gender.label")}</span>}
             name="gender"
           >
             <Segmented
               options={[
-                { label: "Erkak", value: "erkak" },
-                { label: "Ayol", value: "ayol" },
+                { label: t("editProfile.gender.male"), value: "erkak" },
+                { label: t("editProfile.gender.female"), value: "ayol" },
               ]}
               block
               className="rounded-full"
             />
           </Form.Item>
 
+          {/* Button */}
           <Form.Item>
             <PrimaryButton
               type="submit"
               className="mt-3 rounded-[14px] py-[14px] font-[500] w-full"
               disabled={isLoading}
             >
-              Tasdiqlash
+              {t("editProfile.button.confirm")}
             </PrimaryButton>
           </Form.Item>
         </Form>

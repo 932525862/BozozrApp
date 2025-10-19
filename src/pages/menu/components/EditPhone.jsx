@@ -5,6 +5,7 @@ import useApiMutation from "../../../hooks/useMutation";
 import { toast } from "react-toastify";
 import CustomModal from "../../../components/CustomModal";
 import { useTranslation } from "react-i18next";
+import { Loader2 } from "lucide-react"; // 🔹 loader uchun
 
 export default function EditPhone({ onClose, user }) {
   const { t } = useTranslation();
@@ -12,25 +13,23 @@ export default function EditPhone({ onClose, user }) {
   const [code, setCode] = useState(["", "", "", ""]);
   const inputRefs = useRef([]);
   const [dataResponse, setDataResponse] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minut = 120 sekund
+  const [timeLeft, setTimeLeft] = useState(120);
   const [canResend, setCanResend] = useState(false);
-  const [phone, setPhone] = useState(""); // 🔹 yangi state
+  const [phone, setPhone] = useState("");
   const [form] = Form.useForm();
 
-  const handleClose = () => {
-    setVerify(false)
-  }
+  const handleClose = () => setVerify(false);
 
   const { mutate, isLoading } = useApiMutation({
     url: `/user/change/phone-number/${user?.id}`,
     method: "POST",
     onSuccess: (data) => {
       setVerify(true);
-      toast.success("Telefon raqamingizgizga kod yuborildi");
+      toast.success(t("toast1.otp_sent"));
       setDataResponse(data?.data);
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message || "Xatolik yuz berdi");
+      toast.error(error.response?.data?.message || t("toast1.error"));
     },
   });
 
@@ -38,13 +37,13 @@ export default function EditPhone({ onClose, user }) {
     url: `/user/send-otp-again/phoneNumber/${user?.id}`,
     method: "POST",
     onSuccess: (data) => {
-      toast.success(t("toast.otp_resent"));
-      setTimeLeft(120); // vaqtni qaytadan 2 minutga o‘rnatamiz
+      toast.success(t("toast1.otp_resent"));
+      setTimeLeft(120);
       setCanResend(false);
       setDataResponse(data?.data);
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || t("toast1.error"));
     },
   });
 
@@ -52,17 +51,15 @@ export default function EditPhone({ onClose, user }) {
     url: `/user/verify/phoneNumber/${user?.id}`,
     method: "PATCH",
     onSuccess: (data) => {
-      setUserChange(data?.data);
-      toast.success("Telfon raqamingiz o'zgartirildi");
+      toast.success(t("toast1.otp_verified"));
       setVerify(false);
       onClose();
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || t("toast1.error"));
     },
   });
 
-  // 🔹 user.phone ni avtomatik formaga qo‘yish
   useEffect(() => {
     if (user?.phoneNumber) {
       form.setFieldsValue({ phone: user?.phoneNumber });
@@ -70,21 +67,17 @@ export default function EditPhone({ onClose, user }) {
   }, [user, form]);
 
   const onFinish = (values) => {
-    const formattedPhone = values.phone.replace(/\s|\(|\)|-/g, ""); // toza format
+    const formattedPhone = values.phone.replace(/\s|\(|\)|-/g, "");
     mutate({ phoneNumber: formattedPhone });
   };
 
   useEffect(() => {
     let timer;
-
     if (verify && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, 1000);
+      timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     } else if (timeLeft === 0) {
       setCanResend(true);
     }
-
     return () => clearInterval(timer);
   }, [verify, timeLeft]);
 
@@ -99,8 +92,6 @@ export default function EditPhone({ onClose, user }) {
       const newCode = [...code];
       newCode[index] = value;
       setCode(newCode);
-
-      // avtomatik keyingi inputga o'tish
       if (value && inputRefs.current[index + 1]) {
         inputRefs.current[index + 1]?.focus();
       }
@@ -110,7 +101,7 @@ export default function EditPhone({ onClose, user }) {
   const handleVerify = async () => {
     const enteredCode = code.join("");
     if (enteredCode.length !== 4) {
-      toast.error(t("errors.otp_length"));
+      toast.error(t("toast1.otp_length"));
       return;
     }
     const data = {
@@ -118,42 +109,39 @@ export default function EditPhone({ onClose, user }) {
       phoneNumber: phone.replace(/\s/g, ""),
       otp: enteredCode,
     };
-
     otpMutate(data);
   };
 
   return (
     <div className="flex items-center justify-center">
       <div className="w-full overflow-hidden">
-        {/* Sarlavha */}
         <div className="w-full bg-[#F9F9F9] rounded-xl p-4 flex justify-center items-center mb-4">
           <div className="text-lg font-medium text-gray-700">
-            📱 Telefon raqamni o‘zgartirish
+            {t("editPhone.title")}
           </div>
         </div>
 
-        {/* Forma */}
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label={<span className="text-sm font-medium">Telefon raqam</span>}
+            label={<span className="text-sm font-medium">{t("editPhone.label")}</span>}
             name="phone"
             rules={[
-              { required: true, message: "Iltimos, telefon raqamni kiriting" },
+              { required: true, message: t("validation.required") },
               {
                 pattern:
                   /^\+998\s?\(?\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                message: "Telefon raqam noto‘g‘ri formatda",
+                message: t("validation.invalid"),
               },
             ]}
           >
             <Input
-              placeholder="+998 (__) ___-__-__"
+              placeholder={t("editPhone.placeholder")}
               maxLength={19}
               className="rounded-lg"
               onChange={(e) => {
                 const val = e.target.value;
-                setPhone(val); // 🔹 state ichida saqlash
-                form.setFieldsValue({ phone: val }); // 🔹 forma ichida ham saqlash
+                setPhone(val);
+                form.setFieldsValue({ phone: val });
               }}
             />
           </Form.Item>
@@ -164,11 +152,12 @@ export default function EditPhone({ onClose, user }) {
               className="mt-3 rounded-[14px] py-[14px] font-[500] w-full"
               disabled={isLoading}
             >
-              Tasdiqlash
+              {t("editPhone.button")}
             </PrimaryButton>
           </Form.Item>
         </Form>
       </div>
+
       <CustomModal
         open={verify}
         title={t("modal.title")}
@@ -179,9 +168,7 @@ export default function EditPhone({ onClose, user }) {
           {code.map((digit, i) => (
             <Input
               key={i}
-              ref={(el) => {
-                inputRefs.current[i] = el;
-              }}
+              ref={(el) => (inputRefs.current[i] = el)}
               value={digit}
               maxLength={1}
               onChange={(e) => handleCodeChange(e.target.value, i)}
@@ -189,6 +176,7 @@ export default function EditPhone({ onClose, user }) {
             />
           ))}
         </div>
+
         <PrimaryButton
           onClick={handleResend}
           disabled={!canResend}

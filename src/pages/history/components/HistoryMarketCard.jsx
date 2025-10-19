@@ -6,9 +6,8 @@ import moneyImg from "../../../assets/icons/Frame.svg";
 import calendarImg from "../../../assets/icons/calendar-tick.svg";
 import bgStar from "../../../assets/star.png";
 import { Popover } from "antd";
-import editImg from "../../../assets/market-icons/edit.svg";
-import deleteImg from "../../../assets/market-icons/delete.svg";
-import sendImg from "../../../assets/market-icons/send.svg";
+import editImg from "../../../assets/Frame.svg";
+import sendImg from "../../../assets/cheks.svg";
 import nextImg from "../../../assets/market-icons/next.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -27,12 +26,7 @@ const HistoryMarketCard = ({ market, handleOpen, setSelectMarket }) => {
   const handleEditClick = () => {
     setSelectMarket(market)
     handleOpen("edit");
-    setPopoverOpen(false); // 🔹 modal ochilgandan so‘ng Popover yopiladi
-  };
-  const handleDelete = () => {
-    setSelectMarket(market)
-    handleOpen("delete")
-    setPopoverOpen(false)
+    setPopoverOpen(false); 
   };
 
   // language-ga qarab serverdagi title maydonini tanlash (fallback uz)
@@ -65,20 +59,15 @@ const HistoryMarketCard = ({ market, handleOpen, setSelectMarket }) => {
     <div>
       <div  onClick={handleEditClick} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
         <img src={editImg} alt={t("marketCard.editIconAlt")} />{" "}
-        <span className="text-[18px]">{t("marketCard.edit")}</span>{" "}
+        <span className="text-[18px]">{t("emptyHistory.takror")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
       <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0] pt-[8px]">
         <img src={sendImg} alt={t("marketCard.sendIconAlt")} />{" "}
-        <span className="text-[18px]">{t("marketCard.share")}</span>{" "}
+        <span className="text-[18px]">{t("emptyHistory.chek")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
-     
-        <div onClick={handleDelete} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
-          <img src={deleteImg} alt={t("marketCard.deleteIconAlt")} />{" "}
-          <span className="text-[18px]">{t("marketCard.delete")}</span>{" "}
-          <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
-        </div>
+    
     </div>
   );
 

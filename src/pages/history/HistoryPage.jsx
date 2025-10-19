@@ -18,21 +18,18 @@ const HistoryPage = () => {
 
   return (
     <div className="h-full">
-      {data?.data?.length > 0 ? (
-        <div className="flex flex-col gap-[20px]">
-          <div className="grid grid-cols-3 gap-[12px]">
-            {data?.data?.map((item) => (
-              <HistoryMarketCard
-                key={item?.id}
-                market={item}
-              />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <EmptyHistory />
-      )}
+  {data?.data?.length > 0 ? (
+    <div className="flex flex-col gap-[20px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[12px]">
+        {data?.data?.map((item) => (
+          <HistoryMarketCard key={item?.id} market={item} />
+        ))}
+      </div>
     </div>
+  ) : (
+    <EmptyHistory />
+  )}
+</div>
   );
 };
 
