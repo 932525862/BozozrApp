@@ -15,6 +15,7 @@ import SeenComment from "./components/SeenComment";
 import BuyProduct from "./components/BuyProduct";
 import EndMarket from "./components/EndMarket";
 import Loding from "../../components/Loding";
+import ShareMarket from "../markets/components/ShareMarket";
 
 const MarketDetails = () => {
   const [open, setOpen] = useState(false);
@@ -80,6 +81,14 @@ const MarketDetails = () => {
             onClose={handleClose}
           />
         );
+        case "share":
+        return (
+          <ShareMarket
+            selectMarket={data}
+            onClose={handleClose}
+            refetch={refetch}
+          />
+        );
       default:
         return null;
     }
@@ -98,6 +107,8 @@ const MarketDetails = () => {
         return "Sotib olish";
         case "end":
         return "Bozorlikni yakunlash";
+        case "share":
+        return "Ulashish";
       default:
         return "";
     }
