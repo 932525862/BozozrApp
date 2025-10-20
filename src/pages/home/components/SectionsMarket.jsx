@@ -13,16 +13,19 @@ import { Pagination } from "swiper/modules";
 import { useFetch } from "../../../hooks/useFetch";
 import { useTranslation } from "react-i18next";
 import { getLangValue } from "../../../utils/utils";
+import { useStore } from "../../../store/userStore";
 
 const SectionsMarket = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const {setSectionId} = useStore()
 
   const { data } = useFetch({
     key: [`market-type`],
     url: `/market-type`,
   });
-  const handleNavigate = () => {
+  const handleNavigate = (id) => {
+    setSectionId(id)
     navigate("/sections");
   };
 
@@ -78,7 +81,7 @@ const SectionsMarket = () => {
           {[...(data?.items ?? [])].reverse().map((item) => (
             <SwiperSlide key={item?.id}>
               <div
-                onClick={handleNavigate}
+                onClick={() => handleNavigate(item?.id)}
                 className="w-[278px] h-[178px] cursor-pointer bg-[#F9F9F9] rounded-[16px] pt-[16px] pl-[16px] pb-[25px]"
                 style={{
                   backgroundRepeat: "no-repeat",

@@ -12,11 +12,13 @@ import sendImg from "../../../assets/market-icons/send.svg";
 import nextImg from "../../../assets/market-icons/next.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useStore } from "../../../store/userStore";
 
 const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
   const navigate = useNavigate();
   const [popoverOpen, setPopoverOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const {user} = useStore()
 
   const handleNavigate = () => {
     navigate(`/market/${market?.name}`, {
@@ -57,25 +59,27 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
     
       return formatNumberWithSpace(total);
     }
-
   const content = (
     <div>
-      <div  onClick={() => handleClick("edit")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
+      {
+        user?.id == market?.marketCreator && <div onClick={() => handleClick("edit")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
         <img src={editImg} alt={t("marketCard.editIconAlt")} />{" "}
         <span className="text-[18px]">{t("marketCard.edit")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
-      <div onClick={() => handleClick("share")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0] pt-[8px]">
+      }
+      <div onClick={() => handleClick("share")} className={`flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] ${user?.id == market?.marketCreator ? "border-b" : ""} border-[#E0E0E0] pt-[8px]`}>
         <img src={sendImg} alt={t("marketCard.sendIconAlt")} />{" "}
         <span className="text-[18px]">{t("marketCard.share")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
-     
-        <div onClick={() => handleClick("delete")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
-          <img src={deleteImg} alt={t("marketCard.deleteIconAlt")} />{" "}
-          <span className="text-[18px]">{t("marketCard.delete")}</span>{" "}
-          <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
-        </div>
+      {
+        user?.id == market?.marketCreator && <div onClick={() => handleClick("delete")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
+        <img src={deleteImg} alt={t("marketCard.deleteIconAlt")} />{" "}
+        <span className="text-[18px]">{t("marketCard.delete")}</span>{" "}
+        <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
+      </div>
+      }
     </div>
   );
 

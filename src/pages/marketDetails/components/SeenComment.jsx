@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 const { TextArea } = Input;
 
 const SeenComment = ({ product, onClose }) => {
-    // console.log(selectProduct);
     const { t } = useTranslation();
   return (
     <div className="">

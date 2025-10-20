@@ -9,9 +9,12 @@ export const useStore = create()(
       refreshToken: null,
       user: null,
       notMarket: null,
+      sectionId: null,
 
       setUserChange: (user) =>
        set({ user}),
+      setSectionId: (id) =>
+        set({ sectionId: id}),
       setNotMarket: (notMarket) =>
         set({ notMarket}),
  
@@ -31,7 +34,8 @@ export const useStore = create()(
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         user: state.user,
-        notMarket: state.notMarket
+        notMarket: state.notMarket,
+        sectionId: state.sectionId
       }),
     }
   )

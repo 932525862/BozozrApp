@@ -24,7 +24,6 @@ const ShareMarket = ({ onClose, selectMarket, refetch }) => {
     setOpen(false);
     onClose();
   };
-console.log(selectMarket?.marketCreator);
 
   return (
     <div>
