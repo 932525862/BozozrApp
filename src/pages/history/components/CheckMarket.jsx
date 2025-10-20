@@ -10,9 +10,6 @@ import { useTranslation } from 'react-i18next';
 const CheckMarket = (shoppingHistory, onClose) => {
     const checkRef = useRef(null);
     const {i18n} = useTranslation()
-
-    console.log(shoppingHistory?.shoppingHistory?.marketLists);
-    
     
     const handleDownload = async () => {
         if (!checkRef.current) return;

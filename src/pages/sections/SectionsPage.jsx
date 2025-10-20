@@ -9,19 +9,33 @@ import { useFetchOne } from "../../hooks/useFetchOne";
 import MarketCard from "../markets/components/MarketCard";
 import { useStore } from "../../store/userStore";
 import HistoryMarketCard from "../history/components/HistoryMarketCard";
+import CustomModal from "../../components/CustomModal";
+import EditMarketForm from "../markets/components/EditMarketForm";
+import DeleteMarket from "../markets/components/DeleteMarket";
+import ShareMarket from "../markets/components/ShareMarket";
+import CheckMarket from "../history/components/CheckMarket";
+import AgainHistory from "../history/components/AgainHistory";
 
 const SectionsPage = () => {
   const { i18n, t } = useTranslation();
   const { sectionId, setSectionId } = useStore();
   const [filter, setFilter] = useState("Faol bozorliklar");
   const options = ["Faol bozorliklar", "Tugallangan bozorliklar"];
+  const [open, setOpen] = useState(false);
+    const [selectMarket, setSelectMarket] = useState(null);
+    const [modalType, setModalType] = useState(null);
+    const handleOpen = (type) => {
+      setModalType(type)
+      setOpen(true);
+    };
+    const handleClose = () => setOpen(false);
 
   const { data: marketTypeData } = useFetch({
     key: [`market-type`],
     url: `/market-type`,
   });
 
-  const { data: marketData, isLoading: marketLoading } = useFetchOne({
+  const { data: marketData, refetch, isLoading: marketLoading } = useFetchOne({
     key: ["market", sectionId],
     url: "/market",
     config: {
@@ -152,21 +166,33 @@ const SectionsPage = () => {
               <MarketCard
                 key={item?.id}
                 market={item}
-                // refetch={refetch}
-                // setSelectMarket={setSelectMarket}
-                // handleOpen={handleOpen}
+                refetch={refetch}
+                setSelectMarket={setSelectMarket}
+                handleOpen={handleOpen}
               />
             )) : historyData?.data?.map((item) => (
               <HistoryMarketCard
                 key={item?.id}
                 market={item}
-                // handleOpen={handleOpen}
-                // setSelectHistory={setSelectHistory}
+                handleOpen={handleOpen}
+                setSelectHistory={setSelectMarket}
               />
             ))}
           </div>
         </div>
       </div>
+      <CustomModal
+        open={open}
+        title={modalType == "edit" ? "Tahrirlash" : modalType == "delet" ? "O'chirish" : modalType == "share" ? "Ulashish" : modalType == "again" ? "Takrorlash" : "Check"}
+        onCancel={handleClose}
+        width={modalType == "share" ? 400 : 351}
+      >
+        {modalType == "edit" ? <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : modalType == "delete" ? <DeleteMarket onClose={handleClose} refetch={refetch} selectMarket={selectMarket}/> : modalType == "share" ? <ShareMarket refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : modalType == "again" ? (
+          <AgainHistory onClose={handleClose} history={selectMarket} />
+        ) : (
+          <CheckMarket shoppingHistory={selectMarket}/>
+        )}
+      </CustomModal>
     </div>
   );
 };
