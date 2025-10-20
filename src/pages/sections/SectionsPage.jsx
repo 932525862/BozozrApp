@@ -15,6 +15,7 @@ import DeleteMarket from "../markets/components/DeleteMarket";
 import ShareMarket from "../markets/components/ShareMarket";
 import CheckMarket from "../history/components/CheckMarket";
 import AgainHistory from "../history/components/AgainHistory";
+import SectionSwiper from "./components/SectionSwiper";
 
 const SectionsPage = () => {
   const { i18n, t } = useTranslation();
@@ -66,9 +67,13 @@ const SectionsPage = () => {
         />
       </div>
 
+      <div className="block sm:hidden mb-[12px]">
+        <SectionSwiper slides={marketTypeData}/>
+      </div>
+
       <div className="grid grid-cols-12 gap-4">
         {/* Chap bo‘limlar */}
-        <div className="col-span-5 flex flex-col gap-3">
+        <div className="hidden col-span-5 sm:flex flex-col gap-3">
           {[...(marketTypeData?.items ?? [])].reverse().map((item) => (
             <div
               key={item?.id}
@@ -97,7 +102,7 @@ const SectionsPage = () => {
         </div>
 
         {/* O‘ng taraf */}
-        <div className="col-span-7 flex flex-col gap-4">
+        <div className="col-span-12 sm:col-span-7 flex flex-col gap-4">
           {/* Statistik qismi */}
           <div className="bg-white rounded-[10px] p-5 flex  shadow-sm">
             <div className="w-full">
@@ -161,7 +166,7 @@ const SectionsPage = () => {
           </div>
 
           {/* Kartalar */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {filter == "Faol bozorliklar" ? marketData?.map((item) => (
               <MarketCard
                 key={item?.id}
