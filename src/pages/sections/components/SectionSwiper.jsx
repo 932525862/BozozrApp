@@ -61,10 +61,10 @@ const SectionSwiper = ({ slides }) => {
           {[...(slides?.items ?? [])]?.reverse()?.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="!w-[80%] !h-[178px] md:!w-[580px] sm:!h-[210px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
+              className="!w-[80%] !h-[158px] md:!w-[580px] sm:!h-[210px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
             >
               <div
-                className={` h-[178px] cursor-pointer bg-[#ffffff] rounded-[16px] pt-[16px] pl-[16px] pb-[25px]`}
+                className={` h-full cursor-pointer bg-[#ffffff] rounded-[16px] pt-[16px] pl-[16px] pb-[25px]`}
                 style={{
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "right center",

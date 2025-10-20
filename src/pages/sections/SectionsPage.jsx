@@ -104,9 +104,9 @@ const SectionsPage = () => {
         {/* O‘ng taraf */}
         <div className="col-span-12 sm:col-span-7 flex flex-col gap-4">
           {/* Statistik qismi */}
-          <div className="bg-white rounded-[10px] p-5 flex  shadow-sm">
+          <div className="bg-white rounded-[10px] p-3 sm:p-5 flex shadow-sm">
             <div className="w-full">
-              <ul className="space-y-1 text-[15px] w-full">
+              <ul className="space-y-1 text-[14px] sm:text-[15px] w-full">
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
                     Jami bozorliklar soni:
@@ -156,7 +156,7 @@ const SectionsPage = () => {
               <button
                 key={option}
                 onClick={() => setFilter(option)}
-                className={`relative cursor-pointer z-10 flex-1 text-[14px] font-medium py-[7px] transition-colors duration-300 ${
+                className={`relative cursor-pointer z-10 flex-1 text-[13px] sm:text-[14px] font-medium py-[7px] transition-colors duration-300 ${
                   filter === option ? "text-white" : "text-gray-600"
                 }`}
               >
