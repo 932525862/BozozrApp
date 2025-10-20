@@ -255,7 +255,7 @@ const CheckMarket = (shoppingHistory, onClose) => {
           <button
             onClick={handleDownload}
             style={{
-              backgroundColor: "#2563eb",
+              backgroundColor: "#06B2B6",
               color: "white",
               padding: "8px 16px",
               borderRadius: "8px",
