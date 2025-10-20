@@ -11,11 +11,13 @@ import sendImg from "../../../assets/cheks.svg";
 import nextImg from "../../../assets/market-icons/next.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import CustomModal from "../../../components/CustomModal";
 
-const HistoryMarketCard = ({ market, handleOpen, setSelectMarket }) => {
+const HistoryMarketCard = ({ market, setSelectHistory, handleOpen }) => {
   const navigate = useNavigate();
   const [popoverOpen, setPopoverOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  // const [openModal, setOpenModal] = useState(false)
 
   const handleNavigate = () => {
     navigate(`/histories/${market?.name}`, {
@@ -24,8 +26,8 @@ const HistoryMarketCard = ({ market, handleOpen, setSelectMarket }) => {
   };
   
   const handleEditClick = () => {
-    setSelectMarket(market)
-    handleOpen("edit");
+    setSelectHistory(market)
+    handleOpen()
     setPopoverOpen(false); 
   };
 
@@ -63,7 +65,7 @@ const HistoryMarketCard = ({ market, handleOpen, setSelectMarket }) => {
         <span className="text-[18px]">{t("emptyHistory.takror")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
-      <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0] pt-[8px]">
+      <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
         <img src={sendImg} alt={t("marketCard.sendIconAlt")} />{" "}
         <span className="text-[18px]">{t("emptyHistory.chek")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />

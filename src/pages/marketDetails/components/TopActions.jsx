@@ -37,8 +37,8 @@ const TopActions = ({ handleOpen, setBuying, total, bought }) => {
           </button>
         ))}
       </div>
-      <div onClick={() => handleOpen("share")} className="flex gap-[16px]">
-        <CustomButton className="py-[8px] px-[20px] text-[14px]">
+      <div  className="flex gap-[16px]">
+        <CustomButton onClick={() => handleOpen("share")} className="py-[8px] px-[20px] text-[14px]">
           <span>Bozorlikni ulashish</span>
           <FiUserPlus className="text-[14px]" />
         </CustomButton>
