@@ -52,7 +52,7 @@ const HistoryPage = () => {
         open={open}
         title={modalType == "again" ? "Takrorlash" : "Check"}
         onCancel={handleClose}
-        width={modalType == "again" ? 351 : 400}
+        width={modalType == "again" ? 351 : 351}
       >
         {modalType == "again" ? (
           <AgainHistory onClose={handleClose} history={selectHistory} />
