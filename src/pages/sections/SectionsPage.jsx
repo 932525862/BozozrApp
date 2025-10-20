@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import { useFetch } from "../../hooks/useFetch";
-import { getLangValue } from "../../utils/utils";
+import { formatNumberWithSpace, getLangValue } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
 import { useFetchOne } from "../../hooks/useFetchOne";
@@ -47,6 +47,14 @@ const SectionsPage = () => {
     },
   });
 
+  const { data: statistics } = useFetchOne({
+    key: ["history/statistics"],
+    url: "/history/statistics",
+    
+  });
+  console.log(statistics);
+  
+
   const { data: historyData, isLoading: historyLoading } = useFetchOne({
     key: [`history`, sectionId],
     url: `/history`,
@@ -68,7 +76,7 @@ const SectionsPage = () => {
       </div>
 
       <div className="block sm:hidden mb-[12px]">
-        <SectionSwiper slides={marketTypeData}/>
+        <SectionSwiper slides={marketTypeData} />
       </div>
 
       <div className="grid grid-cols-12 gap-4">
@@ -111,32 +119,51 @@ const SectionsPage = () => {
                   <span className="font-[600] text-[#1E1E1E]">
                     Jami bozorliklar soni:
                   </span>{" "}
-                  <span className="text-[#4B4B4B] font-[500]">41</span>
+                  <span className="text-[#4B4B4B] font-[500]">
+                    {statistics?.totalMarkets}
+                  </span>
                 </li>
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
                     Jami xarajatlar:
                   </span>{" "}
-                  <span className="text-[#4B4B4B] font-[500]">12 210 000</span>
+                  <span className="text-[#4B4B4B] font-[500]">
+                    {formatNumberWithSpace(statistics?.totalSpent ?? 0)}
+                  </span>
                 </li>
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
                     Oylik bozorliklar soni:
                   </span>{" "}
-                  <span className="text-[#4B4B4B] font-[500]">12</span>
+                  <span className="text-[#4B4B4B] font-[500]">
+                    {statistics?.monthlyMarkets}
+                  </span>
                 </li>
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
                     Oylik xarajatlar:
                   </span>{" "}
-                  <span className="text-[#4B4B4B] font-[500]">12 210 000</span>
+                  <span className="text-[#4B4B4B] font-[500]">
+                    {formatNumberWithSpace(statistics?.monthlySpent ?? 0)}
+                  </span>
                 </li>
                 <li className="flex items-center justify-between">
                   <span className="font-[600] text-[#1E1E1E]">
                     O‘tgan oyga nisbati:{" "}
                   </span>
-                  <span className="text-green-500 flex items-center gap-1 font-[500]">
-                    <ArrowUpRight size={16} /> +14.3%
+                  <span
+                    className={`flex items-center gap-1 font-[500] ${
+                      statistics?.compareToPrevMonth < 0
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    {statistics?.compareToPrevMonth < 0 ? (
+                      <ArrowDownRight size={16} />
+                    ) : (
+                      <ArrowUpRight size={16} />
+                    )}
+                    {statistics?.compareToPrevMonth}%
                   </span>
                 </li>
               </ul>
@@ -167,35 +194,65 @@ const SectionsPage = () => {
 
           {/* Kartalar */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {filter == "Faol bozorliklar" ? marketData?.map((item) => (
-              <MarketCard
-                key={item?.id}
-                market={item}
-                refetch={refetch}
-                setSelectMarket={setSelectMarket}
-                handleOpen={handleOpen}
-              />
-            )) : historyData?.data?.map((item) => (
-              <HistoryMarketCard
-                key={item?.id}
-                market={item}
-                handleOpen={handleOpen}
-                setSelectHistory={setSelectMarket}
-              />
-            ))}
+            {filter == "Faol bozorliklar"
+              ? marketData?.map((item) => (
+                  <MarketCard
+                    key={item?.id}
+                    market={item}
+                    refetch={refetch}
+                    setSelectMarket={setSelectMarket}
+                    handleOpen={handleOpen}
+                  />
+                ))
+              : historyData?.data?.map((item) => (
+                  <HistoryMarketCard
+                    key={item?.id}
+                    market={item}
+                    handleOpen={handleOpen}
+                    setSelectHistory={setSelectMarket}
+                  />
+                ))}
           </div>
         </div>
       </div>
       <CustomModal
         open={open}
-        title={modalType == "edit" ? "Tahrirlash" : modalType == "delet" ? "O'chirish" : modalType == "share" ? "Ulashish" : modalType == "again" ? "Takrorlash" : "Check"}
+        title={
+          modalType == "edit"
+            ? "Tahrirlash"
+            : modalType == "delet"
+            ? "O'chirish"
+            : modalType == "share"
+            ? "Ulashish"
+            : modalType == "again"
+            ? "Takrorlash"
+            : "Check"
+        }
         onCancel={handleClose}
         width={modalType == "share" ? 400 : 351}
       >
-        {modalType == "edit" ? <EditMarketForm refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : modalType == "delete" ? <DeleteMarket onClose={handleClose} refetch={refetch} selectMarket={selectMarket}/> : modalType == "share" ? <ShareMarket refetch={refetch} onClose={handleClose} selectMarket={selectMarket}/> : modalType == "again" ? (
+        {modalType == "edit" ? (
+          <EditMarketForm
+            refetch={refetch}
+            onClose={handleClose}
+            selectMarket={selectMarket}
+          />
+        ) : modalType == "delete" ? (
+          <DeleteMarket
+            onClose={handleClose}
+            refetch={refetch}
+            selectMarket={selectMarket}
+          />
+        ) : modalType == "share" ? (
+          <ShareMarket
+            refetch={refetch}
+            onClose={handleClose}
+            selectMarket={selectMarket}
+          />
+        ) : modalType == "again" ? (
           <AgainHistory onClose={handleClose} history={selectMarket} />
         ) : (
-          <CheckMarket shoppingHistory={selectMarket}/>
+          <CheckMarket shoppingHistory={selectMarket} />
         )}
       </CustomModal>
     </div>
