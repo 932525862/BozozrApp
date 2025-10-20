@@ -73,7 +73,7 @@ const SectionsPage = () => {
             <div
               key={item?.id}
               onClick={() => setSectionId(item?.id)}
-              className={`w-[309px] h-[178px] transition-all duration-300 hover:border-[#06B2B6] border-[2px] cursor-pointer bg-[#ffffff] rounded-[16px] pt-[16px] pl-[16px] pb-[25px] ${
+              className={` h-[178px] transition-all duration-300 hover:border-[#06B2B6] border-[2px] cursor-pointer bg-[#ffffff] rounded-[16px] pt-[16px] pl-[16px] pb-[25px] ${
                 sectionId == item?.id
                   ? "border-[#06B2B6]"
                   : "border-transparent"

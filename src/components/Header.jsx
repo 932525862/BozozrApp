@@ -6,10 +6,10 @@ import ProfilSelect from './ProfilSelect';
 
 const Header = () => {
   return (
-    <header className="w-full border-b py-[25px] px-[15px] border-[#E0E0E0]">
+    <header className="w-full border-b py-[10px] sm:py-[25px] px-[15px] border-[#E0E0E0]">
       <div className="container flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="w-[147px] flex justify-center h-[46px]">
+        <Link to="/" className="w-[100px] sm:w-[147px] flex justify-center h-[35px] sm:h-[46px]">
           <img src={logo} alt="market app logo" />
         </Link>
 
