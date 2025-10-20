@@ -340,5 +340,31 @@
       "success": "Your feedback has been sent",
       "error": "An error occurred"
     }
-  }
+  },
+  "masulotlar": "Products",
+  "Yangibozorlik": "New shopping",
+  "inviteForm": {
+    "phoneLabel": "*User phone number",
+    "phoneRequired": "Please enter a phone number",
+    "phonePattern": "Enter a valid phone number (e.g. +998901234567)",
+    "noteLabel": "Invitation note (optional)",
+    "noteMaxLength": "Note must not exceed 300 characters",
+    "submitButton": "Send invitation",
+    "successToast": "Invitation sent to user"
+  },
+  "topActions": {
+    "filterToBuy": "To be bought",
+    "filterBought": "Bought",
+    "share": "Share shopping list",
+    "manualAdd": "Add manually",
+    "endShopping": "Finish shopping",
+    "ariaNewProduct": "New product"
+  },
+  "ochirish": "Delete",
+  "sotib_olindi": "Buy",
+  "totalMarkets": "Total shopping lists",
+  "sotib_olindi1": "Total expenses",
+  "sotib_olindi3": "Monthly shopping lists",
+  "sotib_olindi4": "Monthly expenses",
+  "ss": "Compared to last month"
 }

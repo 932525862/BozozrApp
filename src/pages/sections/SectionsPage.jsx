@@ -117,7 +117,7 @@ const SectionsPage = () => {
               <ul className="space-y-1 text-[14px] sm:text-[15px] w-full">
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
-                    Jami bozorliklar soni:
+                    {t("totalMarkets")}:
                   </span>{" "}
                   <span className="text-[#4B4B4B] font-[500]">
                     {statistics?.totalMarkets}
@@ -125,7 +125,7 @@ const SectionsPage = () => {
                 </li>
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
-                    Jami xarajatlar:
+                    {t("sotib_olindi1")}:
                   </span>{" "}
                   <span className="text-[#4B4B4B] font-[500]">
                     {formatNumberWithSpace(statistics?.totalSpent ?? 0)}
@@ -133,7 +133,7 @@ const SectionsPage = () => {
                 </li>
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
-                    Oylik bozorliklar soni:
+                   {t("sotib_olindi3")}:
                   </span>{" "}
                   <span className="text-[#4B4B4B] font-[500]">
                     {statistics?.monthlyMarkets}
@@ -141,7 +141,7 @@ const SectionsPage = () => {
                 </li>
                 <li className="flex justify-between ">
                   <span className="font-[600] text-[#1E1E1E]">
-                    Oylik xarajatlar:
+                    {t("sotib_olindi4")}:
                   </span>{" "}
                   <span className="text-[#4B4B4B] font-[500]">
                     {formatNumberWithSpace(statistics?.monthlySpent ?? 0)}
@@ -149,7 +149,7 @@ const SectionsPage = () => {
                 </li>
                 <li className="flex items-center justify-between">
                   <span className="font-[600] text-[#1E1E1E]">
-                    O‘tgan oyga nisbati:{" "}
+                    {t("ss")}:{" "}
                   </span>
                   <span
                     className={`flex items-center gap-1 font-[500] ${

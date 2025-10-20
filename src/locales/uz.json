@@ -362,6 +362,11 @@
     "ariaNewProduct": "Yangi mahsulot"
   },
   "ochirish":"O'chirish",
-  "sotib_olindi":"Sotib olish"
+  "sotib_olindi":"Sotib olish",
+  "totalMarkets": "Jami bozorliklar soni",
+ "sotib_olindi1" : "Jami xarajatlar",
+ "sotib_olindi3": "Oylik bozorliklar soni",
+  "sotib_olindi4": "Oylik xarajatlar",
+  "ss": "O‘tgan oyga nisbati"
 
 }
