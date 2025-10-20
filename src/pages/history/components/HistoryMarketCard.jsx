@@ -25,9 +25,9 @@ const HistoryMarketCard = ({ market, setSelectHistory, handleOpen }) => {
     });
   };
   
-  const handleEditClick = () => {
+  const handleEditClick = (type) => {
     setSelectHistory(market)
-    handleOpen()
+    handleOpen(type)
     setPopoverOpen(false); 
   };
 
@@ -60,12 +60,12 @@ const HistoryMarketCard = ({ market, setSelectHistory, handleOpen }) => {
 
   const content = (
     <div>
-      <div  onClick={handleEditClick} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
+      <div  onClick={() => handleEditClick("again")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pb-[8px] border-b border-[#E0E0E0]">
         <img src={editImg} alt={t("marketCard.editIconAlt")} />{" "}
         <span className="text-[18px]">{t("emptyHistory.takror")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />
       </div>
-      <div className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
+      <div onClick={() => handleEditClick("check")} className="flex gap-[16px] items-center cursor-pointer max-w-[152px] justify-between pt-[8px]">
         <img src={sendImg} alt={t("marketCard.sendIconAlt")} />{" "}
         <span className="text-[18px]">{t("emptyHistory.chek")}</span>{" "}
         <img src={nextImg} alt={t("marketCard.nextIconAlt")} />

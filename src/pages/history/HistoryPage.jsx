@@ -5,47 +5,62 @@ import HistoryMarketCard from "./components/HistoryMarketCard";
 import Loding from "../../components/Loding";
 import CustomModal from "../../components/CustomModal";
 import AgainHistory from "./components/AgainHistory";
+import CheckMarket from "./components/CheckMarket";
 
 const HistoryPage = () => {
-  const [open, setOpen] = useState(false)
-  const [selectHistory, setSelectHistory] = useState(null)
+  const [open, setOpen] = useState(false);
+  const [selectHistory, setSelectHistory] = useState(null);
+  const [modalType, setModalType] = useState(null);
   const { data, isLoading } = useFetchOne({
     key: [`history`],
     url: `/history`,
   });
-  
 
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleOpen = (type) => {
+    setModalType(type);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center"><Loding/></div>
+      <div className="h-full flex items-center justify-center">
+        <Loding />
+      </div>
     );
   }
 
   return (
     <div className="h-full">
-  {data?.data?.length > 0 ? (
-    <div className="flex flex-col gap-[20px]">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[12px]">
-        {data?.data?.map((item) => (
-          <HistoryMarketCard key={item?.id} market={item} handleOpen={handleOpen} setSelectHistory={setSelectHistory}/>
-        ))}
-      </div>
+      {data?.data?.length > 0 ? (
+        <div className="flex flex-col gap-[20px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[12px]">
+            {data?.data?.map((item) => (
+              <HistoryMarketCard
+                key={item?.id}
+                market={item}
+                handleOpen={handleOpen}
+                setSelectHistory={setSelectHistory}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <EmptyHistory />
+      )}
+      <CustomModal
+        open={open}
+        title={modalType == "again" ? "Takrorlash" : "Check"}
+        onCancel={handleClose}
+        width={modalType == "again" ? 351 : 400}
+      >
+        {modalType == "again" ? (
+          <AgainHistory onClose={handleClose} history={selectHistory} />
+        ) : (
+          <CheckMarket shoppingHistory={selectHistory}/>
+        )}
+      </CustomModal>
     </div>
-  ) : (
-    <EmptyHistory />
-  )}
-  <CustomModal
-          open={open}
-          title="Takrorlash"
-          onCancel={handleClose}
-          width={351}
-        >
-          <AgainHistory onClose={handleClose} history={selectHistory}/>
-        </CustomModal>
-</div>  
   );
 };
 
