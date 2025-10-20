@@ -88,6 +88,7 @@ const SideBar = () => {
   ];
 
   return (
+    
     <aside className="p-0 sm:p-4 flex flex-row md:flex-col gap-0 sm:gap-4 bg-white rounded-2xl">
       {links.map(({ to, label, icon, svg }) => (
         <NavLink

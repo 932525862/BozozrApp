@@ -10,12 +10,12 @@ import EditMarketForm from "./components/EditMarketForm";
 import DeleteMarket from "./components/DeleteMarket";
 import Loding from "../../components/Loding";
 import ShareMarket from "./components/ShareMarket";
-
+import { useTranslation } from "react-i18next";
 const MarketPage = () => {   
   const [open, setOpen] = useState(false);
   const [selectMarket, setSelectMarket] = useState(null);
   const [modalType, setModalType] = useState(null);
-
+  const { t } = useTranslation();
   const handleOpen = (type) => {
     setModalType(type)
     setOpen(true);
@@ -49,7 +49,7 @@ const MarketPage = () => {
           </div>
           <div className="self-end">
             <CustomButton onClick={() => handleOpen("add")} className="w-[278px]">
-              <span>Yangi bozorlik</span>
+              <span>{t("Yangibozorlik")}</span>
               <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
                 <LuPlus className="text-[16px]" />
               </span>

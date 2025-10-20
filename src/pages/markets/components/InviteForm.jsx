@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import { useForm, Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation";
@@ -8,16 +9,15 @@ import useApiMutation from "../../../hooks/useMutation";
 const { TextArea } = Input;
 
 const InviteForm = ({ onClose, marketId, refetch }) => {
+  const { t } = useTranslation();
+
   const {
     handleSubmit,
     control,
     formState: { errors },
-    reset,
+    reset
   } = useForm({
-    defaultValues: {
-      phoneNumber: "",
-      note: "",
-    },
+    defaultValues: { phoneNumber: "", note: "" },
   });
 
   const { mutate, isLoading } = useApiMutation({
@@ -26,7 +26,7 @@ const InviteForm = ({ onClose, marketId, refetch }) => {
     onSuccess: () => {
       refetch();
       onClose();
-      toast.success("Foydalanuvchiga taklif yuborildi");
+      toast.success(t("inviteForm.successToast"));
       reset();
     },
     onError: (error) => {
@@ -34,50 +34,37 @@ const InviteForm = ({ onClose, marketId, refetch }) => {
     },
   });
 
-  const onSubmit = (data) => {
-    mutate({
-        ...data,
-        marketId
-    });
-  };
-  
+  const onSubmit = (data) => mutate({ ...data, marketId });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       
       <div>
-        <label className="font-medium block mb-1">*Foydalanuvchi raqami</label>
+        <label className="font-medium block mb-1">{t("inviteForm.phoneLabel")}</label>
         <Controller
           name="phoneNumber"
           control={control}
           rules={{
-            required: "Telefon raqamni kiriting",
+            required: t("inviteForm.phoneRequired"),
             pattern: {
               value: /^\+?\d{9,15}$/,
-              message: "To‘g‘ri telefon raqam kiriting (masalan: +998901234567)",
+              message: t("inviteForm.phonePattern"),
             },
           }}
-          render={({ field }) => (
-            <Input {...field} placeholder="+998..." />
-          )}
+          render={({ field }) => <Input {...field} placeholder="+998..." />}
         />
         {errors.phoneNumber && (
           <p className="text-red-500 text-sm mt-1">{errors.phoneNumber.message}</p>
         )}
       </div>
 
-      {/* Izoh */}
       <div>
-        <label className="font-medium block mb-1">Taklifingiz izohi (majburiy emas)</label>
+        <label className="font-medium block mb-1">{t("inviteForm.noteLabel")}</label>
         <Controller
           name="note"
           control={control}
-          rules={{
-            maxLength: { value: 300, message: "Izoh 300 belgidan oshmasin" },
-          }}
-          render={({ field }) => (
-            <TextArea {...field} rows={3} placeholder="Izoh yozing..." />
-          )}
+          rules={{ maxLength: { value: 300, message: t("inviteForm.noteMaxLength") } }}
+          render={({ field }) => <TextArea {...field} rows={3} placeholder="Izoh yozing..." />}
         />
         {errors.note && (
           <p className="text-red-500 text-sm mt-1">{errors.note.message}</p>
@@ -89,7 +76,7 @@ const InviteForm = ({ onClose, marketId, refetch }) => {
         className="mt-3 rounded-[14px] py-[12px] text-[17px] font-[500]"
         disabled={isLoading}
       >
-        Taklifni jo'natish
+        {t("inviteForm.submitButton")}
       </PrimaryButton>
     </form>
   );

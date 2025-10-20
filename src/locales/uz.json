@@ -339,7 +339,29 @@
       "success": "Taklif yoki izoh yuborildi",
       "error": "Xatolik yuz berdi"
     }
-  }
+  },
 
+
+  "masulotlar": "Mahsulotlar",
+  "Yangibozorlik":"Yangi bozorlik",
+    "inviteForm": {
+    "phoneLabel": "*Foydalanuvchi raqami",
+    "phoneRequired": "Telefon raqamni kiriting",
+    "phonePattern": "To‘g‘ri telefon raqam kiriting (masalan: +998901234567)",
+    "noteLabel": "Taklifingiz izohi (majburiy emas)",
+    "noteMaxLength": "Izoh 300 belgidan oshmasin",
+    "submitButton": "Taklifni jo'natish",
+    "successToast": "Foydalanuvchiga taklif yuborildi"
+  },
+   "topActions": {
+    "filterToBuy": "Olinishi kerak",
+    "filterBought": "Sotib olingan",
+    "share": "Bozorlikni ulashish",
+    "manualAdd": "Qo'lda qo'shish",
+    "endShopping": "Bozorlikni yakunlash",
+    "ariaNewProduct": "Yangi mahsulot"
+  },
+  "ochirish":"O'chirish",
+  "sotib_olindi":"Sotib olish"
 
 }

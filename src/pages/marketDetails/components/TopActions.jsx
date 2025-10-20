@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { FiUserPlus } from "react-icons/fi";
-import CustomButton from "../../../components/CustomButton";
 import { LuPlus } from "react-icons/lu";
+import CustomButton from "../../../components/CustomButton";
+import { useTranslation } from "react-i18next";
 
 const TopActions = ({ handleOpen, setBuying, total, bought }) => {
-  const [filter, setFilter] = useState("Olinishi kerak");
-  const options = ["Olinishi kerak", "Sotib olingan"];
+  const { t } = useTranslation();
+  const [filter, setFilter] = useState(t("topActions.filterToBuy"));
+  const options = [t("topActions.filterToBuy"), t("topActions.filterBought")];
 
   useEffect(() => {
-    if (filter == "Olinishi kerak") {
+    if (filter === t("topActions.filterToBuy")) {
       setBuying(false);
     } else {
       setBuying(true);
     }
-  }, [filter]);
+  }, [filter, t, setBuying]);
 
   return (
     <div className="flex flex-wrap gap-3 items-center justify-end">
+      {/* Filter toggle */}
       <div className="relative bg-white shadow-sm rounded-[15px] overflow-hidden flex items-center p-1 w-[320px] h-[42px]">
-        {/* Harakatlanuvchi fon */}
         <div
           className={`absolute top-1/2 -translate-y-1/2 h-[34px] w-[50%] rounded-[14px] bg-[#06B2B6] transition-all duration-300 ease-in-out ${
-            filter === "Olinishi kerak" ? "left-1" : "left-[calc(48%)]"
+            filter === t("topActions.filterToBuy") ? "left-1" : "left-[calc(48%)]"
           }`}
         ></div>
 
@@ -37,31 +39,38 @@ const TopActions = ({ handleOpen, setBuying, total, bought }) => {
           </button>
         ))}
       </div>
-      <div  className="flex gap-[16px]">
-        <CustomButton onClick={() => handleOpen("share")} className="py-[8px] px-[20px] text-[14px]">
-          <span>Bozorlikni ulashish</span>
+
+      {/* Buttons */}
+      <div className="flex gap-[16px]">
+        {/* Bozorlikni ulashish */}
+        <CustomButton
+          onClick={() => handleOpen("share")}
+          className="py-[8px] px-[20px] text-[14px] flex items-center justify-center gap-2"
+        >
           <FiUserPlus className="text-[14px]" />
+          <span className="hidden sm:inline">{t("topActions.share")}</span>
         </CustomButton>
 
+        {/* Qo'lda qo'shish */}
         <CustomButton
           onClick={() => handleOpen("add")}
-          className="py-[8px] px-[20px] text-[14px]"
-          aria-label="Yangi mahsulot"
+          className="py-[8px] px-[20px] text-[14px] flex items-center justify-center gap-2"
+          aria-label={t("topActions.ariaNewProduct")}
         >
-          <span>Qo'lda qo'shish</span>
           <span className="bg-white w-[20px] h-[20px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
-            <LuPlus className="text-[14px]" />
+            <LuPlus className="text-[20px]" />
           </span>
+          <span className="hidden sm:inline">{t("topActions.manualAdd")}</span>
         </CustomButton>
 
-        {total == bought && (
+        {/* Bozorlikni yakunlash */}
+        {total === bought && (
           <CustomButton
             onClick={() => handleOpen("end")}
             className="py-[8px] px-[20px] text-[14px]"
-            aria-label="Yangi mahsulot"
+            aria-label={t("topActions.ariaNewProduct")}
           >
-            <span>Bozorlikni yakunlash</span>
-            
+            <span>{t("topActions.endShopping")}</span>
           </CustomButton>
         )}
       </div>

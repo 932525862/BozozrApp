@@ -1,6 +1,5 @@
 import React from "react";
 import BrendsCard from "./components/BrendsCard";
-import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { useShoppingStore } from "../../store/shoppingStore";

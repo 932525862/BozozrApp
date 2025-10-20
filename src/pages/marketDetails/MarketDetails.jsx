@@ -24,7 +24,7 @@ const MarketDetails = () => {
   const [buying, setBuying] = useState(false);
 
   const location = useLocation();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const language = i18n?.language;
   const marketId = location.state?.id;
 
@@ -153,18 +153,20 @@ const MarketDetails = () => {
 
       {/* 📦 Mahsulotlar ro‘yxati */}
       {data?.marketLists?.length > 0 ? (
+        
         <div className="p-6 w-full">
-          <div className="flex justify-between w-full mb-[32px]">
-            <h2 className="text-xl font-semibold mb-4">Mahsulotlar</h2>
-            <TopActions
-              handleOpen={handleOpen}
-              setBuying={setBuying}
-              total={data?.marketLists?.length}
-              bought={buyingCount}
-            />
-          </div>
+          <h2 className="text-xl font-semibold mb-4">{t("masulotlar")}</h2>
+            <div className="flex justify-between w-full mb-[32px]">
+              
+              <TopActions
+                handleOpen={handleOpen}
+                setBuying={setBuying}
+                total={data?.marketLists?.length}
+                bought={buyingCount}
+              />
+            </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <ShoppingSummary
               total={data?.marketLists?.length}
               bought={buyingCount}
