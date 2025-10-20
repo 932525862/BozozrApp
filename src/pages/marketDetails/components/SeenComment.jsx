@@ -8,12 +8,8 @@ const { TextArea } = Input;
 const SeenComment = ({ product, onClose }) => {
     // console.log(selectProduct);
     const { t } = useTranslation();
-    console.log(product);
-    
   return (
     <div className="">
-      
-
       <TextArea
         value={product?.description ?? ""}
         readOnly

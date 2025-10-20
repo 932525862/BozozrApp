@@ -12,11 +12,11 @@ import { toast } from "react-toastify";
 const NotificationsPage = () => {
   const [activeTab, setActiveTab] = useState("barchasi");
   const { i18n } = useTranslation();
-  const [not, setNot] = useState(null);
+  const [notId, setNotId] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const handleOpen = (not) => {
-    setNot(not);
+  const handleOpen = (notId) => {
+    setNotId(notId);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -94,7 +94,7 @@ const NotificationsPage = () => {
         <div className="flex flex-col gap-3 w-[90%] max-w-[550px]">
           {data?.items?.map((item) => (
             <div
-              onClick={() => handleOpen(item)}
+              onClick={() => handleOpen(item?.id)}
               key={item.id}
               className={`w-full h-[64px] cursor-pointer bg-white rounded-[12px] px-[4%] py-2 border-2 flex flex-col justify-center relative transition-all duration-300 hover:border-[#06B2B6] ${
                 item?.isRead ? "border-transparent" : "border border-[#06B2B6]"
@@ -122,7 +122,7 @@ const NotificationsPage = () => {
         onCancel={handleClose}
         width={391}
       >
-        <MessagesForm not={not} refetch={refetch} onClose={handleClose}/>
+        <MessagesForm notId={notId} refetch={refetch} onClose={handleClose}/>
       </CustomModal>
     </div>
   );

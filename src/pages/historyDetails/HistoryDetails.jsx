@@ -57,7 +57,7 @@ const HistoryDetails = () => {
   }
 
   return (
-    <div className="p-6 w-full">
+    <div className=" w-full">
       <div className="bg-white rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb
           items={[{ label: "Tarix", to: "/histories" }, { label: data?.name }]}

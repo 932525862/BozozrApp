@@ -21,6 +21,7 @@ import { useStore } from "./store/userStore";
 import { useEffect } from "react";
 import MarketDetails from "./pages/marketDetails/MarketDetails";
 import HistoryDetails from "./pages/historyDetails/HistoryDetails";
+import NotificationDetails from "./pages/notificationDetails/NotificationDetails";
 function App() {
   const navigate = useNavigate();
   const { accessToken } = useStore();
@@ -67,6 +68,7 @@ function App() {
           <Route path="histories" element={<HistoryPage />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="notification/:notMarketName" element={<NotificationDetails />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

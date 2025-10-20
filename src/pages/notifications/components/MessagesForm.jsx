@@ -7,16 +7,18 @@ import { useTranslation } from "react-i18next";
 import useApiMutation from "../../../hooks/useMutation";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../../store/userStore";
 
 const { TextArea } = Input;
 
-const MessagesForm = ({ not, refetch, onClose }) => {
+const MessagesForm = ({ notId, refetch, onClose }) => {
     const {i18n} = useTranslation()
   const { data } = useFetchOne({
-    key: [`notification/${not?.id}`],
-    url: `notification/${not?.id}`,
+    key: [`notification/${notId}`],
+    url: `notification/${notId}`,
   });
   const navigate = useNavigate()
+  const {setNotMarket} = useStore()
 
   const { mutate, isLoading } = useApiMutation({
     url: `/market/respond/to-invite`,
@@ -34,29 +36,35 @@ const MessagesForm = ({ not, refetch, onClose }) => {
   });
 
   const respondShare = () => {
-    const data = {
-        marketId: not?.market?.id,
+    const data1 = {
+        marketId: data?.market?.id,
         accept: true
     }
-    mutate(data);
+    mutate(data1);
   };
+  
 
   useEffect(() => {
     refetch();
   }, []);
 
+  const watchNotMarket = () => {
+    setNotMarket(data?.market)
+    navigate(`/notification/${data?.market?.name}`)
+  }
+
   return (
     <div>
       <div className="text-[#4B4B4B] text-[12px]">
-        {formatDateNot(not?.createdAt)}
+        {formatDateNot(data?.createdAt)}
       </div>
 
       <p className="font-[600] text-[20px] text-[#1E1E1E]">
-        {not?.market ? <span>{not?.sender?.phoneNumber} ({not?.sender?.fullName}) foydalanuvchi sizga
-        bozorlik ulashdi</span> : <span>{getLangValue(not, "title", i18n?.language)}</span>}
+        {data?.market ? <span>{data?.sender?.phoneNumber} ({data?.sender?.fullName}) foydalanuvchi sizga
+        bozorlik ulashdi</span> : <span>{getLangValue(data, "title", i18n?.language)}</span>}
       </p>
       <TextArea
-        value={not?.note || getLangValue(not, "message", i18n?.language)}
+        value={data?.note || getLangValue(data, "message", i18n?.language)}
         readOnly
         placeholder="Izoh mavjud emas"
         rows={4}
@@ -64,10 +72,10 @@ const MessagesForm = ({ not, refetch, onClose }) => {
           resize: "none",
         }}
       />
-      {not?.market && (
+      {data?.market && (
         <div>
           <PrimaryButton
-            //   onClick={() => onClose()}
+              onClick={() => watchNotMarket()}
             className="py-[12px] w-full mt-[12px] rounded-[14px] bg-[#EFEFEF] hover:bg-[#e2e2e2] !text-[#1E1E1E] font-[500] text-[16px]"
           >
             Ko'rib chiqish
