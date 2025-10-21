@@ -14,7 +14,7 @@ const BrendsCard = ({brend}) => {
         </div>
         <div className='flex flex-col mt-[8px]'>
             <span className='font-[600]'>{typeTitle}</span>
-            <span className='text-[#06B2B6] text-[14px] font-[500]'>{t("Maxsulotlar")}</span>
+            <span className='text-[#06B2B6] text-[14px] font-[500]'>{t("masulotlar")}</span>
         </div>
     </div>
   )
