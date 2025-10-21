@@ -17,8 +17,6 @@ const HeroSlider = () => {
       key: [`bunner/all`, ],
       url: `/bunner/all`,
     });
-    console.log(data);
-    
 
   return (
     <div className="">

@@ -101,7 +101,7 @@ const ProductCard = ({ product, setSelectProduct, handleOpen }) => {
         {/* O‘rta qism — matn */}
         <div className="flex-1 text-[14px] text-[#1E1E1E] truncate">
           <span className="font-[600] text-[#06B2B6]">
-            {product.quantity} {t("dona")}
+            {product?.quantity} {getLangValue(product?.unit, "name", i18n.language)}
           </span>{" "}
           ×{" "}
           <span className="truncate font-[500]">

@@ -70,7 +70,6 @@ const CheckMarket = (shoppingHistory, onClose) => {
           pdf.save("market-check.pdf");
           onClose()
         } catch (err) {
-          console.error(err);
           toast.error(t("error_generate_file"));
         }
       };

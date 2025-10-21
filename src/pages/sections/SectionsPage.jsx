@@ -36,7 +36,7 @@ const SectionsPage = () => {
     url: `/market-type`,
   });
 
-  const { data: marketData, refetch, isLoading: marketLoading } = useFetchOne({
+  const { data: marketData, refetch} = useFetchOne({
     key: ["market", sectionId],
     url: "/market",
     config: {
@@ -52,10 +52,8 @@ const SectionsPage = () => {
     url: "/history/statistics",
     
   });
-  console.log(statistics);
   
-
-  const { data: historyData, isLoading: historyLoading } = useFetchOne({
+  const { data: historyData, } = useFetchOne({
     key: [`history`, sectionId],
     url: `/history`,
     config: {
