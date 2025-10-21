@@ -134,6 +134,7 @@ const MarketsSections = () => {
                   >
                     {item?.marketType?.titleUz?.charAt(0)}
                   </div>
+                  
                   <div>
                     <div className="font-[600]">
                       {getLangValue(item?.marketType, "title", i18n.language)}:{" "}

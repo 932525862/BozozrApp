@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 const HeroSlider = () => {
-  const {i18n} = useTranslation()
+  const {t,i18n} = useTranslation()
 
   const { data } = useFetchOne({
       key: [`bunner/all`, ],
@@ -83,7 +83,7 @@ const HeroSlider = () => {
                     {getLangValue(slide, "name", i18n.language)}
                   </h1>
                   <a href={slide?.link} target='_blank' className={`bg-white cursor-pointer text-[#06B2B6] px-4 py-[6px] rounded-[8px]  font-semibold text-sm w-fit shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
-                    Batafsil
+                   {t("barafsil")}
                   </a>
                 </div>
               </div>

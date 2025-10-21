@@ -367,5 +367,37 @@
   "sotib_olindi1": "Жами харажатлар",
   "sotib_olindi3": "Ойлик бозорликлар сони",
   "sotib_olindi4": "Ойлик харажатлар",
-  "ss": "Ўтган ойга нисбати"
+  "ss": "Ўтган ойга нисбати",
+
+   "barafsil": "Батафсил",
+  "messagesForm": {
+    "noNote": "Изоҳ мавжуд эмас",
+    "sharedByUser": "{{phone}} ({{name}}) фойдаланувчи сизга бозорлик улашди",
+    "review": "Кўриб чиқиш",
+    "reject": "Рад этиш",
+    "accept": "Қабул қилиш",
+    "acceptedSuccess": "Бозорликни қабул қилдингиз",
+    "acceptedError": "Хатолик юз берди",
+    "sharedMarketTitle": "Бозорлик улашуви"
+  },
+  "emptyMarketList": {
+    "imageAlt": "Бозор рўйхати бўш",
+    "title": "Маҳсулотлар йўқ...",
+    "description": "Маҳсулотлар қўшинг ва рўйхатингизни шакллантиринг",
+    "subDescription": "Маҳсулот қўшишнинг 2 тури мавжуд: қўлда ва брендлардан танлаб қўшиш",
+    "manualAdd": "Қўлда қўшиш",
+    "brandAdd": "Бренд"
+  },
+  "checkMarket": {
+    "errorGenerateFile": "Файлни яратишда хатолик юз берди",
+    "marketName": "Бозор номи",
+    "productCount": "Маҳсулотлар сони",
+    "totalAmount": "Жами сумма",
+    "marketLocation": "Бозор жойлашуви",
+    "date": "Сана",
+    "currency": "сўм",
+    "itemsCountSuffix": "та",
+    "downloadButton": "Чекни юклаб олиш (PDF)",
+    "productPlaceholder": "Маҳсулот"
+  }
 }

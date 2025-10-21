@@ -366,5 +366,37 @@
   "sotib_olindi1": "Общие расходы",
   "sotib_olindi3": "Количество покупок за месяц",
   "sotib_olindi4": "Месячные расходы",
-  "ss": "По сравнению с прошлым месяцем"
+  "ss": "По сравнению с прошлым месяцем",
+
+    "barafsil": "Подробнее",
+  "messagesForm": {
+    "noNote": "Комментарий отсутствует",
+    "sharedByUser": "Пользователь {{phone}} ({{name}}) поделился с вами списком покупок",
+    "review": "Просмотреть",
+    "reject": "Отклонить",
+    "accept": "Принять",
+    "acceptedSuccess": "Вы приняли список покупок",
+    "acceptedError": "Произошла ошибка",
+    "sharedMarketTitle": "Совместные покупки"
+  },
+  "emptyMarketList": {
+    "imageAlt": "Список покупок пуст",
+    "title": "Нет товаров...",
+    "description": "Добавьте товары и сформируйте свой список покупок",
+    "subDescription": "Существует 2 способа добавления товаров: вручную и из брендов",
+    "manualAdd": "Добавить вручную",
+    "brandAdd": "Бренд"
+  },
+  "checkMarket": {
+    "errorGenerateFile": "Произошла ошибка при создании файла",
+    "marketName": "Название рынка",
+    "productCount": "Количество товаров",
+    "totalAmount": "Общая сумма",
+    "marketLocation": "Местоположение рынка",
+    "date": "Дата",
+    "currency": "сум",
+    "itemsCountSuffix": "шт.",
+    "downloadButton": "Скачать чек (PDF)",
+    "productPlaceholder": "Товар"
+  }
 }

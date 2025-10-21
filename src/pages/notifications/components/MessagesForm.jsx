@@ -12,46 +12,48 @@ import { useStore } from "../../../store/userStore";
 const { TextArea } = Input;
 
 const MessagesForm = ({ notId, refetch, onClose }) => {
-    const {i18n} = useTranslation()
+  const { t, i18n } = useTranslation();
   const { data } = useFetchOne({
     key: [`notification/${notId}`],
     url: `notification/${notId}`,
   });
-  const navigate = useNavigate()
-  const {setNotMarket} = useStore()
+
+  const navigate = useNavigate();
+  const { setNotMarket } = useStore();
 
   const { mutate, isLoading } = useApiMutation({
     url: `/market/respond/to-invite`,
     method: "PATCH",
     onSuccess: () => {
-        navigate(`/market/${not?.market?.name}`, {
-            state: { id: not?.market?.id },
-          });
-      toast.success("Bozorlikni qabul qildingiz");
+      navigate(`/market/${data?.market?.name}`, {
+        state: { id: data?.market?.id },
+      });
+      toast.success(t("messagesForm.acceptedSuccess"));
       onClose();
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      toast.error(
+        error.response?.data?.message || t("messagesForm.acceptedError")
+      );
     },
   });
 
   const respondShare = () => {
     const data1 = {
-        marketId: data?.market?.id,
-        accept: true
-    }
+      marketId: data?.market?.id,
+      accept: true,
+    };
     mutate(data1);
   };
-  
 
   useEffect(() => {
     refetch();
   }, []);
 
   const watchNotMarket = () => {
-    setNotMarket(data?.market)
-    navigate(`/notification/${data?.market?.name}`)
-  }
+    setNotMarket(data?.market);
+    navigate(`/notification/${data?.market?.name}`);
+  };
 
   return (
     <div>
@@ -60,32 +62,48 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
       </div>
 
       <p className="font-[600] text-[20px] text-[#1E1E1E]">
-        {data?.market ? <span>{data?.sender?.phoneNumber} ({data?.sender?.fullName}) foydalanuvchi sizga
-        bozorlik ulashdi</span> : <span>{getLangValue(data, "title", i18n?.language)}</span>}
+        {data?.market ? (
+          <span>
+            {t("messagesForm.sharedByUser", {
+              phone: data?.sender?.phoneNumber,
+              name: data?.sender?.fullName,
+            })}
+          </span>
+        ) : (
+          <span>{getLangValue(data, "title", i18n?.language)}</span>
+        )}
       </p>
+
       <TextArea
         value={data?.note || getLangValue(data, "message", i18n?.language)}
         readOnly
-        placeholder="Izoh mavjud emas"
+        placeholder={t("messagesForm.noNote")}
         rows={4}
         style={{
           resize: "none",
         }}
       />
+
       {data?.market && (
         <div>
           <PrimaryButton
-              onClick={() => watchNotMarket()}
+            onClick={() => watchNotMarket()}
             className="py-[12px] w-full mt-[12px] rounded-[14px] bg-[#EFEFEF] hover:bg-[#e2e2e2] !text-[#1E1E1E] font-[500] text-[16px]"
           >
-            Ko'rib chiqish
+            {t("messagesForm.review")}
           </PrimaryButton>
+
           <div className="flex gap-[12px] mt-[12px]">
             <PrimaryButton className="py-[12px] rounded-[14px] bg-[#D32F2F] hover:bg-[#d32f2fbd] font-[500] text-[16px] w-full">
-              Rad etish
+              {t("messagesForm.reject")}
             </PrimaryButton>
-            <PrimaryButton disabled={isLoading} onClick={() => respondShare()} className=" rounded-[14px] py-[12px]  font-[500] text-[16px] w-full">
-              Qabul qilish
+
+            <PrimaryButton
+              disabled={isLoading}
+              onClick={() => respondShare()}
+              className="rounded-[14px] py-[12px] font-[500] text-[16px] w-full"
+            >
+              {t("messagesForm.accept")}
             </PrimaryButton>
           </div>
         </div>

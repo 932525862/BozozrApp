@@ -366,5 +366,37 @@
   "sotib_olindi1": "Total expenses",
   "sotib_olindi3": "Monthly shopping lists",
   "sotib_olindi4": "Monthly expenses",
-  "ss": "Compared to last month"
+  "ss": "Compared to last month",
+
+   "barafsil": "Details",
+  "messagesForm": {
+    "noNote": "No comment available",
+    "sharedByUser": "User {{phone}} ({{name}}) has shared a shopping list with you",
+    "review": "View",
+    "reject": "Reject",
+    "accept": "Accept",
+    "acceptedSuccess": "You have accepted the shopping list",
+    "acceptedError": "An error occurred",
+    "sharedMarketTitle": "Shared Shopping List"
+  },
+  "emptyMarketList": {
+    "imageAlt": "Shopping list is empty",
+    "title": "No products...",
+    "description": "Add products and create your shopping list",
+    "subDescription": "There are two ways to add products: manually or from brands",
+    "manualAdd": "Add manually",
+    "brandAdd": "Brand"
+  },
+  "checkMarket": {
+    "errorGenerateFile": "An error occurred while generating the file",
+    "marketName": "Market name",
+    "productCount": "Number of products",
+    "totalAmount": "Total amount",
+    "marketLocation": "Market location",
+    "date": "Date",
+    "currency": "UZS",
+    "itemsCountSuffix": "pcs",
+    "downloadButton": "Download receipt (PDF)",
+    "productPlaceholder": "Product"
+  }
 }

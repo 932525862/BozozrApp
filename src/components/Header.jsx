@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import LanguageSelect from './LanguageSelect';
 import ProfilSelect from './ProfilSelect';
+import Notification from "./../assets/icons/notification-bing.svg";
 
 const Header = () => {
   return (
-    <header className="w-full border-b py-[10px] sm:py-[25px] fixed md:static px-[15px]  bg-[#ffffff] z-[999] border-[#E0E0E0]">
+    <header className="w-full border-b py-[10px] sm:py-[25px] fixed md:static px-[15px] bg-[#ffffff] z-[999] border-[#E0E0E0]">
       <div className="container flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="w-[100px] sm:w-[147px] flex justify-center h-[35px] sm:h-[46px]">
@@ -27,8 +28,21 @@ const Header = () => {
             <ProfilSelect />
           </div>
 
-          {/* Mobil ekranda faqat LanguageSelect ko‘rinadi */}
-          <div className="block md:hidden">
+          {/* Mobil ekranda Notification + LanguageSelect ko‘rinadi */}
+          <div className="flex items-center gap-[16px] md:hidden">
+            {/* Notification button (mobil formatda) */}
+            <Link
+              to="/notifications"
+              className="flex items-center justify-center w-[35px] h-[35px] rounded-full hover:bg-[#06b2b6] transition"
+            >
+              <img
+                src={Notification}
+                alt="Notification"
+                className="w-[30px] h-[30px]"
+              />
+            </Link>
+
+            {/* LanguageSelect */}
             <LanguageSelect />
           </div>
         </div>

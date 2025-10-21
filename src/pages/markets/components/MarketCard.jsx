@@ -84,63 +84,118 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
   );
 
   return (
-    <div
-      onClick={handleNavigate}
-      className=" bg-white rounded-[16px]  p-[12px] flex flex-col justify-between relative cursor-pointer"
-    >
+  <div
+    onClick={handleNavigate}
+    className="bg-white rounded-[16px] p-[12px] flex flex-col justify-between relative cursor-pointer"
+  >
+    {/* 🔹 DESKTOP versiya faqat katta ekranlarda ko‘rinadi */}
+    <div className=" flex-col justify-between">
       {/* Three dots icon */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="absolute top-3 right-3 text-[#4B4B4B] cursor-pointer"
       >
-        <Popover placement="bottomLeft" content={content} trigger="click"  open={popoverOpen} // 🔹 controlled holat
-          onOpenChange={(open) => setPopoverOpen(open)}>
+        <Popover
+          placement="bottomLeft"
+          content={content}
+          trigger="click"
+          open={popoverOpen}
+          onOpenChange={(open) => setPopoverOpen(open)}
+        >
           <BsThreeDotsVertical size={18} />
         </Popover>
       </div>
 
       {/* Badge with letter */}
-      <div className="flex flex-col items-center">
+      <div className=" hidden md:flex flex-col items-center">
         <div
-          className="w-[102px] h-[102px] flex justify-center items-center font-[600] text-[40px]"
+          className="w-[102px] hidden md:flex h-[102px] justify-center items-center font-[600] text-[40px]"
           style={{
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            backgroundSize: "contain", // fon contentga mos ravishda
+            backgroundSize: "contain",
             backgroundImage: `url(${bgStar})`,
           }}
         >
           {typeTitle?.charAt(0)}
         </div>
       </div>
+
       <div>
-        <h4 className="mt-3 text-[18px] font-semibold text-gray-800">
+        <h4 className="mt-3 hidden md:flex text-[18px] font-semibold text-gray-800">
           {typeTitle}
         </h4>
-        <p className="text-[#00AEEF] text-[16px] font-medium">
+        <p className="text-[#00AEEF] hidden md:flex text-[16px] font-medium">
           #{market?.name}
         </p>
       </div>
 
       {/* Bottom icons */}
-      <div className="flex gap-[10px] items-center mt-[10px] truncate">
+      <div className=" gap-[10px] hidden md:flex items-center mt-[10px] truncate">
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
           <img src={ticketImg} alt={t("marketCard.receiptAlt")} />
           <span>{market?.marketLists?.length || "0"}</span>
         </div>
-        <div className="w-[2px] h-[18px] bg-[#4B4B4B] "></div>
+        <div className="w-[2px] h-[18px] bg-[#4B4B4B]" />
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
           <img src={moneyImg} alt={t("marketCard.moneyAlt")} />
           <span>{calculateAllProducts(market?.marketLists)}</span>
         </div>
-        <div className="w-[2px] h-[18px] bg-[#4B4B4B]"></div>
+        <div className="w-[2px] h-[18px] bg-[#4B4B4B]" />
         <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
           <img src={calendarImg} alt={t("marketCard.calendarAlt")} />
           <span className="truncate">{formatDateDot(market?.createdAt)}</span>
         </div>
       </div>
     </div>
-  );
+
+    {/* 🔹 MOBIL versiya faqat kichik ekranlarda ko‘rinadi */}
+    <div
+      onClick={handleNavigate}
+      className="cursor-pointer md:hidden max-w-[350px] bg-[#ffffff] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
+    >
+      
+
+      <div
+        className="w-[52px] h-[52px] flex justify-center items-center font-[600] text-[22px]"
+        style={{
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right center",
+          backgroundImage: `url(${bgStar})`,
+        }}
+      >
+        {typeTitle?.charAt(0)}
+      </div>
+
+      <div>
+        <div className="flex items-center gap-2 font-[600]">
+          <h4 className="text-[16px] font-semibold text-gray-800">
+            {typeTitle}
+          </h4>
+          <span className="font-[500] text-[14px] text-[#06B2B6]">
+            #{market?.name}
+          </span>
+        </div>
+        <div className="flex gap-[10px] items-center">
+          <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
+            <img src={ticketImg} alt={t("markets.item.imageAlt")} />
+            <span>{market?.marketLists?.length || "0"}</span>
+          </div>
+          <div className="w-[2px] h-[18px] bg-[#4B4B4B]" />
+          <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
+            <img src={moneyImg} alt={t("markets.item.imageAlt")} />
+            <span>{calculateAllProducts(market?.marketLists)}</span>
+          </div>
+          <div className="w-[2px] h-[18px] bg-[#4B4B4B]" />
+          <div className="text-[14px] text-[#4B4B4B] flex gap-1 items-center font-[500]">
+            <img src={calendarImg} alt={t("markets.item.imageAlt")} />
+            <span>{formatDateDot(market?.createdAt)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default MarketCard;

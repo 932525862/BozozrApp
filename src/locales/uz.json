@@ -367,6 +367,38 @@
  "sotib_olindi1" : "Jami xarajatlar",
  "sotib_olindi3": "Oylik bozorliklar soni",
   "sotib_olindi4": "Oylik xarajatlar",
-  "ss": "O‘tgan oyga nisbati"
+  "ss": "O‘tgan oyga nisbati",
+
+  "barafsil": "Batafsil",
+   "messagesForm": {
+    "noNote": "Izoh mavjud emas",
+    "sharedByUser": "{{phone}} ({{name}}) foydalanuvchi sizga bozorlik ulashdi",
+    "review": "Ko'rib chiqish",
+    "reject": "Rad etish",
+    "accept": "Qabul qilish",
+    "acceptedSuccess": "Bozorlikni qabul qildingiz",
+    "acceptedError": "Xatolik yuz berdi",
+    "sharedMarketTitle": "Bozorlik ulashuvi"
+  },
+  "emptyMarketList": {
+    "imageAlt": "Bozor ro'yhati bo'sh",
+    "title": "Mahsulotlar yo'q...",
+    "description": "Mahsulotlar qo’shing va ro’yhatingizni shakllantiring",
+    "subDescription": "Mahsulot qo'shishning 2 turi mavjud: qo'lda va brendlardan tanlab qo'shish",
+    "manualAdd": "Qo'lda qo'shish",
+    "brandAdd": "Brend"
+  },
+    "checkMarket": {
+    "errorGenerateFile": "Faylni yaratishda xatolik yuz berdi",
+    "marketName": "Bozor nomi",
+    "productCount": "Mahsulotlar soni",
+    "totalAmount": "Jami summa",
+    "marketLocation": "Bozor joylashuvi",
+    "date": "Sana",
+    "currency": "so‘m",
+    "itemsCountSuffix": "ta",
+    "downloadButton": "Chekni yuklab olish (PDF)",
+    "productPlaceholder": "Mahsulot"
+  }
 
 }

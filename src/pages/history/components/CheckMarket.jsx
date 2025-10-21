@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 const CheckMarket = (shoppingHistory, onClose) => {
     const checkRef = useRef(null);
-    const {i18n} = useTranslation()
+    const {t,i18n} = useTranslation()
     
     const handleDownload = async () => {
         if (!checkRef.current) return;
@@ -131,7 +131,7 @@ const CheckMarket = (shoppingHistory, onClose) => {
                 marginBottom: "0.5rem",
               }}
             >
-              Bozor nomi: {shoppingHistory?.shoppingHistory.name}
+             {t("checkMarket.marketName")}: {shoppingHistory?.shoppingHistory.name}
             </p>
     
             {/* Mahsulotlar */}
@@ -193,7 +193,7 @@ const CheckMarket = (shoppingHistory, onClose) => {
                     </div>
                   </div>
                   <p>
-                    {list?.calculationType == "one" ? list.price * list.quantity : list.price} so‘m
+                    {list?.calculationType == "one" ? list.price * list.quantity : list.price} {t("checkMarket.currency")}
                   </p>
                 </div>
               ))}
@@ -209,8 +209,8 @@ const CheckMarket = (shoppingHistory, onClose) => {
                 fontWeight: "bold",
               }}
             >
-              <span>Mahsulotlar soni:</span>
-              <span>{shoppingHistory?.shoppingHistory?.marketLists?.length} ta</span>
+              <span>{t("checkMarket.productCount")}:</span>
+              <span>{shoppingHistory?.shoppingHistory?.marketLists?.length} {t("checkMarket.itemsCountSuffix")}</span>
             </div>
     
             <div
@@ -220,8 +220,8 @@ const CheckMarket = (shoppingHistory, onClose) => {
                 fontWeight: "bold",
               }}
             >
-              <span>Jami summa:</span>
-              <span>{calculateAllProducts(shoppingHistory?.shoppingHistory?.marketLists)} so‘m</span>
+              <span>{t("checkMarket.totalAmount")}:</span>
+              <span>{calculateAllProducts(shoppingHistory?.shoppingHistory?.marketLists)}{t("checkMarket.currency")}</span>
             </div>
     
             <div
@@ -231,7 +231,7 @@ const CheckMarket = (shoppingHistory, onClose) => {
                 fontWeight: "bold",
               }}
             >
-              <span>Bozor joylashuvi:</span>
+              <span>{t("checkMarket.marketLocation")}:</span>
               <span>{shoppingHistory?.shoppingHistory?.location}</span>
             </div>
     
@@ -242,7 +242,7 @@ const CheckMarket = (shoppingHistory, onClose) => {
                 fontWeight: "bold",
               }}
             >
-              <span>Sana:</span>
+              <span>{t("checkMarket.date")}:</span>
               <span>{formatDateDot(shoppingHistory?.shoppingHistory?.createdAt)}</span>
             </div>
           </div>
@@ -259,7 +259,7 @@ const CheckMarket = (shoppingHistory, onClose) => {
               cursor: "pointer",
             }}
           >
-            Chekni yuklab olish (PDF)
+            {t("checkMarket.downloadButton")}
           </button>
         </div>
       );
