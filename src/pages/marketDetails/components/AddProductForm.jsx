@@ -6,12 +6,13 @@ import { useFetch } from "../../../hooks/useFetch";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation";
 import { useTranslation } from "react-i18next";
+import { getLangValue } from "../../../utils/utils";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 const AddProductForm = ({ onClose, marketId, refetch }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const {
     handleSubmit,
@@ -79,7 +80,7 @@ const AddProductForm = ({ onClose, marketId, refetch }) => {
         <label className="font-medium block mb-1">
           {t("addReadyProductForm.quantityLabel")}
         </label>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Controller
             name="quantity"
             control={control}
@@ -105,7 +106,7 @@ const AddProductForm = ({ onClose, marketId, refetch }) => {
               >
                 {unitData?.items?.map((item) => (
                   <Option key={item?.id} value={item?.id}>
-                    {item?.nameUz || item?.nameEn}
+                    {getLangValue(item, "name", i18n.language)}
                   </Option>
                 ))}
               </Select>

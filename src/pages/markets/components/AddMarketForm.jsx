@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {getLangValue} from "../../../utils/utils"
 
 const { Option } = Select;
 
@@ -25,7 +26,7 @@ const AddMarketForm = ({onClose, refetch}) => {
   });
   const {user} = useStore()
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { mutate, isLoading } = useApiMutation({
     url: "/market",
@@ -103,7 +104,7 @@ const AddMarketForm = ({onClose, refetch}) => {
             >
               {data?.items?.map(item => (
                 <Option key={item?.id} value={item?.id}>
-                  {item?.titleUz}
+                 {getLangValue(item, "title", i18n.language)}
                 </Option>
               ))}
             </Select>

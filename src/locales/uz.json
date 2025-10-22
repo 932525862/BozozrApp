@@ -395,6 +395,55 @@
     "itemsCountSuffix": "ta",
     "downloadButton": "Chekni yuklab olish (PDF)",
     "productPlaceholder": "Mahsulot"
+  },
+  "home": {
+    "brade": {
+      "home": "Bosh sahifa",
+      "section": "Bo‘limlar"
+    },
+    "btns": {
+      "activeMarket": "Faol bozorliklar",
+      "endMarket": "Tugallangan bozorliklar"
+    }
+  },
+  "brends": {
+    "brade": {
+      "brendName": "Brendlar"
+    }
+  },
+  "modalType": {
+    "addProduct": "Mahsulot qo'shish",
+    "addMarket": "Yangi bozorlik",
+    "edit": "Tahrirlash",
+    "share": "Ulashish",
+    "delete": "O'chirish",
+    "activeUser": "Faol ishtirokchilar",
+    "you": "siz",
+    "invitebtn": "Taklif qilish",
+    "deleteUser": "Ishtirokchini o'chirish",
+    "deleteProduct": "Mahsulotni o'chirish",
+    "commentProduct": "Mahsulot izohi",
+    "buyProduct": "Sotib olish",
+    "endMarket": "Bozorlikni yakunlash",
+    "bradeMarket": "Bozorliklar",
+    "price": "narxi",
+    "priceText": "Mahsulotni qanchaga oldingiz?",
+    "pricePlaceholder": "Narxini kiriting",
+    "allPrice": "Jami narxi",
+    "tasdiqlash": "Tasdiqlash",
+    "buyProductToast": "Mahsulot sotib olindi.",
+    "deleteProductToast": "Mahsulot o'chirildi",
+  "deleteProductToastError": "Mahsulotni o'chirishda xatolik yuz berdi",
+  "deleteProductText": "{{product}} nomli mahsulotingizni o'chirmoqchimisiz?"
+  },
+  "history": {
+    "toast": {
+      "success": "Bozorlik takrorlandi",
+      "error": "Bozorlikni takrorlashda xatolik yuz berdi"
+    },
+    "repeatMarketText": "{{market}} nomli bozorlikni takrorlamoqchimisiz?",
+    "again": "Takrorlash",
+    "check": "Check",
+    "btn": "Takrorlash"
   }
-
 }

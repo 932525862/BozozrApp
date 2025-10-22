@@ -66,7 +66,7 @@
   },
   "account_exists": "Already have an account?",
   "login": "Login",
-  
+
   "modal": {
     "title": "Verification code",
     "resend": "Resend code",
@@ -103,7 +103,7 @@
     "invalidCode": "Invalid code"
   },
 
-    "markets": {
+  "markets": {
     "newMarket": "New Shopping List",
     "title": "Shopping Lists",
     "viewLinkAria": "Go to shopping lists page",
@@ -144,7 +144,7 @@
     "cancel": "Cancel",
     "success": "Shopping list deleted successfully",
     "error": "An error occurred while deleting the shopping list",
-      "title": "Delete User",
+    "title": "Delete User",
     "question": "Are you sure you want to delete the participant {{name}}?",
     "button": {
       "delete": "Delete",
@@ -192,11 +192,11 @@
     "logout": "Log Out",
     "deleteProfile": "Delete Profile",
     "edit": "Edit",
-  "delete": {
-    "text": "Are you sure you want to delete your profile?",
-    "btn": "Delete"
-  },
-  "back": "Cancel"
+    "delete": {
+      "text": "Are you sure you want to delete your profile?",
+      "btn": "Delete"
+    },
+    "back": "Cancel"
   },
   "notFound": {
     "code": "404",
@@ -218,8 +218,8 @@
     "success": "Product added to the shopping list",
     "error": "An error occurred",
     "nameLabel": "Product name",
-"namePlaceholder": "Enter product name",
-"nameRequired": "Please enter the product name"
+    "namePlaceholder": "Enter product name",
+    "nameRequired": "Please enter the product name"
   },
   "productCard": {
     "add": "Add",
@@ -234,8 +234,7 @@
     "notifications": "Notifications"
   },
 
-
-   "emptyHistory": {
+  "emptyHistory": {
     "title": "No shopping history...",
     "description": "Once you complete your active shopping lists, their history will appear in this section.",
     "imageAlt": "Empty shopping history",
@@ -329,7 +328,7 @@
   },
 
   "feedback": {
-    "title": "Send Feedback",                 
+    "title": "Send Feedback",
     "label": "Your suggestion or comment",
     "placeholder": "Enter your suggestion or comment...",
     "button": "Submit",
@@ -369,7 +368,7 @@
   "sotib_olindi4": "Monthly expenses",
   "ss": "Compared to last month",
 
-   "barafsil": "Details",
+  "barafsil": "Details",
   "messagesForm": {
     "noNote": "No comment available",
     "sharedByUser": "User {{phone}} ({{name}}) has shared a shopping list with you",
@@ -399,5 +398,55 @@
     "itemsCountSuffix": "pcs",
     "downloadButton": "Download receipt (PDF)",
     "productPlaceholder": "Product"
+  },
+  "home": {
+    "brade": {
+      "home": "Home",
+      "section": "Sections"
+    },
+    "btns": {
+      "activeMarket": "Active markets",
+      "endMarket": "Completed markets"
+    }
+  },
+  "brends": {
+    "brade": {
+      "brendName": "Brands"
+    }
+  },
+  "modalType": {
+    "addMarket": "New market",
+    "addProduct": "Add product",
+    "edit": "Edit",
+    "share": "Share",
+    "delete": "Delete",
+    "activeUser": "Active participants",
+    "you": "you",
+    "invitebtn": "Invite",
+    "deleteUser": "Remove participant",
+    "deleteProduct": "Delete product",
+    "commentProduct": "Product comment",
+    "buyProduct": "Buy product",
+    "endMarket": "Finish shopping",
+    "bradeMarket": "Markets",
+    "price": "price",
+    "priceText": "How much did you buy the product for?",
+    "pricePlaceholder": "Enter the price",
+    "allPrice": "Total price",
+    "tasdiqlash": "Confirm",
+    "buyProductToast": "Product has been purchased.",
+    "deleteProductToast": "Product deleted",
+    "deleteProductToastError": "An error occurred while deleting the product",
+    "deleteProductText": "Are you sure you want to delete your product named {{product}}?"
+  },
+  "history": {
+    "toast": {
+      "success": "Market repeated",
+      "error": "An error occurred while repeating the market"
+    },
+    "repeatMarketText": "Are you sure you want to repeat the market named {{market}}?",
+    "again": "Repeat",
+    "check": "Check",
+    "btn": "Repeat"
   }
 }

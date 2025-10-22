@@ -7,11 +7,14 @@ import { useFetch } from "../../hooks/useFetch";
 import { useShoppingStore } from "../../store/shoppingStore";
 import AddReadyProductForm from "./components/AddReadyProductForm";
 import Loding from "../../components/Loding";
+import { useTranslation } from "react-i18next";
+import { getLangValue } from "../../utils/utils";
 
 
 const ProductsPage = () => {
   const [selectProduct, setSelectProduct] = useState(null);
   const {brendId} = useShoppingStore()
+  const {i18n, t} = useTranslation()
 
   const [open, setOpen] = useState(false);
 
@@ -43,14 +46,14 @@ const ProductsPage = () => {
       <div className="bg-[#FFFFFF] rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb
           items={[
-            { label: "Brendlar", to: "/brends" },
+            { label: t("brends.brade.brendName"), to: "/brends" },
             {
-              label: brendId?.titleUz,
+              label: getLangValue(brendId, "title", i18n.language),
               to: `/brends/${brendId?.titleEn?.replace(/\s+/g, "-")}/subbrends`,
             },
             // faqat selectSub mavjud bo‘lsa uchinchi elementni qo‘shamiz
             ...(brend?.selectedSub
-              ? [{ label: brend?.selectedSub?.titleUz }]
+              ? [{ label: getLangValue(brend?.selectedSub, "title", i18n.language) }]
               : []),
           ]}
         />
@@ -65,7 +68,7 @@ const ProductsPage = () => {
       </div>
       <CustomModal
         open={open}
-        title="Mahsulot qo'shish"
+        title={t("modalType.addProduct")}
         onCancel={handleClose}
         width={391}
       >

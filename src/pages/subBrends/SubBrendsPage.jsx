@@ -5,8 +5,11 @@ import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import { useFetchOne } from "../../hooks/useFetchOne";
 import { useShoppingStore } from "../../store/shoppingStore";
 import Loding from "../../components/Loding";
+import { useTranslation } from "react-i18next";
+import { getLangValue } from "../../utils/utils";
 
 const SubBrendsPage = () => {
+  const {t, i18n} = useTranslation()
   const { state: brend } = useLocation();
   const navigate = useNavigate();
   const {brendId} = useShoppingStore()
@@ -29,14 +32,12 @@ const SubBrendsPage = () => {
     );
   }
 
-
-
   return (
     <div>
       <div className="bg-[#FFFFFF] rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb items={[
-        { label: "Brendlar", to: "/brends" },
-        { label: data?.titleUz },
+        { label: t("brends.brade.brendName"), to: "/brends" },
+        { label: getLangValue(data, "title", i18n.language) },
       ]}/>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[12px]">

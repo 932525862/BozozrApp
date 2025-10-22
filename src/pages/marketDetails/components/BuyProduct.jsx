@@ -11,7 +11,7 @@ import { getLangValue } from "../../../utils/utils";
 const { Option } = Select;
 
 const BuyProduct = ({ onClose, product, refetch }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const {
     handleSubmit,
@@ -31,7 +31,7 @@ const BuyProduct = ({ onClose, product, refetch }) => {
     onSuccess: () => {
       refetch()
       onClose();
-      toast.success("Mahsulot sotib olindi.");
+      toast.success(t("modalType.buyProductToast"));
       reset();
     },
     onError: (error) => {
@@ -61,19 +61,19 @@ const BuyProduct = ({ onClose, product, refetch }) => {
       {/* Narx inputi */}
       <div>
         <label className="font-medium block mb-1">
-          Mahsulotni qanchaga oldingiz?
+          {t("modalType.priceText")}
         </label>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Controller
             name="price"
             control={control}
             rules={{
-              required: "Narxni kiriting",
+              required: t("modalType.pricePlaceholder"),
             }}
             render={({ field }) => (
               <Input
                 {...field}
-                placeholder="Narxini kiriting"
+                placeholder={t("modalType.pricePlaceholder")}
                 className="rounded-r-none"
               />
             )}
@@ -91,9 +91,9 @@ const BuyProduct = ({ onClose, product, refetch }) => {
                 defaultValue="one"
               >
                 <Option value="one">
-                  1 {getLangValue(product?.unit, "name", i18n.language)} narxi
+                  1 {getLangValue(product?.unit, "name", i18n.language)} {t("modalType.price")}
                 </Option>
-                <Option value="all">Jami narxi</Option>
+                <Option value="all">{t("modalType.allPrice")}</Option>
               </Select>
             )}
           />
@@ -110,7 +110,7 @@ const BuyProduct = ({ onClose, product, refetch }) => {
         className="mt-3 rounded-[14px] py-[12px] text-[17px] font-[500]"
         disabled={isLoading}
       >
-        Tasdiqlash
+        {t("modalType.tasdiqlash")}
       </PrimaryButton>
     </form>
   );

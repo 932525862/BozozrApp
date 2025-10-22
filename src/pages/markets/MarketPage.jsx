@@ -61,7 +61,7 @@ const MarketPage = () => {
       )}
       <CustomModal
         open={open}
-        title={modalType == "add" ? "Yangi bozorlik" : modalType == "edit" ? "Tahrirlash" : modalType == "delet" ? "O'chirish" : "Ulashish" }
+        title={modalType == "add" ? t("modalType.addMarket") : modalType == "edit" ? t("modalType.edit") : modalType == "delet" ? t("modalType.delete") : t("modalType.share") }
         onCancel={handleClose}
         width={modalType == "share" ? 400 : 351}
       >

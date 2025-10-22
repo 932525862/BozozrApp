@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation";
 import { useFetchOne } from "../../../hooks/useFetchOne";
 import { useTranslation } from "react-i18next";
-
+import { getLangValue } from "../../../utils/utils"
 const { Option } = Select;
 
 const AddReadyProductForm = ({ onClose, product }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const {
     handleSubmit,
@@ -73,7 +73,8 @@ const AddReadyProductForm = ({ onClose, product }) => {
           />
         </div>
         <div className="text-[#1E1E1E] font-[600] text-[18px]">
-          {product?.titleUz || product?.titleEn}, {product?.descriptionUz || product?.descriptionEn}
+
+          {getLangValue(product, "title", i18n.language)}, {getLangValue(product, "description", i18n.language)}
         </div>
       </div>
       <div>
@@ -107,7 +108,7 @@ const AddReadyProductForm = ({ onClose, product }) => {
         <label className="font-medium block mb-1">
           {t("addReadyProductForm.quantityLabel")}
         </label>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Controller
             name="quantity"
             control={control}
@@ -133,7 +134,7 @@ const AddReadyProductForm = ({ onClose, product }) => {
               >
                 {unitData?.items?.map((item) => (
                   <Option key={item?.id} value={item?.id}>
-                    {item?.nameUz || item?.nameEn}
+                    {getLangValue(item, "name", i18n.language)} 
                   </Option>
                 ))}
               </Select>

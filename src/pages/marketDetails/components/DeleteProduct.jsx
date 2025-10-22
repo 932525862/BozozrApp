@@ -12,12 +12,12 @@ const DeleteProduct = ({ refetch, product, onClose }) => {
     url: "/market-list",
     method: "DELETE",
     onSuccess: () => {
-      toast.success("Mahsulot o'chirildi");
+      toast.success(t("modalType.deleteProductToast"));
       refetch();
       onClose();
     },
     onError: () => {
-      toast.error("Mahsulotni o'chirishda xatolik yuz berdi");
+      toast.error(t("modalType.deleteProductToastError"));
     },
   });
 
@@ -28,7 +28,7 @@ const DeleteProduct = ({ refetch, product, onClose }) => {
   return (
     <div className="w-full">
       <p className="text-[#4B4B4B] text-center mx-auto w-full text-[18px] mb-[24px]">
-        {product?.product ? getLangValue(product?.product, "title", i18n.language) : product?.productName} nomli mahsulotingizni o'chirmoqchimisiz?
+        {t("modalType.deleteProductText", { product: product?.product ? getLangValue(product?.product, "title", i18n.language) : product?.productName })}
       </p>
       <div className="flex flex-col gap-[12px]">
         <PrimaryButton

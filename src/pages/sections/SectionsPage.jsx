@@ -20,8 +20,8 @@ import SectionSwiper from "./components/SectionSwiper";
 const SectionsPage = () => {
   const { i18n, t } = useTranslation();
   const { sectionId, setSectionId } = useStore();
-  const [filter, setFilter] = useState("Faol bozorliklar");
-  const options = ["Faol bozorliklar", "Tugallangan bozorliklar"];
+  const [filter, setFilter] = useState(t("home.btns.activeMarket"));
+  const options = [t("home.btns.activeMarket"), t("home.btns.endMarket")];
   const [open, setOpen] = useState(false);
     const [selectMarket, setSelectMarket] = useState(null);
     const [modalType, setModalType] = useState(null);
@@ -43,7 +43,7 @@ const SectionsPage = () => {
       params: { marketTypeId: sectionId },
     },
     options: {
-      enabled: !!sectionId && filter == "Faol bozorliklar", // sectionId mavjud bo‘lganda chaqiradi
+      enabled: !!sectionId && filter == t("home.btns.activeMarket"), // sectionId mavjud bo‘lganda chaqiradi
     },
   });
 
@@ -60,7 +60,7 @@ const SectionsPage = () => {
       params: { marketTypeId: sectionId },
     },
     options: {
-      enabled: !!sectionId && filter == "Tugallangan bozorliklar", // sectionId mavjud bo‘lganda chaqiradi
+      enabled: !!sectionId && filter == t("home.btns.endMarket"), // sectionId mavjud bo‘lganda chaqiradi
     },
   });
 
@@ -69,7 +69,7 @@ const SectionsPage = () => {
       {/* Breadcrumb */}
       <div className="bg-white rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb
-          items={[{ label: "Bosh sahifa", to: "/" }, { label: "Bo'limlar" }]}
+          items={[{ label: t("home.brade.home"), to: "/" }, { label: t("home.brade.section") }]}
         />
       </div>
 
@@ -173,7 +173,7 @@ const SectionsPage = () => {
             {/* Harakatlanuvchi fon */}
             <div
               className={`absolute top-1/2 -translate-y-1/2 h-[34px] w-[50%] rounded-[14px] bg-[#06B2B6] transition-all duration-300 ease-in-out ${
-                filter === "Faol bozorliklar" ? "left-1" : "left-[calc(48%)]"
+                filter === t("home.btns.activeMarket") ? "left-1" : "left-[calc(48%)]"
               }`}
             ></div>
 

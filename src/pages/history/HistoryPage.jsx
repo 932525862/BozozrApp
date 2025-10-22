@@ -6,11 +6,13 @@ import Loding from "../../components/Loding";
 import CustomModal from "../../components/CustomModal";
 import AgainHistory from "./components/AgainHistory";
 import CheckMarket from "./components/CheckMarket";
+import { useTranslation } from "react-i18next";
 
 const HistoryPage = () => {
   const [open, setOpen] = useState(false);
   const [selectHistory, setSelectHistory] = useState(null);
   const [modalType, setModalType] = useState(null);
+  const {t} = useTranslation()
   const { data, isLoading } = useFetchOne({
     key: [`history`],
     url: `/history`,
@@ -50,7 +52,7 @@ const HistoryPage = () => {
       )}
       <CustomModal
         open={open}
-        title={modalType == "again" ? "Takrorlash" : "Check"}
+        title={modalType == "again" ? t("history.again") : t("history.check")}
         onCancel={handleClose}
         width={modalType == "again" ? 351 : 351}
       >

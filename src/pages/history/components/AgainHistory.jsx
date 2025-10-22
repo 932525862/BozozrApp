@@ -3,12 +3,11 @@ import useApiMutation from "../../../hooks/useMutation";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { useTranslation } from "react-i18next";
-import { getLangValue } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../../store/userStore";
 
 const AgainHistory = ({ history, onClose }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate()
   const {user} = useStore()
 
@@ -16,12 +15,12 @@ const AgainHistory = ({ history, onClose }) => {
     url: "/market/create-by-history-id",
     method: "POST",
     onSuccess: () => {
-      toast.success("Bozorlik takrorlandi");
+      toast.success(t("history.toast.success"));
       navigate("/markets")
       onClose();
     },
     onError: () => {
-      toast.error("Bozorlikni takrorlashda xatolik yuz berdi");
+      toast.error(t("history.toast.error"));
     },
   });
 
@@ -38,7 +37,7 @@ const AgainHistory = ({ history, onClose }) => {
   return (
     <div className="w-full">
       <p className="text-[#4B4B4B] text-center mx-auto w-full text-[18px] mb-[24px]">
-        {history?.name} nomli bozorlikni takrorlamoqchimisiz?
+        {t("history.repeatMarketText", { market: history?.name })}
       </p>
       <div className="flex flex-col gap-[12px]">
         <PrimaryButton
@@ -46,7 +45,7 @@ const AgainHistory = ({ history, onClose }) => {
           disabled={isLoading}
           className="py-[10px] rounded-[14px] font-[500]"
         >
-          Takrorlash
+          {t("history.btn")}
         </PrimaryButton>
         <PrimaryButton
           onClick={() => onClose()}

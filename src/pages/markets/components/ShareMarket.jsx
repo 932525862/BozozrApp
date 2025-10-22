@@ -7,12 +7,14 @@ import DeleteUser from "./DeleteUser";
 import PrimaryButton from "../../../components/PrimaryButton";
 import InviteForm from "./InviteForm";
 import { useStore } from "../../../store/userStore";
+import { useTranslation } from "react-i18next";
 
 const ShareMarket = ({ onClose, selectMarket, refetch }) => {
   const {user} = useStore()
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
   const [selectUser, setSelectUser] = useState(null)
+  const {t} = useTranslation()
   const handleOpen = (type, user) => {
     setModalType(type);
     setOpen(true);
@@ -29,7 +31,7 @@ const ShareMarket = ({ onClose, selectMarket, refetch }) => {
     <div>
       <div>
         <p className="text-[#1E1E1E] font-[500] text-[18px]">
-          Faol ishtirokchilar
+          {t("modalType.activeUser")}
         </p>
         <ul className="p-[12px]">
           {selectMarket?.users?.map((item, i) => (
@@ -51,7 +53,7 @@ const ShareMarket = ({ onClose, selectMarket, refetch }) => {
                     {item?.phoneNumber}
                   </div>
                   <div className="text-[15px] text-[#4B4B4B]">
-                    {item?.fullName} {item?.id == user?.id && "(siz)"}
+                    {item?.fullName} {item?.id == user?.id && `${t("modalType.you")}`}
                   </div>
                 </div>
               </div>
@@ -72,14 +74,14 @@ const ShareMarket = ({ onClose, selectMarket, refetch }) => {
           onClick={() => handleOpen("share")}
           className="py-[10px] rounded-[14px] font-[500] w-full text-[17px]"
         >
-          Taklif qilish
+          {t("modalType.invitebtn")}
         </PrimaryButton>}
       
       </div>
       <CustomModal
         open={open}
         title={
-          modalType == "delete" ? "Ishtirokchini o'chirish" : "Taklif qilish"
+          modalType == "delete" ? t("modalType.deleteUser") : t("modalType.invitebtn")
         }
         onCancel={handleClose}
         width={351}

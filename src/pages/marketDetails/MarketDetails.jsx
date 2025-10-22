@@ -98,17 +98,17 @@ const MarketDetails = () => {
   const getModalTitle = () => {
     switch (modalType) {
       case "add":
-        return "Mahsulot qo‘shish";
+        return t("modalType.addProduct");
       case "delete":
-        return "Mahsulotni o‘chirish";
+        return t("modalType.deleteProduct");
       case "seen":
-        return "Mahsulot izohi";
+        return t("modalType.commentProduct");
       case "buy":
-        return "Sotib olish";
+        return t("modalType.buyProduct");
         case "end":
-        return "Bozorlikni yakunlash";
+        return t("modalType.endMarket");
         case "share":
-        return "Ulashish";
+        return t("modalType.share");
       default:
         return "";
     }
@@ -147,7 +147,7 @@ const MarketDetails = () => {
       {/* 🧭 Breadcrumb */}
       <div className="bg-white rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb
-          items={[{ label: "Bozorlik", to: "/markets" }, { label: data?.name }]}
+          items={[{ label: t("modalType.bradeMarket"), to: "/markets" }, { label: data?.name }]}
         />
       </div>
 

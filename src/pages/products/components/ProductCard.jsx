@@ -1,20 +1,13 @@
 import React from 'react'
 import PrimaryButton from '../../../components/PrimaryButton'
 import { useTranslation } from "react-i18next";
+import { getLangValue } from "../../../utils/utils"
 
 const ProductCard = ({product, handleOpen}) => {
   const { t, i18n } = useTranslation();
 
-  const title =
-    (i18n?.language === "uz" ? product?.titleUz : product?.titleEn) ||
-    product?.titleUz ||
-    product?.titleEn ||
-    "";
-  const description =
-    (i18n?.language === "uz" ? product?.descriptionUz : product?.descriptionEn) ||
-    product?.descriptionUz ||
-    product?.descriptionEn ||
-    "";
+  const title = getLangValue(product, "title", i18n.language)
+  const description =getLangValue(product, "description", i18n.language)
 
   return (
     <div className='px-[8px] pt-[8px] pb-[12px] bg-[#FFFFFF] rounded-[16px]'>
