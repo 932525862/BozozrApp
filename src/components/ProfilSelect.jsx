@@ -35,7 +35,7 @@ const ProfilSelect = () => {
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2 bg-white  transition-all cursor-pointer"
-      >
+      >  
         <img
           src={LogoCircle}
           alt="avatar"
