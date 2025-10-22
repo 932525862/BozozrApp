@@ -3,11 +3,13 @@ import { FiUserPlus } from "react-icons/fi";
 import { LuPlus } from "react-icons/lu";
 import CustomButton from "../../../components/CustomButton";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const TopActions = ({ handleOpen, setBuying, total, bought }) => {
   const { t } = useTranslation();
   const [filter, setFilter] = useState(t("topActions.filterToBuy"));
   const options = [t("topActions.filterToBuy"), t("topActions.filterBought")];
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (filter === t("topActions.filterToBuy")) {
@@ -61,6 +63,16 @@ const TopActions = ({ handleOpen, setBuying, total, bought }) => {
             <LuPlus className="text-[20px]" />
           </span>
           <span className="hidden sm:inline">{t("topActions.manualAdd")}</span>
+        </CustomButton>
+        <CustomButton
+          onClick={() => navigate("/brends")}
+          className="py-[8px] px-[20px] text-[14px] flex items-center justify-center gap-2"
+          aria-label={t("topActions.ariaNewProduct")}
+        >
+          <span className="bg-white w-[20px] h-[20px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
+            <LuPlus className="text-[20px]" />
+          </span>
+          <span className="hidden sm:inline">{t("topActions.brendAdd")}</span>
         </CustomButton>
 
         {/* Bozorlikni yakunlash */}

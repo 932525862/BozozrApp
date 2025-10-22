@@ -233,11 +233,6 @@
     "menu": "Menu",
     "notifications": "Xabarnoma"
   },
-
-
-
-
-
     "emptyHistory": {
     "title": "Bozorlik tarixi yo'q...",
     "description": "Faol bozorliklarni yakunlaganingizda uni tarixi ushbu bo'limda aks etadi",
@@ -359,7 +354,8 @@
     "share": "Bozorlikni ulashish",
     "manualAdd": "Qo'lda qo'shish",
     "endShopping": "Bozorlikni yakunlash",
-    "ariaNewProduct": "Yangi mahsulot"
+    "ariaNewProduct": "Yangi mahsulot",
+    "brendAdd": "Brend"
   },
   "ochirish":"O'chirish",
   "sotib_olindi":"Sotib olish",
