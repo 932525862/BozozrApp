@@ -101,7 +101,7 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
           </PrimaryButton>
 
           <div className="flex gap-[12px] mt-[12px]">
-            <PrimaryButton className="py-[12px] rounded-[14px] bg-[#D32F2F] hover:bg-[#d32f2fbd] font-[500] text-[16px] w-full">
+            <PrimaryButton onClick={() => onClose()} className="py-[12px] rounded-[14px] bg-[#D32F2F] hover:bg-[#d32f2fbd] font-[500] text-[16px] w-full">
               {t("messagesForm.reject")}
             </PrimaryButton>
 
