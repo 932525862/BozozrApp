@@ -445,5 +445,11 @@
     "again": "Takrorlash",
     "check": "Check",
     "btn": "Takrorlash"
+  },
+  "notification": {
+    "message": "Xabarnoma",
+    "all": "Barchasi",
+    "read": "O'qilgan",
+    "unRead": "O'qilmagan"
   }
 }

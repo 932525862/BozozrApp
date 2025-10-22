@@ -73,7 +73,7 @@ const MenuPage = () => {
       case "profil":
         return t("menuPage.editProfile");
       case "password":
-        return t("menuPage.editPassword");
+        return t("menuPage.changePassword");
       case "phone":
         return t("menuPage.changePhone");
       default:

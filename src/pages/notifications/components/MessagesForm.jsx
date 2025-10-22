@@ -8,12 +8,13 @@ import useApiMutation from "../../../hooks/useMutation";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../../store/userStore";
+import Loding from "../../../components/Loding"
 
 const { TextArea } = Input;
 
 const MessagesForm = ({ notId, refetch, onClose }) => {
   const { t, i18n } = useTranslation();
-  const { data } = useFetchOne({
+  const { data, isLoading: getData } = useFetchOne({
     key: [`notification/${notId}`],
     url: `notification/${notId}`,
   });
@@ -54,6 +55,12 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
     setNotMarket(data?.market);
     navigate(`/notification/${data?.market?.name}`);
   };
+
+  if (getData) {
+    return (
+      <div className="h-[200px] flex items-center justify-center"><Loding/></div>
+    );
+  }
 
   return (
     <div>

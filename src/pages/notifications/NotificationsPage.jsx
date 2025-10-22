@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const NotificationsPage = () => {
   const [activeTab, setActiveTab] = useState("barchasi");
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [notId, setNotId] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -46,9 +46,9 @@ const NotificationsPage = () => {
   });
 
   const tabs = [
-    { id: "barchasi", label: "Barchasi" },
-    { id: "oqilmagan", label: "O‘qilmagan" },
-    { id: "oqilgan", label: "O‘qilgan" },
+    { id: "barchasi", label: t("notification.all") },
+    { id: "oqilmagan", label: t("notification.read") },
+    { id: "oqilgan", label: t("notification.unRead") },
   ];
 
   const readAllNot = () => {
@@ -118,7 +118,7 @@ const NotificationsPage = () => {
 
       <CustomModal
         open={open}
-        title="Xabarnoma"
+        title={t("notification.message")}
         onCancel={handleClose}
         width={391}
       >

@@ -448,5 +448,11 @@
     "again": "Repeat",
     "check": "Check",
     "btn": "Repeat"
-  }
+  },
+  "notification": {
+  "message": "Notification",
+  "all": "All",
+  "read": "Read",
+  "unRead": "Unread"
+}
 }
