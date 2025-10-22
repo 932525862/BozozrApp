@@ -154,7 +154,7 @@ const MarketDetails = () => {
       {/* 📦 Mahsulotlar ro‘yxati */}
       {data?.marketLists?.length > 0 ? (
         
-        <div className="p-6 w-full">
+        <div className="md:p-6 w-full">
           <h2 className="text-xl font-semibold mb-4">{t("masulotlar")}</h2>
             <div className="flex justify-between w-full mb-[32px]">
               
@@ -166,7 +166,7 @@ const MarketDetails = () => {
               />
             </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <ShoppingSummary
               total={data?.marketLists?.length}
               bought={buyingCount}

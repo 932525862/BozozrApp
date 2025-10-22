@@ -116,6 +116,7 @@ const AddReadyProductForm = ({ onClose, product }) => {
             render={({ field }) => (
               <Input
                 {...field}
+                type="number"
                 placeholder={t("addReadyProductForm.quantityPlaceholder")}
                 className="rounded-r-none"
               />

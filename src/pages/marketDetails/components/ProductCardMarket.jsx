@@ -3,7 +3,7 @@ import logo from "../../../assets/product.png";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { formatNumberWithSpace, getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
-import comentLogo from "../../../assets/coment.png";
+import comentLogo from "../../../assets/coment.svg";
 import TrashIcon from "../../../assets/Frame 4144217.svg";
 import TasdiqIcon from "../../../assets/Frame 4144218.svg";
 
@@ -55,7 +55,7 @@ const ProductCard = ({ product, setSelectProduct, handleOpen }) => {
           </div>
           <div
             onClick={() => handleProduct("seen")}
-            className="w-[40px] h-[40px] cursor-pointer"
+            className="w-[40px] h-[40px] cursor-pointer bg-[#EFEFEF] flex justify-center items-center rounded-[12px]"
           >
             <img src={comentLogo} alt="coment" />
           </div>

@@ -88,6 +88,7 @@ const AddProductForm = ({ onClose, marketId, refetch }) => {
             render={({ field }) => (
               <Input
                 {...field}
+                type="number"
                 placeholder={t("addReadyProductForm.quantityPlaceholder")}
                 className="rounded-r-none"
               />

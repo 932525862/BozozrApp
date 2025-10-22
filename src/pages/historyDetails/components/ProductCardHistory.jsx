@@ -3,7 +3,7 @@ import logo from "../../../assets/product.png";
 
 import { formatNumberWithSpace, getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
-import comentLogo from "../../../assets/coment.png";
+import comentLogo from "../../../assets/coment.svg";
 
 const ProductCardHistory = ({ product, setSelectProduct, handleOpen }) => {
   const { i18n } = useTranslation();
@@ -50,7 +50,7 @@ const ProductCardHistory = ({ product, setSelectProduct, handleOpen }) => {
         </div>
         <div
           onClick={() => handleProduct("seen")}
-          className="w-[40px] h-[40px]"
+          className="w-[40px] h-[40px] bg-[#EFEFEF] flex justify-center items-center rounded-[12px]"
         >
           <img src={comentLogo} alt="coment photo" />
         </div>

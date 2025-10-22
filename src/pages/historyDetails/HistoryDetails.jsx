@@ -57,8 +57,8 @@ const HistoryDetails = () => {
   }
 
   return (
-    <div className=" w-full">
-      <div className="bg-white rounded-[8px] mb-4 pt-[10px] px-[12px] pb-[90px] sm:pb-[115px] md:pb-[0]">
+    <div className=" w-full pb-[90px] sm:pb-[115px] md:pb-[0]">
+      <div className="bg-white rounded-[8px] mb-4 pt-[10px] px-[12px] ">
         <CustomBreadcrumb
           items={[{ label: "Tarix", to: "/histories" }, { label: data?.name }]}
         />
@@ -73,7 +73,7 @@ const HistoryDetails = () => {
             {t("historyDetails.totalPrice")}: {calculateAllProducts(data?.marketLists)} {t("historyDetails.currency")}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {data?.marketLists.map((product) => (
               <ProductCard key={product.id} product={product} handleOpen={handleOpen}
               setSelectProduct={setSelectProduct}/>

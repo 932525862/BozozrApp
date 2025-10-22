@@ -56,7 +56,7 @@ const NotificationsPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 pt-6 pb-[90px] sm:pb-[115px] md:pb-[0]">
+    <div className="flex flex-col items-center gap-4 pb-[90px] sm:pb-[115px] md:pb-[0]">
       {/* Tabs */}
       <div className="w-[90%] max-w-[550px] bg-white rounded-[12px] p-2 flex justify-between items-center gap-3 shadow-sm">
         <div className="flex justify-between items-center gap-3 w-[90%]">

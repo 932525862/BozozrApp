@@ -20,9 +20,9 @@ const TopActions = ({ handleOpen, setBuying, total, bought }) => {
   }, [filter, t, setBuying]);
 
   return (
-    <div className="flex flex-wrap gap-3 items-center justify-end">
+    <div className="flex flex-wrap gap-3 items-center justify-end w-full sm:w-auto">
       {/* Filter toggle */}
-      <div className="relative bg-white shadow-sm rounded-[15px] overflow-hidden flex items-center p-1 w-[320px] h-[42px]">
+      <div className="relative bg-white shadow-sm rounded-[15px] overflow-hidden flex items-center p-1 w-full sm:w-[320px] h-[42px]">
         <div
           className={`absolute top-1/2 -translate-y-1/2 h-[34px] w-[50%] rounded-[14px] bg-[#06B2B6] transition-all duration-300 ease-in-out ${
             filter === t("topActions.filterToBuy") ? "left-1" : "left-[calc(48%)]"
