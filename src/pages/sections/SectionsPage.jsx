@@ -4,7 +4,7 @@ import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import { useFetch } from "../../hooks/useFetch";
 import { formatNumberWithSpace, getLangValue } from "../../utils/utils";
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/Loogo.svg";
 import { useFetchOne } from "../../hooks/useFetchOne";
 import MarketCard from "../markets/components/MarketCard";
 import { useStore } from "../../store/userStore";

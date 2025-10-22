@@ -3,7 +3,7 @@ import { GrNext } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import logo from "../../../assets/logo.png";
+import logo from "../../../assets/Loogo.svg";
 
 // Import Swiper styles
 import "swiper/css";

@@ -3,7 +3,7 @@ import { formatDate, formatDateDot, formatNumberWithSpace, getLangValue } from '
 import * as htmlToImage from "html-to-image";
 import { jsPDF } from "jspdf";
 import { toast } from "react-toastify";
-import Logo from "../../../assets/logo.png";
+import Logo from "../../../assets/Loogo.svg";
 import { useTranslation } from 'react-i18next';
 
 

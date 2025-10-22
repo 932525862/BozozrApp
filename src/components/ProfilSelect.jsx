@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IoChevronDown } from "react-icons/io5";
-import Logout from "../assets/icons/logout.svg"
-import LogoCircle from "../assets/logo-circle.png"
+import Logout from "../assets/logout.svg"
+import LogoCircle from "../assets/bozor.png"
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../store/userStore";
 import { maskUzPhone } from "../utils/utils";
@@ -39,7 +39,7 @@ const ProfilSelect = () => {
         <img
           src={LogoCircle}
           alt="avatar"
-        //   className="w-10 h-10 rounded-full object-cover"
+          className="w-10 h-10 rounded-full object-cover"
         />
         <div className="flex flex-col items-start">
           <p className="text-[14px] text-[#1E1E1E]">{user?.fullName}</p>
@@ -61,7 +61,7 @@ const ProfilSelect = () => {
             onClick={handleLogout}
             className="flex items-center gap-[6px] w-full px-[14px] py-[8px] hover:bg-gray-50 transition-all text-[#1E1E1E] cursor-pointer"
           >
-            <img src={Logout} alt="logout image" />
+            <img   src={Logout} alt="logout image" />
             <span className="">{t("Profildanchiqish.title")}</span>
           </button>
       </div>

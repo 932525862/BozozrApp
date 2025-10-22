@@ -5,7 +5,7 @@ import PrimaryButton from "../../../components/PrimaryButton";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../hooks/useMutation";
 import { useTranslation } from "react-i18next";
-import logo from "../../../assets/product.png";
+import logo from "../../../assets/savat.svg";
 import { getLangValue } from "../../../utils/utils";
 
 const { Option } = Select;

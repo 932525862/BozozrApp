@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/product.png";
+import logo from "../../../assets/savat.svg";
 import { formatNumberWithSpace, getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
 import comentLogo from "../../../assets/coment.svg";

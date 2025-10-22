@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/product.png";
+import logo from "../../../assets/savat.svg";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { formatNumberWithSpace, getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
