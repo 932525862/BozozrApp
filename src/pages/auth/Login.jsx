@@ -50,7 +50,11 @@ const Login = () => {
       reset();
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      if(error.status == 401) {
+              toast.error("Telfon nomer yoki parol notug'ri")
+            }else{
+              toast.error(error.response?.data?.message);
+            }
     },
   });
 

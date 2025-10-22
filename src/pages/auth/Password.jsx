@@ -73,7 +73,11 @@ const Password = () => {
       setDataResponse(data);
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      if(error.status == 404) {
+              toast.error("Bu telfon raqam ro'yxatdan o'tmagan")
+            }else{
+              toast.error(error.response?.data?.message);
+            }
     },
   });
 

@@ -62,9 +62,13 @@ const Registir = () => {
       setVerify(true);
       setDataResponse(data);
     },
-
     onError: (error) => {
-      toast.error(error.response?.data?.message);
+      if(error.status == 409) {
+        toast.error("Ushbu raqam orqali ro'yxatdan o'tilgan")
+      }else{
+        toast.error(error.response?.data?.message);
+      }
+      
     },
   });
 
@@ -76,6 +80,7 @@ const Registir = () => {
       toast.success(t("toast.login_success"));
       navigate("/");
     },
+
     onError: (error) => {
       toast.error(error.response?.data?.message);
     },
