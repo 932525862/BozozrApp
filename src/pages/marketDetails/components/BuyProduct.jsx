@@ -29,7 +29,7 @@ const BuyProduct = ({ onClose, product, refetch }) => {
     url: `/market-list/check-is-buying/${product?.id}`,
     method: "PATCH",
     onSuccess: () => {
-      refetch()
+      refetch();
       onClose();
       toast.success(t("modalType.buyProductToast"));
       reset();
@@ -54,7 +54,9 @@ const BuyProduct = ({ onClose, product, refetch }) => {
           />
         </div>
         <div className="text-[#1E1E1E] font-[600] text-[18px] mt-2">
-          {product?.product ? getLangValue(product?.product, "title", i18n.language) : product?.productName}
+          {product?.product
+            ? getLangValue(product?.product, "title", i18n.language)
+            : product?.productName}
         </div>
       </div>
 
@@ -70,9 +72,21 @@ const BuyProduct = ({ onClose, product, refetch }) => {
             rules={{
               required: t("modalType.pricePlaceholder"),
             }}
-            render={({ field }) => (
+            render={({ field: { onChange, value, ...restField } }) => (
               <Input
-                {...field}
+                {...restField}
+                // UI uchun value formatlash
+                value={
+                  value
+                    ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                    : ""
+                }
+                onChange={(e) => {
+                  // Foydalanuvchi kiritgan qiymatdan faqat raqamlarni olish
+                  const numericValue = e.target.value.replace(/\D/g, "");
+                  // Form state’ga faqat raqamlarni saqlaymiz
+                  onChange(numericValue);
+                }}
                 placeholder={t("modalType.pricePlaceholder")}
                 className="rounded-r-none"
               />
@@ -91,7 +105,8 @@ const BuyProduct = ({ onClose, product, refetch }) => {
                 defaultValue="one"
               >
                 <Option value="one">
-                  1 {getLangValue(product?.unit, "name", i18n.language)} {t("modalType.price")}
+                  1 {getLangValue(product?.unit, "name", i18n.language)}{" "}
+                  {t("modalType.price")}
                 </Option>
                 <Option value="all">{t("modalType.allPrice")}</Option>
               </Select>
