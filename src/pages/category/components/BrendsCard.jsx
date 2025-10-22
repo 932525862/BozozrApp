@@ -17,7 +17,7 @@ const BrendsCard = ({brend}) => {
             <span className='text-[#06B2B6] text-[14px] font-[500]'>{t("masulotlar")}</span>
         </div>
     </div>
-  )
+  )    
 }
 
 export default BrendsCard
