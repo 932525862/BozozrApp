@@ -9,7 +9,7 @@ const NotFoundPage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full h-full flex justify-center items-centerpx-4">
+    <div className="w-full h-full flex justify-center items-centerpx-4 pb-[90px] sm:pb-[115px] md:pb-[0]">
       <Result
         status="404"
         title={<span className="text-4xl sm:text-5xl md:text-6xl font-semibold">{t("notFound.code")}</span>}

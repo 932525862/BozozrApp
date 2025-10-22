@@ -42,7 +42,7 @@ const ProductsPage = () => {
     );
   }
   return (
-    <div>
+    <div className="pb-[90px] sm:pb-[115px] md:pb-[0]">
       <div className="bg-[#FFFFFF] rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb
           items={[

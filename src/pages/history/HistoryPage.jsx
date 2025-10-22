@@ -33,7 +33,7 @@ const HistoryPage = () => {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full pb-[90px] sm:pb-[115px] md:pb-[0]">
       {data?.data?.length > 0 ? (
         <div className="flex flex-col gap-[20px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[12px]">

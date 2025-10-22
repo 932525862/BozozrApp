@@ -31,11 +31,7 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
     handleOpen(type);
     setPopoverOpen(false); // 🔹 modal ochilgandan so‘ng Popover yopiladi
   };
-  // const handleDelete = () => {
-  //   setSelectMarket(market)
-  //   handleOpen("delete")
-  //   setPopoverOpen(false)
-  // };
+
 
   // language-ga qarab serverdagi title maydonini tanlash (fallback uz)
   const typeTitle = getLangValue(market?.marketType, "title", i18n?.language)
@@ -86,14 +82,14 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
   return (
   <div
     onClick={handleNavigate}
-    className="bg-white rounded-[16px] p-[12px] flex flex-col justify-between relative cursor-pointer"
+    className="bg-white rounded-[16px] py-[10px] pl-[10px] pr-[25px] sm:p-[12px] flex flex-col justify-between relative cursor-pointer"
   >
     {/* 🔹 DESKTOP versiya faqat katta ekranlarda ko‘rinadi */}
     <div className=" flex-col justify-between">
       {/* Three dots icon */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-3 right-3 text-[#4B4B4B] cursor-pointer"
+        className="absolute top-[40%] md:top-3 right-[5px] sm:right-3 text-[#4B4B4B] cursor-pointer"
       >
         <Popover
           placement="bottomLeft"
@@ -152,7 +148,7 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
     {/* 🔹 MOBIL versiya faqat kichik ekranlarda ko‘rinadi */}
     <div
       onClick={handleNavigate}
-      className="cursor-pointer md:hidden max-w-[350px] bg-[#ffffff] rounded-[16px] py-[8px] px-[12px] flex gap-[12px]"
+      className="cursor-pointer md:hidden max-w-[350px] bg-[#ffffff] rounded-[16px] flex items-center gap-[12px]"
     >
       
 
@@ -168,7 +164,7 @@ const MarketCard = ({ market, handleOpen, setSelectMarket }) => {
       </div>
 
       <div>
-        <div className="flex items-center gap-2 font-[600]">
+        <div className="flex items-center gap-1 font-[600]">
           <h4 className="text-[16px] font-semibold text-gray-800">
             {typeTitle}
           </h4>

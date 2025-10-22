@@ -34,7 +34,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[12px]">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[12px] pb-[90px] sm:pb-[115px] md:pb-[0]">
       {data?.items?.map((item) => (
         <div
           key={item.id}

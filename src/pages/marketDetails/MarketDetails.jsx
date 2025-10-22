@@ -143,7 +143,7 @@ const MarketDetails = () => {
   }
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full pb-[90px] sm:pb-[115px] md:pb-[0]">
       {/* 🧭 Breadcrumb */}
       <div className="bg-white rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb

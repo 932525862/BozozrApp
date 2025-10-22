@@ -82,7 +82,7 @@ const MenuPage = () => {
   };
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen pt-6 px-6 pb-[90px] sm:pb-[115px] md:pb-[0]">
       <div className="max-w-md mx-auto">
         {/* 👤 Profil ma’lumotlari */}
         <div className="bg-white rounded-xl px-4 py-5 shadow-md mb-5">

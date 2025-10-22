@@ -15,12 +15,12 @@ const Layout = () => {
       </div>
 
       {/* Body (Sidebar + Content) */}
-      <div className=" bg-[#F9F9F9] py-[16px] h-full px-[15px] relative mt-[80px] md:mt-0">
+      <div className=" bg-[#F9F9F9] pb-[30px] md:pb-[16px] h-full px-[15px] relative pt-[80px] sm:pt-[110px] md:pt-[16px]">
         {/* Sidebar */}
         <div className="flex flex-1 container flex-col-reverse md:flex-row">
         <div className="fixed  z-[999] left-0 bottom-0 md:static w-full md:w-auto"><SideBar/></div>
         {/* Main Content */}
-        <main className="flex-1 md:pl-[20px]  overflow-y-hidden pb-4">
+        <main className="flex-1 md:pl-[20px] pb-4">
           <Outlet />
         </main>
         </div>

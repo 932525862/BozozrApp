@@ -83,7 +83,7 @@ const NotificationDetails = () => {
 
 
   return (
-    <div className=" w-full">
+    <div className=" w-full pb-[90px] sm:pb-[115px] md:pb-[0]">
       <div className="bg-white rounded-[8px] mb-4 py-[10px] px-[12px]">
         <CustomBreadcrumb
           items={[

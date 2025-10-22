@@ -33,7 +33,7 @@ const MarketPage = () => {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full bg-[#F9F9F9] pb-[90px] sm:pb-[115px] md:pb-[0]">
       {data?.length > 0 ? (
         <div className="flex flex-col gap-[20px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[12px]">
@@ -47,8 +47,8 @@ const MarketPage = () => {
               />
             ))}
           </div>
-          <div className="self-end">
-            <CustomButton onClick={() => handleOpen("add")} className="w-[278px]">
+          <div className="self-center md:self-end w-full sm:w-auto">
+            <CustomButton onClick={() => handleOpen("add")} className="w-full sm:w-[278px]">
               <span>{t("Yangibozorlik")}</span>
               <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
                 <LuPlus className="text-[16px]" />

@@ -34,7 +34,7 @@ const SubBrendsPage = () => {
 
   return (
     <div>
-      <div className="bg-[#FFFFFF] rounded-[8px] mb-4 py-[10px] px-[12px]">
+      <div className="bg-[#FFFFFF] rounded-[8px] mb-4 pt-[10px] px-[12px] pb-[90px] sm:pb-[115px] md:pb-[0]">
         <CustomBreadcrumb items={[
         { label: t("brends.brade.brendName"), to: "/brends" },
         { label: getLangValue(data, "title", i18n.language) },
