@@ -1,6 +1,6 @@
 import React from "react";
 import { FiUsers } from "react-icons/fi";
-import logo from "../../../assets/logo.png";
+import logo from "../../../assets/Loogo.svg";
 import { Progress } from "antd";
 import { useTranslation } from "react-i18next"; // 🟢 i18 qo‘shildi
 

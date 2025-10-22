@@ -7,7 +7,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/Loogo.svg"
 import { useStore } from "../../../store/userStore";
 
 const SectionSwiper = ({ slides }) => {
