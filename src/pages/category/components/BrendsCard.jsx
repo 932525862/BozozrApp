@@ -16,7 +16,7 @@ const BrendsCard = ({brend}) => {
             <span className='font-[600]'>{typeTitle}</span>
             <span className='text-[#06B2B6] text-[14px] font-[500]'>{t("masulotlar")}</span>
         </div>
-    </div>
+    </div> 
   )    
 }
 
