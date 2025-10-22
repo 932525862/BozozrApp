@@ -9,7 +9,7 @@ export default function EmptyMarketList({ handleOpen }) {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full flex justify-center items-center">
       <div className="flex flex-col items-center justify-center text-center space-y-4 max-w-[289px]">
         {/* Icon */}
         <div className="relative">

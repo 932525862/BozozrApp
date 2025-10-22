@@ -5,7 +5,7 @@ import MarketsSections from './components/MarketsSections'
 
 const HomePage = () => {
   return (
-    <div className='pb-[90px] sm:pb-[115px] md:pb-[0]'>
+    <div className='pb-[90px] sm:pb-[115px] md:pb-[10px]'>
       <HeroSlider/>
       <SectionsMarket/>
       <MarketsSections/>

@@ -47,7 +47,7 @@ const MarketPage = () => {
               />
             ))}
           </div>
-          <div className="self-center md:self-end w-full sm:w-auto">
+          <div className="self-center md:self-end w-full sm:w-auto px-[15px] sm:px-0 md:mr-[20px]">
             <CustomButton onClick={() => handleOpen("add")} className="w-full sm:w-[278px]">
               <span>{t("Yangibozorlik")}</span>
               <span className="bg-white w-[24px] h-[24px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">

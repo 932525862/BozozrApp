@@ -5,7 +5,7 @@ import SideBar from "../components/SideBar";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col h-screen md:h-screen bg-[#F9F9F9]">
+    <div className="flex flex-col h-screen md:h-screen">
       {/* Header */}
       <div className="relative z-[999] ">
         <Header />

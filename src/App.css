@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+body{
+  background-color: #F9F9F9;
+}
+
 
 .ant-modal .ant-modal-content{
     border-radius: 20px;
