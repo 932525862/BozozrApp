@@ -1,9 +1,8 @@
 import React from "react";
 import logo from "../../../assets/product.png";
-import PrimaryButton from "../../../components/PrimaryButton";
 import { formatNumberWithSpace, getLangValue } from "../../../utils/utils";
 import { useTranslation } from "react-i18next";
-import comentLogo from "../../../assets/coment.png";
+import comentLogo from "../../../assets/coment.svg";
 
 const ProductNotCard = ({ product, setSelectProduct, handleOpen }) => {
   const { i18n } = useTranslation();
@@ -50,7 +49,7 @@ const ProductNotCard = ({ product, setSelectProduct, handleOpen }) => {
         </div>
         <div
           onClick={() => handleProduct("seen")}
-          className="w-[40px] h-[40px]"
+          className="w-[40px] h-[40px] cursor-pointer bg-[#EFEFEF] flex justify-center items-center rounded-[12px]"
         >
           <img src={comentLogo} alt="coment photo" />
         </div>
@@ -62,23 +61,7 @@ const ProductNotCard = ({ product, setSelectProduct, handleOpen }) => {
             {calculateProductTotal(product)}
           </span>
         </div>
-      {/* {!product?.isBuying && (
-        <div className="flex justify-between w-full gap-2 mt-[5px]">
-          <PrimaryButton
-            onClick={() => handleProduct("delete")}
-            className="py-[10px] w-full rounded-[14px] text-[14px] bg-[#EFEFEF] hover:bg-[#e7e7e7] !text-[#1E1E1E] font-[500]"
-          >
-            O‘chirish
-          </PrimaryButton>
-
-          <PrimaryButton
-            onClick={() => handleProduct("buy")}
-            className="py-[10px] w-full rounded-[14px] text-[14px] font-[500]"
-          >
-            Sotib olish
-          </PrimaryButton>
-        </div>
-      )} */}
+      
     </div>
   );
 };

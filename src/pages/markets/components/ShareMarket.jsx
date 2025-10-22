@@ -44,7 +44,7 @@ const ShareMarket = ({ onClose, selectMarket, refetch }) => {
               <div className="flex gap-[8px] items-center">
                 <div>
                   <img
-                    src={item?.gender == "erkak" ? maleImg : femaleImg}
+                    src={item?.gender?.toLowerCase() === "erkak" || item?.gender?.toLowerCase() === "male" ? maleImg : femaleImg}
                     alt="avatar"
                   />
                 </div>
