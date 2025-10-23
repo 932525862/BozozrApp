@@ -79,12 +79,12 @@ const HistoryMarketCard = ({ market, setSelectHistory, handleOpen }) => {
   return (
     <div
       onClick={handleNavigate}
-      className="bg-white rounded-[16px] p-[12px] flex flex-col justify-between relative cursor-pointer"
+      className="bg-white rounded-[16px] py-[10px] pl-[10px] pr-[25px] sm:p-[12px] flex flex-col justify-between relative cursor-pointer"
     >
       {/* ✅ UNIVERSAL 3 NUQTA — har ikkala ekran uchun ishlaydi */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-3 right-3 text-[#4B4B4B] cursor-pointer z-10"
+        className="absolute top-[40%] z-10 md:top-3 right-[5px] sm:right-3 text-[#4B4B4B] cursor-pointer"
       >
         <Popover
           placement="bottomLeft"
@@ -142,7 +142,7 @@ const HistoryMarketCard = ({ market, setSelectHistory, handleOpen }) => {
       </div>
 
       {/* 🔹 MOBIL versiya */}
-      <div className="md:hidden flex items-center gap-[12px] py-[8px] px-[12px]">
+      <div className="md:hidden flex items-center gap-[12px] ">
         <div
           className="w-[52px] h-[52px] flex justify-center items-center font-[600] text-[22px]"
           style={{
