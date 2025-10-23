@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/Loogo.svg";
 import LanguageSelect from './LanguageSelect';
 import ProfilSelect from './ProfilSelect';
-import Notification from "./../assets/icons/notification-bing.svg";
+import Notification from "./../assets/icons/not.svg";
 
 const Header = () => {
   return (
