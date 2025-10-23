@@ -434,7 +434,8 @@
     "buyProductToast": "Mahsulot sotib olindi.",
     "deleteProductToast": "Mahsulot o'chirildi",
   "deleteProductToastError": "Mahsulotni o'chirishda xatolik yuz berdi",
-  "deleteProductText": "{{product}} nomli mahsulotingizni o'chirmoqchimisiz?"
+  "deleteProductText": "{{product}} nomli mahsulotingizni o'chirmoqchimisiz?",
+  "add": "Qo'shish"
   },
   "history": {
     "toast": {
@@ -451,5 +452,11 @@
     "all": "Barchasi",
     "read": "O'qilgan",
     "unRead": "O'qilmagan"
+  },
+  "auth-toast": {
+    "register-error": "Ushbu raqam orqali ro'yxatdan o'tilgan",
+    "login-error": "Telfon nomer yoki parol notug'ri",
+    "login-success": "Tizimga muvaffaqiyatli kirildi",
+    "password-error": "Bu telfon raqam ro'yxatdan o'tmagan"
   }
 }

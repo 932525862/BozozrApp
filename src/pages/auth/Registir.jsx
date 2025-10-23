@@ -64,7 +64,7 @@ const Registir = () => {
     },
     onError: (error) => {
       if(error.status == 409) {
-        toast.error("Ushbu raqam orqali ro'yxatdan o'tilgan")
+        toast.error(t("auth-toast.register-error"))
       }else{
         toast.error(error.response?.data?.message);
       }

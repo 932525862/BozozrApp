@@ -436,7 +436,8 @@
     "buyProductToast": "Маҳсулот сотиб олинди.",
     "deleteProductToast": "Маҳсулот ўчирилди",
     "deleteProductToastError": "Маҳсулотни ўчиришда хатолик юз берди",
-    "deleteProductText": "{{product}} номли маҳсулотингизни ўчирмоқчимисиз?"
+    "deleteProductText": "{{product}} номли маҳсулотингизни ўчирмоқчимисиз?",
+    "add": "Қўшиш"
   },
   "history": {
     "toast": {
@@ -453,5 +454,11 @@
   "all": "Барчаси",
   "read": "Ўқилган",
   "unRead": "Ўқилмаган"
+},
+"auth-toast": {
+  "register-error": "Ушбу рақам орқали рўйхатдан ўтилган",
+  "login-error": "Телефон рақами ёки пароль нотўғри",
+  "login-success": "Тизимга муваффақиятли кирилди",
+  "password-error": "Бу телефон рақам рўйхатдан ўтмаган"
 }
 }

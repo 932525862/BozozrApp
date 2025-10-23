@@ -13,7 +13,7 @@ const ShoppingSummary = ({ total, bought, name, price }) => {
       <img
         src={logo}
         alt={t("shoppingSummary.imageAlt")}
-        className="w-[134px] h-[78px] mb-2 mx-[auto]"
+        className="hidden sm:inline w-[134px] h-[78px] mb-2 mx-[auto]"
       />
 
       <div>

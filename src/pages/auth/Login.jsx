@@ -46,12 +46,12 @@ const Login = () => {
     onSuccess: (data) => {
       setUser(data?.access_token, data?.refresh_token, data?.user);
       navigate("/");
-      toast.success("Tizimga muvaffaqiyatli kirildi");
+      toast.success(t("auth-toast.login-success"));
       reset();
     },
     onError: (error) => {
       if(error.status == 401) {
-              toast.error("Telfon nomer yoki parol notug'ri")
+              toast.error(t("auth-toast.register-login"))
             }else{
               toast.error(error.response?.data?.message);
             }

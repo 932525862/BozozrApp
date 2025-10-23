@@ -16,6 +16,7 @@ import BuyProduct from "./components/BuyProduct";
 import EndMarket from "./components/EndMarket";
 import Loding from "../../components/Loding";
 import ShareMarket from "../markets/components/ShareMarket";
+import BtnsModal from "./components/BtnsModal";
 
 const MarketDetails = () => {
   const [open, setOpen] = useState(false);
@@ -89,6 +90,15 @@ const MarketDetails = () => {
             refetch={refetch}
           />
         );
+        case "addModal":
+        return (
+          <BtnsModal
+            // selectMarket={data}
+            // onClose={handleClose}
+            // refetch={refetch}
+            handleOpen={handleOpen}
+          />
+        );
       default:
         return null;
     }
@@ -109,6 +119,8 @@ const MarketDetails = () => {
         return t("modalType.endMarket");
         case "share":
         return t("modalType.share");
+        case "addModal":
+        return t("modalType.add");
       default:
         return "";
     }

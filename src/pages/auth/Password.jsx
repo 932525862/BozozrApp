@@ -74,7 +74,7 @@ const Password = () => {
     },
     onError: (error) => {
       if(error.status == 404) {
-              toast.error("Bu telfon raqam ro'yxatdan o'tmagan")
+              toast.error(t("auth-toast.password-error"))
             }else{
               toast.error(error.response?.data?.message);
             }

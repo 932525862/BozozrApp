@@ -437,7 +437,8 @@
     "buyProductToast": "Product has been purchased.",
     "deleteProductToast": "Product deleted",
     "deleteProductToastError": "An error occurred while deleting the product",
-    "deleteProductText": "Are you sure you want to delete your product named {{product}}?"
+    "deleteProductText": "Are you sure you want to delete your product named {{product}}?",
+    "add": "Add"
   },
   "history": {
     "toast": {
@@ -454,5 +455,11 @@
   "all": "All",
   "read": "Read",
   "unRead": "Unread"
+},
+"auth-toast": {
+  "register-error": "This phone number is already registered",
+  "login-error": "Incorrect phone number or password",
+  "login-success": "Successfully logged in",
+  "password-error": "This phone number is not registered"
 }
 }

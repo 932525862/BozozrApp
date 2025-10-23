@@ -54,9 +54,20 @@ const TopActions = ({ handleOpen, setBuying, total, bought }) => {
         </CustomButton>
 
         {/* Qo'lda qo'shish */}
+        <div className="sm:hidden">
+        <CustomButton
+          onClick={() => handleOpen("addModal")}
+          className="py-[8px] px-[20px] text-[14px] flex items-center justify-center gap-2"
+          aria-label={t("topActions.ariaNewProduct")}
+        >
+          <span className="bg-white w-[20px] h-[20px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
+            <LuPlus className="text-[20px]" />
+          </span>
+        </CustomButton>
+        </div>
         <CustomButton
           onClick={() => handleOpen("add")}
-          className="py-[8px] px-[20px] text-[14px] flex items-center justify-center gap-2"
+          className="hidden sm:flex py-[8px] px-[20px] text-[14px] items-center justify-center gap-2"
           aria-label={t("topActions.ariaNewProduct")}
         >
           <span className="bg-white w-[20px] h-[20px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
@@ -64,9 +75,10 @@ const TopActions = ({ handleOpen, setBuying, total, bought }) => {
           </span>
           <span className="hidden sm:inline">{t("topActions.manualAdd")}</span>
         </CustomButton>
+        
         <CustomButton
           onClick={() => navigate("/brends")}
-          className="py-[8px] px-[20px] text-[14px] flex items-center justify-center gap-2"
+          className="py-[8px] px-[20px] text-[14px] hidden sm:flex items-center justify-center gap-2"
           aria-label={t("topActions.ariaNewProduct")}
         >
           <span className="bg-white w-[20px] h-[20px] flex justify-center items-center rounded-[5px] text-[#06B2B6]">
