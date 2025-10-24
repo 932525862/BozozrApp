@@ -81,8 +81,8 @@ const SideBar = () => {
 
             return `group px-[8px] sm:px-[12px] md:px-[16px] py-[18px] rounded-[12px] font-[500] flex flex-col items-center flex-1 md:flex-none text-[16px] sm:text-[14px] md:text-[16px] min-w-0 transition-all duration-200 ${
               customActive
-                ? "sm:bg-[#06B2B6] text-[#06B2B6] sm:text-white"
-                : "sm:bg-[#F9F9F9] text-[#4B4B4B] hover:md:bg-[#06B2B6] hover:md:text-white"
+                ? "md:bg-[#06B2B6] text-[#06B2B6] md:text-white"
+                : "md:bg-[#F9F9F9] text-[#4B4B4B] hover:md:bg-[#06B2B6] hover:md:text-white"
             } ${to === "/notifications" ? "hidden md:block" : ""}`;
           }}
         >
