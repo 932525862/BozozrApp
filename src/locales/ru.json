@@ -375,6 +375,7 @@
     "reject": "Отклонить",
     "accept": "Принять",
     "acceptedSuccess": "Вы приняли список покупок",
+    "acceptedClose": "Вы отклонили покупку",
     "acceptedError": "Произошла ошибка",
     "sharedMarketTitle": "Совместные покупки"
   },
@@ -437,7 +438,9 @@
     "deleteProductToast": "Товар удалён",
     "deleteProductToastError": "Произошла ошибка при удалении товара",
     "deleteProductText": "Вы уверены, что хотите удалить продукт под названием {{product}}?",
-    "add": "Добавить"
+    "add": "Добавить",
+    "acceptTrue": "Принято",
+"acceptFalse": "Отклонено"
   },
   "history": {
     "toast": {

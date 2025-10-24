@@ -34,10 +34,10 @@ const NotificationsPage = () => {
 
   // 🔽 activeTab ga qarab query hosil qilamiz
   const getUrl = () => {
-    if (activeTab === "oqilmagan") return `/notification/user?isRead=false`;
-    if (activeTab === "oqilgan") return `/notification/user?isRead=true`;
+    if (activeTab === "oqilmagan") return `/notification/user?isRead=true`;
+    if (activeTab === "oqilgan") return `/notification/user?isRead=false`;
     return `/notification/user`;
-  };
+  };  
 
   // 🔽 useFetch hook
   const { data, refetch, isLoading } = useFetch({
@@ -91,7 +91,7 @@ const NotificationsPage = () => {
           <Loding />
         </div>
       ) : (
-        <div className="flex flex-col gap-3 w-[98%] max-w-[550px]">
+        <div className="flex flex-col gap-3 w-[98%] max-w-[550px] md:max-h-[550px]">
           {data?.items?.map((item) => (
             <div
               onClick={() => handleOpen(item?.id)}

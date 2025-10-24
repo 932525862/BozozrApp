@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useFetchOne } from "../../../hooks/useFetchOne";
 import { formatDateNot, getLangValue } from "../../../utils/utils";
-import { Input } from "antd";
+import { Input, notification } from "antd";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { useTranslation } from "react-i18next";
 import useApiMutation from "../../../hooks/useMutation";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../../store/userStore";
-import Loding from "../../../components/Loding"
+import Loding from "../../../components/Loding";
 
 const { TextArea } = Input;
 
@@ -39,12 +39,39 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
     },
   });
 
+  const { mutate: closeMutate, isLoading: closeLoading } = useApiMutation({
+    url: `/market/respond/to-invite`,
+    method: "PATCH",
+    onSuccess: () => {
+      navigate(`/market/${data?.market?.name}`, {
+        state: { id: data?.market?.id },
+      });
+      toast.success(t("messagesForm.acceptedClose"));
+      onClose();
+    },
+    onError: (error) => {
+      toast.error(
+        error.response?.data?.message || t("messagesForm.acceptedError")
+      );
+    },
+  });
+
   const respondShare = () => {
     const data1 = {
+      notificationId: data?.id,
       marketId: data?.market?.id,
       accept: true,
     };
     mutate(data1);
+  };
+
+  const closeShare = () => {
+    const data1 = {
+      notificationId: data?.id,
+      marketId: data?.market?.id,
+      accept: false,
+    };
+    closeMutate(data1);
   };
 
   useEffect(() => {
@@ -58,7 +85,9 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
 
   if (getData) {
     return (
-      <div className="h-[200px] flex items-center justify-center"><Loding/></div>
+      <div className="h-[200px] flex items-center justify-center">
+        <Loding />
+      </div>
     );
   }
 
@@ -91,7 +120,7 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
         }}
       />
 
-      {data?.market && (
+      {data?.market && data?.accept === null && (
         <div>
           <PrimaryButton
             onClick={() => watchNotMarket()}
@@ -101,7 +130,11 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
           </PrimaryButton>
 
           <div className="flex gap-[12px] mt-[12px]">
-            <PrimaryButton onClick={() => onClose()} className="py-[12px] rounded-[14px] bg-[#D32F2F] hover:bg-[#d32f2fbd] font-[500] text-[16px] w-full">
+            <PrimaryButton
+              onClick={() => closeShare()}
+              disabled={closeLoading}
+              className="py-[12px] rounded-[14px] bg-[#D32F2F] hover:bg-[#d32f2fbd] font-[500] text-[16px] w-full"
+            >
               {t("messagesForm.reject")}
             </PrimaryButton>
 
@@ -113,6 +146,17 @@ const MessagesForm = ({ notId, refetch, onClose }) => {
               {t("messagesForm.accept")}
             </PrimaryButton>
           </div>
+        </div>
+      )}
+
+      {data?.accept === true && (
+        <div className="w-full py-[12px] flex justify-center items-center bg-[#06B2B6] rounded-[14px] text-[#fff] mt-[15px] font-[500] text-[18px]">
+          {t("modalType.acceptTrue")}
+        </div>
+      )}
+      {data?.accept === false && (
+        <div className="w-full py-[12px] flex justify-center items-center bg-[#D32F2F] rounded-[14px] text-[#fff] mt-[15px] font-[500] text-[18px]">
+          {t("modalType.acceptFalse")}
         </div>
       )}
     </div>

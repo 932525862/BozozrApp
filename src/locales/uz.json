@@ -373,6 +373,7 @@
     "reject": "Rad etish",
     "accept": "Qabul qilish",
     "acceptedSuccess": "Bozorlikni qabul qildingiz",
+    "acceptedClose": "Bozorlikni rad qildingiz",
     "acceptedError": "Xatolik yuz berdi",
     "sharedMarketTitle": "Bozorlik ulashuvi"
   },
@@ -435,7 +436,9 @@
     "deleteProductToast": "Mahsulot o'chirildi",
   "deleteProductToastError": "Mahsulotni o'chirishda xatolik yuz berdi",
   "deleteProductText": "{{product}} nomli mahsulotingizni o'chirmoqchimisiz?",
-  "add": "Qo'shish"
+  "add": "Qo'shish",
+  "acceptTrue": "Qabul qilindi",
+  "acceptFalse": "Rad etildi"
   },
   "history": {
     "toast": {

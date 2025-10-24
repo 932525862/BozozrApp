@@ -375,6 +375,7 @@
     "reject": "Рад этиш",
     "accept": "Қабул қилиш",
     "acceptedSuccess": "Бозорликни қабул қилдингиз",
+    "acceptedClose": "Бозорликни рад қилдингиз",
     "acceptedError": "Хатолик юз берди",
     "sharedMarketTitle": "Бозорлик улашуви"
   },
@@ -437,7 +438,9 @@
     "deleteProductToast": "Маҳсулот ўчирилди",
     "deleteProductToastError": "Маҳсулотни ўчиришда хатолик юз берди",
     "deleteProductText": "{{product}} номли маҳсулотингизни ўчирмоқчимисиз?",
-    "add": "Қўшиш"
+    "add": "Қўшиш",
+    "acceptTrue": "Қабул қилинди",
+"acceptFalse": "Рад этилди"
   },
   "history": {
     "toast": {

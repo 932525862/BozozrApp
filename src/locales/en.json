@@ -376,6 +376,7 @@
     "reject": "Reject",
     "accept": "Accept",
     "acceptedSuccess": "You have accepted the shopping list",
+    "acceptedClose": "You rejected the purchase",
     "acceptedError": "An error occurred",
     "sharedMarketTitle": "Shared Shopping List"
   },
@@ -438,7 +439,9 @@
     "deleteProductToast": "Product deleted",
     "deleteProductToastError": "An error occurred while deleting the product",
     "deleteProductText": "Are you sure you want to delete your product named {{product}}?",
-    "add": "Add"
+    "add": "Add",
+    "acceptTrue": "Accepted",
+"acceptFalse": "Rejected"
   },
   "history": {
     "toast": {

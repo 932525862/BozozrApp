@@ -51,7 +51,7 @@ const Login = () => {
     },
     onError: (error) => {
       if(error.status == 401) {
-              toast.error(t("auth-toast.register-login"))
+              toast.error(t("auth-toast.login-error"))
             }else{
               toast.error(error.response?.data?.message);
             }

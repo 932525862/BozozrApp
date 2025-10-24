@@ -3,3 +3,32 @@
 body{
     overflow-x: hidden;
 }
+
+/* === Barcha browserlar uchun umumiy === */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #06B2B6;
+  }
+  
+  /* Firefox */
+  * {
+    scrollbar-width: thin; /* yoki auto, none */
+    scrollbar-color: #06B2B6 #ffff; /* thumb, track */
+  }
+  
