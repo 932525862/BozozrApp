@@ -48,8 +48,11 @@ const SectionsPage = () => {
   });
 
   const { data: statistics } = useFetchOne({
-    key: ["history/statistics"],
+    key: ["history/statistics", sectionId],
     url: "/history/statistics",
+    config: {
+      params: { marketTypeId: sectionId },
+    },
     
   });
   
