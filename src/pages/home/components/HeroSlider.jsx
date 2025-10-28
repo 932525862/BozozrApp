@@ -8,7 +8,6 @@ import 'swiper/css/pagination';
 import { useFetchOne } from '../../../hooks/useFetchOne';
 import { getLangValue } from '../../../utils/utils';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 const HeroSlider = () => {
   const {t,i18n} = useTranslation()
@@ -72,16 +71,14 @@ const HeroSlider = () => {
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
-                  backgroundImage: `url(${slide?.image})`,
+                  backgroundImage: `url(${getLangValue(slide, "image", i18n.language)})`,
                 }} className={` w-full h-full text-white rounded-2xl p-6 flex flex-col justify-between  transform transition-transform duration-300 `}>
                 {/* Logo */}
                 
 
                 {/* Content */}
-                <div className="flex-1 flex flex-col justify-center  w-[60%]">
-                  <h1 className="text-[18px] sm:text-[22px] lg:text-[24px] font-bold leading-tight uppercase mb-3 whitespace-pre-line">
-                    {getLangValue(slide, "name", i18n.language)}
-                  </h1>
+                <div className="flex-1 flex flex-col justify-end">
+                  
                   <a href={slide?.link} target='_blank' className={`bg-white cursor-pointer text-[#06B2B6] px-4 py-[6px] rounded-[8px]  font-semibold text-sm w-fit shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
                    {t("barafsil")}
                   </a>
