@@ -17,6 +17,9 @@ const HeroSlider = () => {
       url: `/bunner/all`,
     });
 
+    
+    
+
   return (
     <div className="">
       
@@ -65,17 +68,17 @@ const HeroSlider = () => {
           {data?.map((slide) => (
             <SwiperSlide 
               key={slide.id} 
-              className="!w-[full] !h-[190px] md:!w-[580px] sm:!h-[210px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
+              className="!w-[full] !h-[180px] md:!w-[580px] sm:!h-[210px] lg:!w-[670px] lg:!h-[264px] transition-all duration-300"
             >
               <div style={{
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
-                  backgroundSize: "cover",
+                  backgroundSize: "100% 100%",
                   backgroundImage: `url(${getLangValue(slide, "image", i18n.language)})`,
                 }} className={` w-full h-full text-white rounded-2xl p-6 flex flex-col justify-between  transform transition-transform duration-300 `}>
                 {/* Logo */}
                 
-
+                {console.log(getLangValue(slide, "image", i18n.language))}
                 {/* Content */}
                 <div className="flex-1 flex flex-col justify-end">
                   
