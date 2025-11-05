@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Input, Select } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import i18n from "../../i18n";
@@ -35,6 +35,7 @@ const Registir = () => {
   const [timeLeft, setTimeLeft] = useState(120); // 2 minut = 120 sekund
   const [canResend, setCanResend] = useState(false);
   const { setUser } = useStore();
+  const navigate = useNavigate()
 
   const handleClose = () => setVerify(false);
   // 🔹 react-hook-form setup
@@ -77,8 +78,9 @@ const Registir = () => {
     method: "POST",
     onSuccess: (data) => {
       setUser(data?.access_token, data?.refresh_token, data?.user);
+      navigate("/");  
       toast.success(t("toast.login_success"));
-      navigate("/");
+      
     },
 
     onError: (error) => {
