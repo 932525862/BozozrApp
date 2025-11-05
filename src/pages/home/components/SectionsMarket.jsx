@@ -78,7 +78,7 @@ const SectionsMarket = () => {
             },
           }}
         >
-          {[...(data?.items ?? [])].reverse().map((item) => (
+          {[...(data?.items ?? [])].map((item) => (
             <SwiperSlide key={item?.id}>
               <div
                 onClick={() => handleNavigate(item?.id)}

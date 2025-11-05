@@ -83,7 +83,7 @@ const SectionsPage = () => {
       <div className="grid grid-cols-12 gap-4">
         {/* Chap bo‘limlar */}
         <div className="hidden col-span-5 sm:flex flex-col gap-3">
-          {[...(marketTypeData?.items ?? [])].reverse().map((item) => (
+          {[...(marketTypeData?.items ?? [])].map((item) => (
             <div
               key={item?.id}
               onClick={() => setSectionId(item?.id)}
